@@ -1408,7 +1408,7 @@ img {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 60%, #1a1510 0%, #0a0806 100%);
+  background: #000000;
   z-index: 3;
 }
 
@@ -1536,6 +1536,7 @@ img {
   object-position: center;
   user-select: none;
   pointer-events: none;
+  /* no blend mode needed — section bg matches image bg */
 }
 
 .whisky-glass-empty {
@@ -1544,8 +1545,8 @@ img {
 
 .whisky-glass-filled {
   z-index: 2;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 0.08s ease-out;
+  clip-path: inset(72% 0 0 0);
+  transition: clip-path 0.06s ease-out;
 }
 
 .whisky-glass-glow {

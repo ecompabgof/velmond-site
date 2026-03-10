@@ -14,13 +14,16 @@
   var wrap      = document.getElementById('whiskyGlassWrap');
   if (!section || !filledImg) return;
 
+  /* ─── Liquid area in the image (% from top) ─── */
+  var LIQUID_BOTTOM = 72; // where liquid starts (glass interior bottom)
+  var LIQUID_TOP    = 28; // where ice/liquid surface reaches
+
   /* ─── Steps ─── */
   var steps = section.querySelectorAll('.whisky-step');
 
   /* ─── State ─── */
   var currentFill = 0;
   var targetFill  = 0;
-  var rafId       = null;
 
   /* ─── Scroll handler ─── */
   function onScroll() {
@@ -47,20 +50,24 @@
 
   /* ─── Animation loop ─── */
   function animate() {
-    rafId = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
     // Check visibility
     var rect = section.getBoundingClientRect();
     if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
 
-    // Smooth interpolation
-    currentFill += (targetFill - currentFill) * 0.08;
+    // Smooth interpolation (faster than before)
+    currentFill += (targetFill - currentFill) * 0.18;
 
-    // Clip-path: reveal filled image from bottom to top
-    // inset(top right bottom left)
-    // When fill=0: inset(100% 0 0 0) = fully clipped (hidden)
-    // When fill=1: inset(0% 0 0 0)   = fully visible
-    var topInset = 100 - (currentFill * 100);
+    // Snap to extremes to avoid infinite asymptotic creep
+    if (currentFill < 0.005) currentFill = 0;
+    if (currentFill > 0.995) currentFill = 1;
+
+    // Clip-path: reveal only the liquid area of the filled image
+    // Maps fill 0→1 to clip inset LIQUID_BOTTOM→LIQUID_TOP
+    // At fill=0: inset(72%) — hides all liquid, glass base shows through from empty img
+    // At fill=1: inset(28%) — full liquid + ice visible
+    var topInset = LIQUID_BOTTOM - (currentFill * (LIQUID_BOTTOM - LIQUID_TOP));
     filledImg.style.clipPath = 'inset(' + topInset.toFixed(2) + '% 0 0 0)';
 
     // Ambient glow behind glass intensifies with fill

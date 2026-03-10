@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorvain — Velmond Spirits</title>
+  <meta name="description" content="Lorvain : whisky français d'auteur. Élevé dans l'ombre des chais, chaque cuvée porte l'empreinte du temps et du bois.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../pages.css">
+  <link rel="stylesheet" href="../quiz.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">VELMOND</span>
+        <span class="logo-sub">— Spirits —</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/maisons.html" class="active">Les Maisons</a></li>
+        <li><a href="/boutique.html">Boutique</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero maison-hero" style="background: linear-gradient(135deg, #121212 0%, #2E2E32 50%, #C9A86D 100%);">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/maisons.html">Les Maisons</a> &nbsp;/&nbsp; Lorvain</div>
+      <img src="../images/logo-lorvain.png" alt="Lorvain" class="maison-hero-logo" style="height: 180px; width: auto; margin-bottom: 1.5rem;">
+      <div class="hero-divider" style="opacity:1;">
+        <span class="divider-line"></span>
+        <span class="divider-diamond">&#9670;</span>
+        <span class="divider-line"></span>
+      </div>
+      <p class="page-subtitle">Whisky fran&ccedil;ais d'auteur</p>
+    </div>
+  </section>
+
+  <!-- ========== NOTRE HISTOIRE ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-badge">Notre Histoire</div>
+      <h2 class="section-title">N&eacute; dans l'ombre <em>des chais</em></h2>
+      <div class="story-grid">
+        <div class="story-text">
+          <p>Lorvain est n&eacute; dans les ombres d'anciens chais de pierre, l&agrave; o&ugrave; la lumi&egrave;re ne p&eacute;n&egrave;tre qu'&agrave; travers les interstices des portes en ch&ecirc;ne. Ici, le temps a une autre dimension &mdash; il coule lentement, au rythme de l'&eacute;vaporation des anges.</p>
+          <p>Chaque f&ucirc;t est un chapitre d'une histoire plus vaste. Ch&ecirc;ne fran&ccedil;ais s&eacute;lectionn&eacute; dans les for&ecirc;ts du Limousin, patience infinie dans l'&eacute;levage, et un caract&egrave;re unique qui se r&eacute;v&egrave;le au fil des ann&eacute;es.</p>
+          <p>Lorvain incarne l'autorit&eacute; du whisky fran&ccedil;ais d'auteur. Sombre, profond, sans concession &mdash; un spiritueux qui impose le silence et commande le respect.</p>
+        </div>
+        <div class="story-visual" style="padding:0;overflow:hidden;border-radius:12px;">
+          <img src="../images/hero-lorvain.png" alt="Lorvain" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOS CREATIONS ========== -->
+  <section class="section" style="background: var(--ivory-dark);">
+    <div class="container">
+      <div class="section-badge">Nos Cr&eacute;ations</div>
+      <h2 class="section-title">Les whiskies de <em>la Maison</em></h2>
+      <p class="section-intro">Quatre expressions d'un m&ecirc;me caract&egrave;re, forg&eacute;es par le temps et le ch&ecirc;ne fran&ccedil;ais.</p>
+
+      <div class="maison-products-grid">
+        <div class="product-card">
+          <div class="product-visual" style="background: linear-gradient(180deg, #2E2E32, #121212);">
+            <img src="../images/single-malt-3ans.png" alt="Single Malt 3 ans" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">3 ans</span>
+          </div>
+          <div class="product-info">
+            <h3 style="font-family: 'Cinzel', serif; font-weight: 700;">Single Malt 3 ans</h3>
+            <p class="product-brand" style="font-family: 'EB Garamond', serif;">Lorvain</p>
+            <p class="product-notes"><em>Vanille, miel, ch&ecirc;ne jeune</em></p>
+            <div class="product-footer">
+              <span class="product-price">52 &euro;</span>
+              <a href="/boutique.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-visual" style="background: linear-gradient(180deg, #C9A86D, #2E2E32);">
+            <img src="../images/single-malt-5ans.png" alt="Single Malt 5 ans" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">5 ans</span>
+          </div>
+          <div class="product-info">
+            <h3 style="font-family: 'Cinzel', serif; font-weight: 700;">Single Malt 5 ans</h3>
+            <p class="product-brand" style="font-family: 'EB Garamond', serif;">Lorvain</p>
+            <p class="product-notes"><em>Fruits secs, cuir, bois&eacute; profond</em></p>
+            <div class="product-footer">
+              <span class="product-price">75 &euro;</span>
+              <a href="/boutique.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-visual" style="background: linear-gradient(180deg, #F4F0E8, #2E2E32);">
+            <img src="../images/blend-signature.png" alt="Blend Signature" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Blend</span>
+          </div>
+          <div class="product-info">
+            <h3 style="font-family: 'Cinzel', serif; font-weight: 700;">Blend Signature</h3>
+            <p class="product-brand" style="font-family: 'EB Garamond', serif;">Lorvain</p>
+            <p class="product-notes"><em>Rondeur, caramel, &eacute;pices</em></p>
+            <div class="product-footer">
+              <span class="product-price">45 &euro;</span>
+              <a href="/boutique.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-visual" style="background: linear-gradient(180deg, #121212, #000000);">
+            <img src="../images/cask-strength.png" alt="Cask Strength" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Cask Strength</span>
+          </div>
+          <div class="product-info">
+            <h3 style="font-family: 'Cinzel', serif; font-weight: 700;">Cask Strength</h3>
+            <p class="product-brand" style="font-family: 'EB Garamond', serif;">Lorvain</p>
+            <p class="product-notes"><em>Puissant, tabac, ch&ecirc;ne ancien</em></p>
+            <div class="product-footer">
+              <span class="product-price">95 &euro;</span>
+              <a href="/boutique.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SAVOIR-FAIRE ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-badge">Notre Savoir-Faire</div>
+      <h2 class="section-title">L'art du <em>whisky fran&ccedil;ais</em></h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <h3>Maltage</h3>
+          <p>S&eacute;lection d'orges fran&ccedil;aises de premi&egrave;re qualit&eacute;, malt&eacute;es avec soin pour r&eacute;v&eacute;ler leur potentiel aromatique.</p>
+        </div>
+        <div class="process-step">
+          <h3>Distillation</h3>
+          <p>Double distillation en alambic de cuivre. Coupes pr&eacute;cises pour ne garder que le c&oelig;ur de chauffe le plus pur.</p>
+        </div>
+        <div class="process-step">
+          <h3>&Eacute;levage</h3>
+          <p>F&ucirc;ts de ch&ecirc;ne fran&ccedil;ais du Limousin. Le bois sculpte lentement le caract&egrave;re de chaque cuv&eacute;e.</p>
+        </div>
+        <div class="process-step">
+          <h3>Mise en bouteille</h3>
+          <p>Sans filtration &agrave; froid, sans colorant. Le whisky tel qu'il est, dans toute son authenticit&eacute;.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>D&eacute;couvrez nos <em>cr&eacute;ations</em></h2>
+      <p>Retrouvez toute la collection Lorvain dans notre boutique.</p>
+      <a href="/boutique.html" class="btn-primary">Acc&eacute;der &agrave; la Boutique</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VELMOND</h3>
+          <p class="footer-tagline"><em>Spirits</em></p>
+          <p class="footer-desc">Maison fran&ccedil;aise de spiritueux d'exception. Le go&ucirc;t, la ma&icirc;trise et le temps.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/velmondspirits.fr" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/maisons.html">Les Maisons</a></li>
+            <li><a href="/boutique.html">Boutique</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nos Maisons</h4>
+          <ul>
+            <li><a href="/maisons/la-grande-distillerie.html">La Grande Distillerie</a></li>
+            <li><a href="/maisons/27-botanica.html">27 Botanica</a></li>
+            <li><a href="/maisons/lorvain.html">Lorvain</a></li>
+            <li><a href="/maisons/atelier-des-liqueurs.html">L'Atelier des Liqueurs</a></li>
+            <li><a href="/maisons/le-spiritueux-patriote.html">Le Spiritueux Patriote</a></li>
+            <li><a href="/maisons/heritage-1905.html">H&eacute;ritage 1905</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Informations</h4>
+          <ul>
+            <li><a href="#">Mentions l&eacute;gales</a></li>
+            <li><a href="#">Politique de confidentialit&eacute;</a></li>
+            <li><a href="#">Conditions g&eacute;n&eacute;rales</a></li>
+            <li><a href="#">Livraison</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-divider">
+          <span class="ornament-line"></span>
+          <span class="ornament-icon">&#9670;</span>
+          <span class="ornament-line"></span>
+        </div>
+        <p>&copy; 2026 Velmond Spirits &mdash; Spiritueux artisanaux fran&ccedil;ais</p>
+        <p class="footer-warning">L'abus d'alcool est dangereux pour la sant&eacute;. &Agrave; consommer avec mod&eacute;ration.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== AGE GATE ========== -->
+  <div class="age-gate" id="ageGate">
+    <div class="age-gate-inner">
+      <div class="age-gate-ornament">&#9670;</div>
+      <h2>VELMOND</h2>
+      <p class="age-gate-sub"><em>Spirits</em></p>
+      <div class="age-gate-divider">
+        <span class="ornament-line"></span>
+        <span class="ornament-icon">&#10087;</span>
+        <span class="ornament-line"></span>
+      </div>
+      <p class="age-gate-question">Avez-vous l'&acirc;ge l&eacute;gal pour<br>consommer de l'alcool ?</p>
+      <div class="age-gate-buttons">
+        <button class="age-btn age-yes" onclick="closeAgeGate()">Oui, j'ai plus de 18 ans</button>
+        <button class="age-btn age-no" onclick="window.location.href='https://www.google.com'">Non</button>
+      </div>
+      <p class="age-gate-legal">L'abus d'alcool est dangereux pour la sant&eacute;. &Agrave; consommer avec mod&eacute;ration.</p>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+
+  <!-- Quiz -->
+  <button class="quiz-fab" onclick="openVelmondQuiz()">
+    <span class="quiz-fab-icon">🥃</span> Testez votre goût
+  </button>
+  <script src="../quiz.js"></script>
+</body>
+</html>

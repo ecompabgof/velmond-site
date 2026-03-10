@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" fill="none">
+  <!-- Whisky barrel / cask line drawing -->
+  <g stroke="#C9A86D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Barrel body - front face (elliptical) -->
+    <ellipse cx="200" cy="60" rx="60" ry="18"/>
+    <ellipse cx="200" cy="160" rx="60" ry="18"/>
+
+    <!-- Barrel staves - left side -->
+    <path d="M140 60 C135 80, 132 100, 132 110 C132 120, 135 140, 140 160"/>
+
+    <!-- Barrel staves - right side -->
+    <path d="M260 60 C265 80, 268 100, 268 110 C268 120, 265 140, 260 160"/>
+
+    <!-- Barrel belly (widest point) -->
+    <path d="M132 110 C132 110, 130 110, 130 110" stroke-width="0"/>
+    <ellipse cx="200" cy="110" rx="68" ry="20" stroke-dasharray="4 6" opacity="0.4"/>
+
+    <!-- Metal hoops -->
+    <ellipse cx="200" cy="75" rx="63" ry="19" stroke-width="2"/>
+    <ellipse cx="200" cy="145" rx="63" ry="19" stroke-width="2"/>
+
+    <!-- Bung hole -->
+    <circle cx="200" cy="110" r="6"/>
+    <circle cx="200" cy="110" r="3" fill="#C9A86D" stroke="none"/>
+
+    <!-- Stave lines -->
+    <path d="M170 60 C167 80, 165 100, 165 110 C165 120, 167 140, 170 160" opacity="0.3"/>
+    <path d="M200 42 L200 178" opacity="0.3"/>
+    <path d="M230 60 C233 80, 235 100, 235 110 C235 120, 233 140, 230 160" opacity="0.3"/>
+  </g>
+
+  <!-- LORVAIN text -->
+  <text x="200" y="250" text-anchor="middle" font-family="'Cinzel', 'Times New Roman', serif" font-size="56" font-weight="700" letter-spacing="8" fill="#1E1C1A">LORVAIN</text>
+
+  <!-- Subtitle line -->
+  <line x1="120" y1="270" x2="280" y2="270" stroke="#C9A86D" stroke-width="1" opacity="0.5"/>
+
+  <!-- Whisky d'Auteur -->
+  <text x="200" y="298" text-anchor="middle" font-family="'Cormorant Garamond', 'Georgia', serif" font-size="18" font-weight="300" font-style="italic" letter-spacing="6" fill="#1E1C1A">WHISKY D'AUTEUR</text>
+</svg>

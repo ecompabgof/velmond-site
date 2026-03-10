@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" fill="none">
+  <!-- Vintage key line drawing -->
+  <g stroke="#C8A46D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Key bow (ornate circle top) -->
+    <circle cx="200" cy="55" r="35"/>
+    <circle cx="200" cy="55" r="25"/>
+
+    <!-- Decorative cutouts in bow -->
+    <path d="M188 42 C184 46, 184 52, 188 56" opacity="0.5"/>
+    <path d="M212 42 C216 46, 216 52, 212 56" opacity="0.5"/>
+    <circle cx="200" cy="48" r="4" opacity="0.5"/>
+    <circle cx="200" cy="62" r="4" opacity="0.5"/>
+
+    <!-- Key shaft -->
+    <path d="M200 90 L200 165"/>
+    <path d="M196 92 L204 92" stroke-width="2" opacity="0.4"/>
+    <path d="M196 105 L204 105" stroke-width="2" opacity="0.4"/>
+
+    <!-- Key bit (teeth) -->
+    <path d="M200 165 L218 165"/>
+    <path d="M218 165 L218 155 L212 155 L212 160 L206 160 L206 150 L218 150"/>
+    <path d="M200 165 L200 175 L210 175 L210 170"/>
+
+    <!-- Small ornamental dots -->
+    <circle cx="200" cy="130" r="3" fill="#C8A46D" stroke="none" opacity="0.4"/>
+
+    <!-- Decorative flourishes -->
+    <path d="M165 55 C158 48, 155 40, 160 35" opacity="0.3"/>
+    <path d="M235 55 C242 48, 245 40, 240 35" opacity="0.3"/>
+  </g>
+
+  <!-- HERITAGE text -->
+  <text x="200" y="248" text-anchor="middle" font-family="'Playfair Display', 'Georgia', serif" font-size="44" font-weight="400" font-style="italic" letter-spacing="6" fill="#1E1C1A">H&#201;RITAGE</text>
+
+  <!-- Decorative line -->
+  <line x1="145" y1="266" x2="255" y2="266" stroke="#C8A46D" stroke-width="1" opacity="0.5"/>
+
+  <!-- 1905 text -->
+  <text x="200" y="305" text-anchor="middle" font-family="'Playfair Display', 'Georgia', serif" font-size="60" font-weight="700" font-style="italic" letter-spacing="8" fill="#1E1C1A">1905</text>
+</svg>

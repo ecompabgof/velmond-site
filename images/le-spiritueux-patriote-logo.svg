@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 520" fill="none">
+  <defs>
+    <path id="topArc" d="M 110,245 A 140,140 0 0,1 390,245" fill="none"/>
+  </defs>
+
+  <!-- Outer circle ring -->
+  <circle cx="250" cy="245" r="168" stroke="#1a2744" stroke-width="3.5" fill="none"/>
+  <!-- Inner circle ring -->
+  <circle cx="250" cy="245" r="150" stroke="#1a2744" stroke-width="1.8" fill="none"/>
+
+  <!-- Curved "LE SPIRITUEUX" text along top arc -->
+  <text font-family="'Cinzel', 'Times New Roman', serif" font-size="21" font-weight="600" letter-spacing="6" fill="#1a2744">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">LE SPIRITUEUX</textPath>
+  </text>
+
+  <!-- ===== ROOSTER (COQ) - facing LEFT, proud posture ===== -->
+  <g transform="translate(250, 240)">
+
+    <!-- TAIL FEATHERS sweeping up-right, 3 elegant curves -->
+    <path d="M 10,10 C 30,0, 50,-20, 58,-50 C 62,-65, 56,-75, 46,-72 C 38,-68, 32,-56, 28,-40 C 24,-24, 18,-8, 10,10 Z" fill="#1a2744"/>
+    <path d="M 8,6 C 28,-8, 52,-32, 62,-62 C 66,-78, 58,-88, 48,-84 C 40,-78, 34,-64, 30,-48 C 24,-30, 16,-12, 8,6 Z" fill="#1a2744"/>
+    <path d="M 6,2 C 26,-14, 54,-42, 66,-74 C 70,-90, 60,-98, 50,-94 C 42,-88, 36,-72, 32,-56 C 26,-36, 14,-16, 6,2 Z" fill="#1a2744"/>
+
+    <!-- BODY - round proud chest -->
+    <path d="M -10,10 C -30,8, -44,18, -48,34 C -52,50, -42,64, -26,68 C -10,72, 8,66, 16,54 C 24,42, 22,26, 14,14 C 10,10, 2,8, -10,10 Z" fill="#1a2744"/>
+
+    <!-- NECK - upward flowing into head -->
+    <path d="M -10,10 C -8,0, -6,-12, -4,-24 C -2,-32, 0,-38, 2,-42 L 8,-42 C 10,-38, 12,-32, 12,-24 C 12,-12, 6,0, 2,10 Z" fill="#1a2744"/>
+
+    <!-- HEAD - facing left -->
+    <ellipse cx="-2" cy="-52" rx="14" ry="12" fill="#1a2744"/>
+
+    <!-- COMB (crête) - 3 peaks on top of head - RED -->
+    <path d="M -8,-62 C -10,-72, -4,-78, 0,-70 C 2,-78, 8,-76, 8,-68 C 10,-74, 16,-70, 12,-64" fill="#c0392b" stroke="none"/>
+
+    <!-- EYE -->
+    <circle cx="-6" cy="-52" r="3" fill="white"/>
+    <circle cx="-7" cy="-52" r="1.5" fill="#1a2744"/>
+
+    <!-- BEAK - pointing left -->
+    <path d="M -16,-54 L -26,-50 L -16,-48 Z" fill="#c0392b" opacity="0.8"/>
+
+    <!-- WATTLE (barbillon) - RED, hanging under beak -->
+    <path d="M -14,-46 C -16,-42, -14,-36, -10,-38 C -8,-40, -10,-44, -14,-46 Z" fill="#c0392b"/>
+
+    <!-- WING detail on body -->
+    <path d="M -6,22 C -16,28, -24,38, -24,48 C -24,56, -18,62, -10,62" stroke="rgba(255,255,255,0.12)" stroke-width="2" fill="none"/>
+
+    <!-- LEGS -->
+    <line x1="-20" y1="66" x2="-24" y2="88" stroke="#1a2744" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="-6" y1="68" x2="-2" y2="88" stroke="#1a2744" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Left foot (3 toes) -->
+    <path d="M -24,88 L -34,94 M -24,88 L -24,96 M -24,88 L -16,94" stroke="#1a2744" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Right foot -->
+    <path d="M -2,88 L -12,94 M -2,88 L -2,96 M -2,88 L 6,94" stroke="#1a2744" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- ===== WHEAT BRANCHES at bottom of circle ===== -->
+  <!-- Left wheat -->
+  <g transform="translate(168, 378) rotate(-35)">
+    <line x1="0" y1="0" x2="0" y2="-52" stroke="#1a2744" stroke-width="1.8" stroke-linecap="round"/>
+    <ellipse cx="-5" cy="-8" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(20 -5 -8)"/>
+    <ellipse cx="5" cy="-10" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(-20 5 -10)"/>
+    <ellipse cx="-5" cy="-22" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(20 -5 -22)"/>
+    <ellipse cx="5" cy="-24" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(-20 5 -24)"/>
+    <ellipse cx="-5" cy="-36" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(20 -5 -36)"/>
+    <ellipse cx="5" cy="-38" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(-20 5 -38)"/>
+    <ellipse cx="0" cy="-48" rx="3" ry="7" fill="#1a2744" opacity="0.55"/>
+  </g>
+  <!-- Right wheat (mirrored) -->
+  <g transform="translate(332, 378) rotate(35)">
+    <line x1="0" y1="0" x2="0" y2="-52" stroke="#1a2744" stroke-width="1.8" stroke-linecap="round"/>
+    <ellipse cx="-5" cy="-8" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(20 -5 -8)"/>
+    <ellipse cx="5" cy="-10" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(-20 5 -10)"/>
+    <ellipse cx="-5" cy="-22" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(20 -5 -22)"/>
+    <ellipse cx="5" cy="-24" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(-20 5 -24)"/>
+    <ellipse cx="-5" cy="-36" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(20 -5 -36)"/>
+    <ellipse cx="5" cy="-38" rx="3.5" ry="8" fill="#1a2744" opacity="0.55" transform="rotate(-20 5 -38)"/>
+    <ellipse cx="0" cy="-48" rx="3" ry="7" fill="#1a2744" opacity="0.55"/>
+  </g>
+
+  <!-- Wheat stems cross -->
+  <line x1="222" y1="398" x2="236" y2="410" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="278" y1="398" x2="264" y2="410" stroke="#1a2744" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- PATRIOTE text -->
+  <text x="250" y="490" text-anchor="middle" font-family="'Cinzel', 'Times New Roman', serif" font-size="60" font-weight="700" letter-spacing="5" fill="#1a2744">PATRIOTE</text>
+</svg>

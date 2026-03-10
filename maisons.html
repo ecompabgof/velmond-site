@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Maisons — Velmond Spirits</title>
+  <meta name="description" content="Découvrez les six maisons de Velmond Spirits. Du gin botanique au whisky d'auteur, de la liqueur gourmande au pastis patriote.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">VELMOND</span>
+        <span class="logo-sub">— Spirits —</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/maisons.html" class="active">Les Maisons</a></li>
+        <li><a href="/boutique.html">Boutique</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero" style="background: linear-gradient(180deg, #1E1C1A 0%, #2a1f17 40%, #3a2a1d 70%, #4B2E20 100%);">
+    <div class="hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="hero-ornament" style="opacity:1;">&#10022; &#10022; &#10022;</div>
+      <h1>Nos Maisons</h1>
+      <div class="hero-divider" style="opacity:1;">
+        <span class="divider-line"></span>
+        <span class="divider-diamond">&#9670;</span>
+        <span class="divider-line"></span>
+      </div>
+      <p class="page-subtitle">Six maisons, un m&ecirc;me esprit d'excellence</p>
+    </div>
+  </section>
+
+  <!-- ========== MAISONS GRID ========== -->
+  <section class="section" style="background: var(--ivory-dark);">
+    <div class="container">
+      <p class="section-intro">
+        Chaque maison porte une vision singuli&egrave;re du spiritueux. Du gin botanique au whisky d'auteur,
+        de la liqueur gourmande au pastis patriote &mdash; <em>l'excellence se d&eacute;cline</em>.
+      </p>
+
+      <div class="maisons-overview-grid">
+
+        <!-- La Grande Distillerie -->
+        <div class="maison-card">
+          <a href="/maisons/la-grande-distillerie.html" style="text-decoration:none; color:inherit;">
+            <div class="maison-card-inner">
+              <div class="maison-visual">
+                <div class="maison-bg" style="background: linear-gradient(135deg, #1E1C1A 0%, #3a2f25 50%, #B8753A 100%);"></div>
+                <img src="/images/logo-la-grande-distillerie.png" alt="La Grande Distillerie" class="maison-logo-img" style="height: 100px; width: auto; position: relative; z-index: 2;">
+              </div>
+              <div class="maison-info">
+                <div class="maison-badge">Distillation</div>
+                <h3 class="maison-name" style="font-family: 'Cinzel', serif;">La Grande Distillerie</h3>
+                <p class="maison-desc">L'art de la distillation fran&ccedil;aise. Cuivre, feu et patience &mdash; chaque goutte est un hommage au <em>savoir-faire ancestral</em>.</p>
+                <div class="maison-colors">
+                  <span class="color-dot" style="background: #B8753A;" title="Cuivre"></span>
+                  <span class="color-dot" style="background: #F4F0E8;" title="Lin"></span>
+                  <span class="color-dot" style="background: #1E1C1A;" title="Noir"></span>
+                </div>
+                <span class="maison-link">D&eacute;couvrir &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 27 Botanica -->
+        <div class="maison-card">
+          <a href="/maisons/27-botanica.html" style="text-decoration:none; color:inherit;">
+            <div class="maison-card-inner">
+              <div class="maison-visual">
+                <div class="maison-bg" style="background: linear-gradient(135deg, #2d4a2e 0%, #4B6F4E 50%, #9ABF83 100%);"></div>
+                <img src="/images/logo-27-botanica.png" alt="27 Botanica" class="maison-logo-img" style="height: 100px; width: auto; position: relative; z-index: 2;">
+              </div>
+              <div class="maison-info">
+                <div class="maison-badge">Gin Botanique</div>
+                <h3 class="maison-name" style="font-family: 'Playfair Display', serif; font-style: italic;">27 Botanica</h3>
+                <p class="maison-desc">27 botaniques s&eacute;lectionn&eacute;es &agrave; la main. Un gin fran&ccedil;ais o&ugrave; chaque plante raconte une <em>histoire de terroir</em>.</p>
+                <div class="maison-colors">
+                  <span class="color-dot" style="background: #4B6F4E;" title="Vert"></span>
+                  <span class="color-dot" style="background: #9ABF83;" title="Vert clair"></span>
+                  <span class="color-dot" style="background: #D9C499;" title="Or"></span>
+                </div>
+                <span class="maison-link">D&eacute;couvrir &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Lorvain -->
+        <div class="maison-card">
+          <a href="/maisons/lorvain.html" style="text-decoration:none; color:inherit;">
+            <div class="maison-card-inner">
+              <div class="maison-visual">
+                <div class="maison-bg" style="background: linear-gradient(135deg, #121212 0%, #2E2E32 50%, #C9A86D 100%);"></div>
+                <img src="/images/logo-lorvain.png" alt="Lorvain" class="maison-logo-img" style="height: 100px; width: auto; position: relative; z-index: 2;">
+              </div>
+              <div class="maison-info">
+                <div class="maison-badge">Whisky d'Auteur</div>
+                <h3 class="maison-name" style="font-family: 'Cinzel', serif; font-weight: 700;">Lorvain</h3>
+                <p class="maison-desc">Whisky fran&ccedil;ais d'auteur. &Eacute;lev&eacute; dans l'ombre des chais, chaque cuv&eacute;e porte l'empreinte du <em>temps et du bois</em>.</p>
+                <div class="maison-colors">
+                  <span class="color-dot" style="background: #121212;" title="Noir"></span>
+                  <span class="color-dot" style="background: #2E2E32;" title="Ardoise"></span>
+                  <span class="color-dot" style="background: #C9A86D;" title="Or"></span>
+                </div>
+                <span class="maison-link">D&eacute;couvrir &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- L'Atelier des Liqueurs -->
+        <div class="maison-card">
+          <a href="/maisons/atelier-des-liqueurs.html" style="text-decoration:none; color:inherit;">
+            <div class="maison-card-inner">
+              <div class="maison-visual">
+                <div class="maison-bg" style="background: linear-gradient(135deg, #4B2E20 0%, #6b4433 50%, #F3E5C7 100%);"></div>
+                <img src="/images/logo-atelier-des-liqueurs.png" alt="L'Atelier des Liqueurs" class="maison-logo-img" style="height: 100px; width: auto; position: relative; z-index: 2;">
+              </div>
+              <div class="maison-info">
+                <div class="maison-badge">Liqueurs Artisanales</div>
+                <h3 class="maison-name" style="font-family: 'Playfair Display', serif;">L'Atelier des Liqueurs</h3>
+                <p class="maison-desc">Liqueurs gourmandes et cr&eacute;atives. L'art de marier les saveurs avec une <em>pr&eacute;cision d'orf&egrave;vre</em>.</p>
+                <div class="maison-colors">
+                  <span class="color-dot" style="background: #4B2E20;" title="Cacao"></span>
+                  <span class="color-dot" style="background: #F3E5C7;" title="Vanille"></span>
+                  <span class="color-dot" style="background: #9C2A3A;" title="Rouge Baie"></span>
+                </div>
+                <span class="maison-link">D&eacute;couvrir &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Le Spiritueux Patriote -->
+        <div class="maison-card">
+          <a href="/maisons/le-spiritueux-patriote.html" style="text-decoration:none; color:inherit;">
+            <div class="maison-card-inner">
+              <div class="maison-visual">
+                <div class="maison-bg" style="background: linear-gradient(135deg, #1a2744 0%, #2c3e6b 50%, #C8A46D 100%);"></div>
+                <img src="/images/logo-le-spiritueux-patriote.png" alt="Le Spiritueux Patriote" class="maison-logo-img" style="height: 100px; width: auto; position: relative; z-index: 2;">
+              </div>
+              <div class="maison-info">
+                <div class="maison-badge">Spiritueux Fran&ccedil;ais</div>
+                <h3 class="maison-name" style="font-family: 'Cinzel', serif;">Le Spiritueux Patriote</h3>
+                <p class="maison-desc">Pastis, vodka, gin, whisky &mdash; tous fran&ccedil;ais, tous <em>sans compromis</em>. L'excellence tricolore en bouteille.</p>
+                <div class="maison-colors">
+                  <span class="color-dot" style="background: #1a2744;" title="Bleu"></span>
+                  <span class="color-dot" style="background: #C8A46D;" title="Or"></span>
+                  <span class="color-dot" style="background: #F7F3EB;" title="Cr&egrave;me"></span>
+                </div>
+                <span class="maison-link">D&eacute;couvrir &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Heritage 1905 -->
+        <div class="maison-card">
+          <a href="/maisons/heritage-1905.html" style="text-decoration:none; color:inherit;">
+            <div class="maison-card-inner">
+              <div class="maison-visual">
+                <div class="maison-bg" style="background: linear-gradient(135deg, #2a1f17 0%, #5c3d2e 50%, #C8A46D 100%);"></div>
+                <img src="/images/logo-heritage-1905.png" alt="Héritage 1905" class="maison-logo-img" style="height: 100px; width: auto; position: relative; z-index: 2;">
+              </div>
+              <div class="maison-info">
+                <div class="maison-badge">Tradition</div>
+                <h3 class="maison-name" style="font-family: 'Playfair Display', serif; font-style: italic;">H&eacute;ritage 1905</h3>
+                <p class="maison-desc">Les recettes oubli&eacute;es, retrouv&eacute;es et sublim&eacute;es. Un pont entre <em>tradition et modernit&eacute;</em>.</p>
+                <div class="maison-colors">
+                  <span class="color-dot" style="background: #2a1f17;" title="Brun"></span>
+                  <span class="color-dot" style="background: #C8A46D;" title="Or"></span>
+                  <span class="color-dot" style="background: #F7F3EB;" title="Cr&egrave;me"></span>
+                </div>
+                <span class="maison-link">D&eacute;couvrir &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BAND ========== -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>D&eacute;couvrez toute la <em>collection</em></h2>
+      <p>Retrouvez les cr&eacute;ations de nos six maisons dans notre boutique en ligne.</p>
+      <a href="/boutique.html" class="btn-primary">Acc&eacute;der &agrave; la Boutique</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VELMOND</h3>
+          <p class="footer-tagline"><em>Spirits</em></p>
+          <p class="footer-desc">Maison fran&ccedil;aise de spiritueux d'exception. Le go&ucirc;t, la ma&icirc;trise et le temps.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/velmondspirits.fr" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/maisons.html">Les Maisons</a></li>
+            <li><a href="/boutique.html">Boutique</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nos Maisons</h4>
+          <ul>
+            <li><a href="/maisons/la-grande-distillerie.html">La Grande Distillerie</a></li>
+            <li><a href="/maisons/27-botanica.html">27 Botanica</a></li>
+            <li><a href="/maisons/lorvain.html">Lorvain</a></li>
+            <li><a href="/maisons/atelier-des-liqueurs.html">L'Atelier des Liqueurs</a></li>
+            <li><a href="/maisons/le-spiritueux-patriote.html">Le Spiritueux Patriote</a></li>
+            <li><a href="/maisons/heritage-1905.html">H&eacute;ritage 1905</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Informations</h4>
+          <ul>
+            <li><a href="#">Mentions l&eacute;gales</a></li>
+            <li><a href="#">Politique de confidentialit&eacute;</a></li>
+            <li><a href="#">Conditions g&eacute;n&eacute;rales</a></li>
+            <li><a href="#">Livraison</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-divider">
+          <span class="ornament-line"></span>
+          <span class="ornament-icon">&#9670;</span>
+          <span class="ornament-line"></span>
+        </div>
+        <p>&copy; 2026 Velmond Spirits &mdash; Spiritueux artisanaux fran&ccedil;ais</p>
+        <p class="footer-warning">L'abus d'alcool est dangereux pour la sant&eacute;. &Agrave; consommer avec mod&eacute;ration.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== AGE GATE ========== -->
+  <div class="age-gate" id="ageGate">
+    <div class="age-gate-inner">
+      <div class="age-gate-ornament">&#9670;</div>
+      <h2>VELMOND</h2>
+      <p class="age-gate-sub"><em>Spirits</em></p>
+      <div class="age-gate-divider">
+        <span class="ornament-line"></span>
+        <span class="ornament-icon">&#10087;</span>
+        <span class="ornament-line"></span>
+      </div>
+      <p class="age-gate-question">Avez-vous l'&acirc;ge l&eacute;gal pour<br>consommer de l'alcool ?</p>
+      <div class="age-gate-buttons">
+        <button class="age-btn age-yes" onclick="closeAgeGate()">Oui, j'ai plus de 18 ans</button>
+        <button class="age-btn age-no" onclick="window.location.href='https://www.google.com'">Non</button>
+      </div>
+      <p class="age-gate-legal">L'abus d'alcool est dangereux pour la sant&eacute;. &Agrave; consommer avec mod&eacute;ration.</p>
+    </div>
+  </div>
+
+  <button class="quiz-fab" onclick="openVelmondQuiz()">
+    <span class="quiz-fab-icon">✦</span> Testez votre goût
+  </button>
+  <script src="script.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

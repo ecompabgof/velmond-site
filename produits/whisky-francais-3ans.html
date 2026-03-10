@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whisky Français 3 ans — Le Spiritueux Patriote — Velmond Spirits</title>
+  <meta name="description" content="Whisky Français 3 ans par Le Spiritueux Patriote. Vanille, chêne, fruits secs. Découvrez ce spiritueux d'exception chez Velmond Spirits.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../pages.css">
+  <link rel="stylesheet" href="../quiz.css">
+  <style>
+    .product-page { background: var(--ivory, #F7F3EB); }
+    .product-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 6rem 0 4rem; max-width: 1100px; margin: 0 auto; }
+    .product-hero-img { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(75, 46, 32, 0.15); }
+    .product-hero-img img { width: 100%; height: 500px; object-fit: cover; display: block; }
+    .product-hero-info { display: flex; flex-direction: column; justify-content: center; }
+    .product-category { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C8A46D; margin-bottom: 0.5rem; }
+    .product-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: #1E1C1A; margin: 0 0 0.3rem; line-height: 1.15; }
+    .product-brand-name { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #A8864D; margin-bottom: 1.5rem; }
+    .product-brand-name a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(168, 134, 77, 0.3); transition: all 0.3s; }
+    .product-brand-name a:hover { color: #C8A46D; border-color: #C8A46D; }
+    .product-notes-text { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: #6B4A3A; font-style: italic; margin-bottom: 1.5rem; }
+    .product-meta { display: flex; gap: 2rem; margin-bottom: 2rem; }
+    .product-meta-item { text-align: center; }
+    .product-meta-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #A8864D; margin-bottom: 4px; }
+    .product-meta-value { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #1E1C1A; }
+    .product-price-tag { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #4B2E20; margin-bottom: 2rem; }
+    .product-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .product-actions .btn-primary { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #F7F3EB; background: #1E1C1A; border: none; padding: 16px 40px; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.3s; display: inline-block; }
+    .product-actions .btn-primary:hover { background: #C8A46D; transform: translateY(-2px); }
+    .product-actions .btn-secondary { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #6B4A3A; background: none; border: 1px solid rgba(200, 164, 109, 0.4); padding: 16px 40px; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.3s; display: inline-block; }
+    .product-actions .btn-secondary:hover { border-color: #C8A46D; color: #C8A46D; }
+
+    .product-details { max-width: 1100px; margin: 0 auto; padding: 3rem 0 5rem; }
+    .product-details-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+    .product-desc h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: #1E1C1A; margin: 0 0 1rem; }
+    .product-desc p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: #6B4A3A; line-height: 1.8; margin: 0 0 2rem; }
+    .product-sidebar { background: white; border-radius: 12px; padding: 2rem; border: 1px solid rgba(200, 164, 109, 0.15); box-shadow: 0 8px 30px rgba(75, 46, 32, 0.06); height: fit-content; }
+    .product-sidebar h3 { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C8A46D; margin: 0 0 1rem; }
+    .product-sidebar p { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: #6B4A3A; line-height: 1.7; margin: 0 0 1.5rem; }
+    .product-divider { width: 40px; height: 2px; background: linear-gradient(90deg, #C8A46D, transparent); margin: 2rem 0; }
+
+    @media (max-width: 768px) {
+      .product-hero { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem 2rem; }
+      .product-hero-img img { height: 350px; }
+      .product-title { font-size: 2rem; }
+      .product-details { padding: 2rem 1.5rem 3rem; }
+      .product-details-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">VELMOND</span>
+        <span class="logo-sub">— Spirits —</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/maisons.html">Les Maisons</a></li>
+        <li><a href="/boutique.html">Boutique</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== PRODUCT PAGE ========== -->
+  <div class="product-page">
+    <div class="container">
+
+      <section class="product-hero">
+        <div class="product-hero-img">
+          <img src="/images/whisky-francais-3ans.png" alt="Whisky Français 3 ans">
+        </div>
+        <div class="product-hero-info">
+          <span class="product-category">Whisky</span>
+          <h1 class="product-title">Whisky Français 3 ans</h1>
+          <p class="product-brand-name"><a href="/maisons/le-spiritueux-patriote.html">Le Spiritueux Patriote</a></p>
+          <p class="product-notes-text">Vanille, chêne, fruits secs</p>
+          <div class="product-meta">
+            <div class="product-meta-item">
+              <span class="product-meta-label">Volume</span>
+              <span class="product-meta-value">70 cl</span>
+            </div>
+            <div class="product-meta-item">
+              <span class="product-meta-label">Alcool</span>
+              <span class="product-meta-value">42%</span>
+            </div>
+          </div>
+          <p class="product-price-tag">41,90 €</p>
+          <div class="product-actions">
+            <a href="/boutique.html" class="btn-primary">Voir la Boutique</a>
+            <a href="/maisons/le-spiritueux-patriote.html" class="btn-secondary">La Maison</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="product-divider"></div>
+
+      <section class="product-details">
+        <div class="product-details-grid">
+          <div class="product-desc">
+            <h2>À propos de ce spiritueux</h2>
+            <p>Le Whisky Français 3 ans est un single malt élevé en fûts de chêne français pendant trois années. Il conjugue la douceur de la vanille, la profondeur du chêne et la richesse des fruits secs. Un whisky patriote, fier de ses racines.</p>
+            <h2>Notes de dégustation</h2>
+            <p>Nez de vanille et caramel, bouche ronde avec des notes de fruits secs et de chêne toasté. Finale chaleureuse et boisée.</p>
+          </div>
+          <div class="product-sidebar">
+            <h3>Conseils de dégustation</h3>
+            <p>À déguster pur ou avec quelques gouttes d'eau pour libérer les arômes. Accompagne un chocolat noir d'exception.</p>
+            <h3>Caractéristiques</h3>
+            <p><strong>Nom :</strong> Whisky Français 3 ans<br>
+            <strong>Maison :</strong> Le Spiritueux Patriote<br>
+            <strong>Catégorie :</strong> Whisky<br>
+            <strong>Volume :</strong> 70 cl<br>
+            <strong>Degré :</strong> 42%</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VELMOND</h3>
+          <p class="footer-tagline"><em>Spirits</em></p>
+          <p class="footer-desc">Maison française de spiritueux d'exception.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/maisons.html">Les Maisons</a></li>
+            <li><a href="/boutique.html">Boutique</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Velmond Spirits. L'abus d'alcool est dangereux pour la santé.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <!-- Quiz -->
+  <button class="quiz-fab" onclick="openVelmondQuiz()">
+    <span class="quiz-fab-icon">🥃</span> Testez votre goût
+  </button>
+  <script src="../quiz.js"></script>
+</body>
+</html>

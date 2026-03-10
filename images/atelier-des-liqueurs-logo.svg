@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" fill="none">
+  <!-- Mortar and pestle with botanicals -->
+  <g stroke="#9C2A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Pestle -->
+    <path d="M240 40 C244 38, 250 42, 248 48 L218 98 C216 102, 212 104, 208 100 L238 50"/>
+
+    <!-- Mortar bowl -->
+    <path d="M135 95 C130 95, 125 100, 125 108 L132 148 C135 162, 148 172, 168 176 L232 176 C252 172, 265 162, 268 148 L275 108 C275 100, 270 95, 265 95"/>
+
+    <!-- Mortar rim -->
+    <path d="M130 95 L270 95" stroke-width="4"/>
+
+    <!-- Mortar base -->
+    <path d="M165 176 L160 185 L240 185 L235 176"/>
+
+    <!-- Small leaf/botanical in mortar -->
+    <path d="M175 120 C170 112, 162 108, 158 114 C154 120, 160 128, 168 128 C176 128, 178 124, 175 120" opacity="0.5" fill="#9C2A3A" stroke="none"/>
+    <path d="M210 115 C216 108, 225 106, 228 112 C231 118, 224 126, 216 124 C208 122, 207 118, 210 115" opacity="0.5" fill="#9C2A3A" stroke="none"/>
+    <path d="M190 125 C188 118, 192 110, 198 112 C204 114, 206 122, 200 126 C194 130, 191 128, 190 125" opacity="0.5" fill="#9C2A3A" stroke="none"/>
+
+    <!-- Small berry decorations outside -->
+    <circle cx="120" cy="85" r="3" fill="#9C2A3A" stroke="none" opacity="0.4"/>
+    <circle cx="126" cy="80" r="2" fill="#9C2A3A" stroke="none" opacity="0.4"/>
+    <circle cx="280" cy="85" r="3" fill="#9C2A3A" stroke="none" opacity="0.4"/>
+    <circle cx="274" cy="80" r="2" fill="#9C2A3A" stroke="none" opacity="0.4"/>
+  </g>
+
+  <!-- L'ATELIER text -->
+  <text x="200" y="248" text-anchor="middle" font-family="'Playfair Display', 'Georgia', serif" font-size="36" font-weight="400" letter-spacing="6" fill="#1E1C1A">L'ATELIER</text>
+
+  <!-- DES LIQUEURS text -->
+  <text x="200" y="300" text-anchor="middle" font-family="'Playfair Display', 'Georgia', serif" font-size="42" font-weight="700" letter-spacing="4" fill="#1E1C1A">DES LIQUEURS</text>
+</svg>

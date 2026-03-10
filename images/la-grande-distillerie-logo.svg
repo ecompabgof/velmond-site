@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" fill="none">
+  <!-- Smoke wisp -->
+  <path d="M200 28 C198 20, 195 12, 198 4" stroke="#B8753A" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+  <!-- Alembic still - continuous copper line drawing -->
+  <g stroke="#B8753A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Still head / helmet (chapiteau) -->
+    <path d="M200 32 C200 32, 188 40, 185 55 C182 70, 185 80, 192 85"/>
+
+    <!-- Swan neck going right -->
+    <path d="M192 85 C198 90, 215 82, 225 72 C235 62, 248 55, 258 58"/>
+
+    <!-- Lyne arm descending -->
+    <path d="M258 58 C268 61, 272 70, 270 80"/>
+
+    <!-- Coil / worm condenser -->
+    <path d="M270 80 C280 82, 284 90, 278 96 C272 102, 264 100, 260 106 C256 112, 260 120, 268 122 C276 124, 280 130, 274 136"/>
+
+    <!-- Pot body - left side -->
+    <path d="M192 85 C186 88, 176 95, 170 105 C164 115, 160 130, 160 142"/>
+
+    <!-- Pot bottom curve -->
+    <path d="M160 142 C160 158, 168 170, 180 176 C192 182, 208 182, 220 176 C232 170, 240 158, 240 142"/>
+
+    <!-- Pot body - right side -->
+    <path d="M240 142 C240 130, 236 115, 230 105 C224 95, 216 90, 210 87"/>
+
+    <!-- Handle on pot -->
+    <path d="M165 125 C155 122, 148 128, 150 138 C152 148, 160 150, 165 145"/>
+  </g>
+
+  <!-- LA GRANDE text -->
+  <text x="200" y="240" text-anchor="middle" font-family="'Cinzel', 'Times New Roman', serif" font-size="32" font-weight="400" letter-spacing="8" fill="#1E1C1A">LA GRANDE</text>
+
+  <!-- DISTILLERIE text -->
+  <text x="200" y="290" text-anchor="middle" font-family="'Cinzel', 'Times New Roman', serif" font-size="52" font-weight="700" letter-spacing="4" fill="#1E1C1A">DISTILLERIE</text>
+</svg>

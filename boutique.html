@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique — Velmond Spirits</title>
+  <meta name="description" content="Découvrez la collection complète de spiritueux Velmond Spirits : gin, whisky, vodka, pastis, liqueurs et eaux-de-vie d'exception.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/pages.css">
+  <link rel="stylesheet" href="/quiz.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">VELMOND</span>
+        <span class="logo-sub">— Spirits —</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#manifeste">Manifeste</a></li>
+        <li><a href="/#maisons">Les Maisons</a></li>
+        <li><a href="/#savoir-faire">Savoir-Faire</a></li>
+        <li><a href="/boutique.html" class="active">Boutique</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero" style="min-height: 40vh; background: linear-gradient(180deg, #2a1f17 0%, #3a2a1d 40%, #4B2E20 100%);">
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Accueil</a> &nbsp;/&nbsp; Boutique
+      </div>
+      <h1>Notre <em>Boutique</em></h1>
+      <p class="page-subtitle">Découvrez nos créations d'exception</p>
+    </div>
+  </section>
+
+  <!-- ========== BOUTIQUE ========== -->
+  <section class="section" style="background: var(--ivory);">
+    <div class="container">
+
+      <!-- Filter buttons -->
+      <div class="boutique-filters">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="gin">Gin</button>
+        <button class="filter-btn" data-filter="whisky">Whisky</button>
+        <button class="filter-btn" data-filter="vodka">Vodka</button>
+        <button class="filter-btn" data-filter="pastis">Pastis</button>
+        <button class="filter-btn" data-filter="liqueur">Liqueurs</button>
+        <button class="filter-btn" data-filter="eau-de-vie">Eaux-de-vie</button>
+        <button class="filter-btn" data-filter="absinthe">Absinthe</button>
+        <button class="filter-btn" data-filter="bitter">Bitter</button>
+      </div>
+
+      <!-- Product grid -->
+      <div class="boutique-grid">
+
+        <!-- ===== Le Spiritueux Patriote ===== -->
+
+        <div class="product-card" data-href="/produits/pastis-patriote.html" data-category="pastis">
+          <div class="product-visual" style="background: linear-gradient(180deg, #F3E5C7, #e0d0b0);">
+            <img src="images/pastis-patriote.png" alt="Pastis Patriote" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Pastis</span>
+          </div>
+          <div class="product-info">
+            <h3>Pastis Patriote</h3>
+            <p class="product-brand">Le Spiritueux Patriote</p>
+            <p class="product-notes"><em>Anis étoilé, réglisse, fenouil</em></p>
+            <div class="product-footer">
+              <span class="product-price">23,90 €</span>
+              <a href="/produits/pastis-patriote.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/vodka-france.html" data-category="vodka">
+          <div class="product-visual" style="background: linear-gradient(180deg, #e8dfd0, #d4c5a9);">
+            <img src="images/vodka-france.png" alt="Vodka de France" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Vodka</span>
+          </div>
+          <div class="product-info">
+            <h3>Vodka de France</h3>
+            <p class="product-brand">Le Spiritueux Patriote</p>
+            <p class="product-notes"><em>Blé français, pureté cristalline</em></p>
+            <div class="product-footer">
+              <span class="product-price">28,90 €</span>
+              <a href="/produits/vodka-france.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/gin-francais.html" data-category="gin">
+          <div class="product-visual" style="background: linear-gradient(180deg, #F4F0E8, #e8dfd0);">
+            <img src="images/gin-francais.png" alt="Gin Français" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Gin</span>
+          </div>
+          <div class="product-info">
+            <h3>Gin Français</h3>
+            <p class="product-brand">Le Spiritueux Patriote</p>
+            <p class="product-notes"><em>Genièvre, agrumes, lavande</em></p>
+            <div class="product-footer">
+              <span class="product-price">34,90 €</span>
+              <a href="/produits/gin-francais.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/whisky-francais-3ans.html" data-category="whisky">
+          <div class="product-visual" style="background: linear-gradient(180deg, #2E2E32, #121212);">
+            <img src="images/whisky-francais-3ans.png" alt="Whisky Français 3 ans" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Whisky</span>
+          </div>
+          <div class="product-info">
+            <h3>Whisky Français 3 ans</h3>
+            <p class="product-brand">Le Spiritueux Patriote</p>
+            <p class="product-notes"><em>Vanille, chêne, fruits secs</em></p>
+            <div class="product-footer">
+              <span class="product-price">41,90 €</span>
+              <a href="/produits/whisky-francais-3ans.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 27 Botanica ===== -->
+
+        <div class="product-card" data-href="/produits/gin-signature.html" data-category="gin">
+          <div class="product-visual" style="background: linear-gradient(180deg, #9ABF83, #4B6F4E);">
+            <img src="images/gin-signature.png" alt="Gin Signature" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Gin</span>
+          </div>
+          <div class="product-info">
+            <h3>Gin Signature</h3>
+            <p class="product-brand">27 Botanica</p>
+            <p class="product-notes"><em>27 botaniques, genièvre, citron</em></p>
+            <div class="product-footer">
+              <span class="product-price">36,00 €</span>
+              <a href="/produits/gin-signature.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/gin-barrel-aged.html" data-category="gin">
+          <div class="product-visual" style="background: linear-gradient(180deg, #D9C499, #4B6F4E);">
+            <img src="images/gin-barrel-aged.png" alt="Gin Barrel Aged" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Gin</span>
+          </div>
+          <div class="product-info">
+            <h3>Gin Barrel Aged</h3>
+            <p class="product-brand">27 Botanica</p>
+            <p class="product-notes"><em>Chêne, vanille, épices douces</em></p>
+            <div class="product-footer">
+              <span class="product-price">48,00 €</span>
+              <a href="/produits/gin-barrel-aged.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/gin-citrus-edition.html" data-category="gin">
+          <div class="product-visual" style="background: linear-gradient(180deg, #F4F0E8, #9ABF83);">
+            <img src="images/gin-citrus-edition.png" alt="Gin Citrus Edition" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Gin</span>
+          </div>
+          <div class="product-info">
+            <h3>Gin Citrus Edition</h3>
+            <p class="product-brand">27 Botanica</p>
+            <p class="product-notes"><em>Agrumes de Méditerranée</em></p>
+            <div class="product-footer">
+              <span class="product-price">34,00 €</span>
+              <a href="/produits/gin-citrus-edition.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Lorvain ===== -->
+
+        <div class="product-card" data-href="/produits/single-malt-3ans.html" data-category="whisky">
+          <div class="product-visual" style="background: linear-gradient(180deg, #C9A86D, #2E2E32);">
+            <img src="images/single-malt-3ans.png" alt="Single Malt 3 ans" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Whisky</span>
+          </div>
+          <div class="product-info">
+            <h3>Single Malt 3 ans</h3>
+            <p class="product-brand">Lorvain</p>
+            <p class="product-notes"><em>Miel, fruits secs, tourbe légère</em></p>
+            <div class="product-footer">
+              <span class="product-price">52,00 €</span>
+              <a href="/produits/single-malt-3ans.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/single-malt-5ans.html" data-category="whisky">
+          <div class="product-visual" style="background: linear-gradient(180deg, #2E2E32, #121212);">
+            <img src="images/single-malt-5ans.png" alt="Single Malt 5 ans" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Whisky</span>
+          </div>
+          <div class="product-info">
+            <h3>Single Malt 5 ans</h3>
+            <p class="product-brand">Lorvain</p>
+            <p class="product-notes"><em>Chêne français, vanille, épices</em></p>
+            <div class="product-footer">
+              <span class="product-price">75,00 €</span>
+              <a href="/produits/single-malt-5ans.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/blend-signature.html" data-category="whisky">
+          <div class="product-visual" style="background: linear-gradient(180deg, #C9A86D, #121212);">
+            <img src="images/blend-signature.png" alt="Blend Signature" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Whisky</span>
+          </div>
+          <div class="product-info">
+            <h3>Blend Signature</h3>
+            <p class="product-brand">Lorvain</p>
+            <p class="product-notes"><em>Équilibré, fruité, boisé</em></p>
+            <div class="product-footer">
+              <span class="product-price">45,00 €</span>
+              <a href="/produits/blend-signature.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/cask-strength.html" data-category="whisky">
+          <div class="product-visual" style="background: linear-gradient(180deg, #1E1C1A, #121212);">
+            <img src="images/cask-strength.png" alt="Cask Strength" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Whisky</span>
+          </div>
+          <div class="product-info">
+            <h3>Cask Strength</h3>
+            <p class="product-brand">Lorvain</p>
+            <p class="product-notes"><em>Puissant, complexe, profond</em></p>
+            <div class="product-footer">
+              <span class="product-price">95,00 €</span>
+              <a href="/produits/cask-strength.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== L'Atelier des Liqueurs ===== -->
+
+        <div class="product-card" data-href="/produits/liqueur-cafe.html" data-category="liqueur">
+          <div class="product-visual" style="background: linear-gradient(180deg, #4B2E20, #2a1a12);">
+            <img src="images/liqueur-cafe.png" alt="Liqueur Café" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Liqueur</span>
+          </div>
+          <div class="product-info">
+            <h3>Liqueur Café</h3>
+            <p class="product-brand">L'Atelier des Liqueurs</p>
+            <p class="product-notes"><em>Café torréfié, cacao, vanille</em></p>
+            <div class="product-footer">
+              <span class="product-price">28,00 €</span>
+              <a href="/produits/liqueur-cafe.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/liqueur-chocolat.html" data-category="liqueur">
+          <div class="product-visual" style="background: linear-gradient(180deg, #6b4433, #4B2E20);">
+            <img src="images/liqueur-chocolat.png" alt="Liqueur Chocolat" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Liqueur</span>
+          </div>
+          <div class="product-info">
+            <h3>Liqueur Chocolat</h3>
+            <p class="product-brand">L'Atelier des Liqueurs</p>
+            <p class="product-notes"><em>Chocolat noir, noisette</em></p>
+            <div class="product-footer">
+              <span class="product-price">32,00 €</span>
+              <a href="/produits/liqueur-chocolat.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/liqueur-noisette.html" data-category="liqueur">
+          <div class="product-visual" style="background: linear-gradient(180deg, #F3E5C7, #d4b896);">
+            <img src="images/liqueur-noisette.png" alt="Liqueur Noisette" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Liqueur</span>
+          </div>
+          <div class="product-info">
+            <h3>Liqueur Noisette</h3>
+            <p class="product-brand">L'Atelier des Liqueurs</p>
+            <p class="product-notes"><em>Noisette du Piémont, caramel</em></p>
+            <div class="product-footer">
+              <span class="product-price">30,00 €</span>
+              <a href="/produits/liqueur-noisette.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/creme-de-cassis.html" data-category="liqueur">
+          <div class="product-visual" style="background: linear-gradient(180deg, #9C2A3A, #6b1a28);">
+            <img src="images/creme-de-cassis.png" alt="Crème de Cassis" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Liqueur</span>
+          </div>
+          <div class="product-info">
+            <h3>Crème de Cassis</h3>
+            <p class="product-brand">L'Atelier des Liqueurs</p>
+            <p class="product-notes"><em>Cassis de Bourgogne, fruits rouges</em></p>
+            <div class="product-footer">
+              <span class="product-price">26,00 €</span>
+              <a href="/produits/creme-de-cassis.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== La Grande Distillerie ===== -->
+
+        <div class="product-card" data-href="/produits/eau-de-vie-raisin.html" data-category="eau-de-vie">
+          <div class="product-visual" style="background: linear-gradient(180deg, #F4F0E8, #d4c5a9);">
+            <img src="images/eau-de-vie-raisin.png" alt="Eau-de-vie de Raisin" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Eau-de-vie</span>
+          </div>
+          <div class="product-info">
+            <h3>Eau-de-vie de Raisin</h3>
+            <p class="product-brand">La Grande Distillerie</p>
+            <p class="product-notes"><em>Raisin, fleurs blanches</em></p>
+            <div class="product-footer">
+              <span class="product-price">38,00 €</span>
+              <a href="/produits/eau-de-vie-raisin.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/marc-de-bourgogne.html" data-category="eau-de-vie">
+          <div class="product-visual" style="background: linear-gradient(180deg, #B8753A, #3a2f25);">
+            <img src="images/marc-de-bourgogne.png" alt="Marc de Bourgogne" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Eau-de-vie</span>
+          </div>
+          <div class="product-info">
+            <h3>Marc de Bourgogne</h3>
+            <p class="product-brand">La Grande Distillerie</p>
+            <p class="product-notes"><em>Terroir, puissance, caractère</em></p>
+            <div class="product-footer">
+              <span class="product-price">42,00 €</span>
+              <a href="/produits/marc-de-bourgogne.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/fine-de-france.html" data-category="eau-de-vie">
+          <div class="product-visual" style="background: linear-gradient(180deg, #d4c5a9, #B8753A);">
+            <img src="images/fine-de-france.png" alt="Fine de France" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Eau-de-vie</span>
+          </div>
+          <div class="product-info">
+            <h3>Fine de France</h3>
+            <p class="product-brand">La Grande Distillerie</p>
+            <p class="product-notes"><em>Complexe, fruité, long en bouche</em></p>
+            <div class="product-footer">
+              <span class="product-price">55,00 €</span>
+              <a href="/produits/fine-de-france.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/brandy-prestige.html" data-category="eau-de-vie">
+          <div class="product-visual" style="background: linear-gradient(180deg, #C9A86D, #3a2f25);">
+            <img src="images/brandy-prestige.png" alt="Brandy Prestige" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Eau-de-vie</span>
+          </div>
+          <div class="product-info">
+            <h3>Brandy Prestige</h3>
+            <p class="product-brand">La Grande Distillerie</p>
+            <p class="product-notes"><em>Ambré, vanillé, soyeux</em></p>
+            <div class="product-footer">
+              <span class="product-price">68,00 €</span>
+              <a href="/produits/brandy-prestige.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Héritage 1905 ===== -->
+
+        <div class="product-card" data-href="/produits/absinthe-traditionnelle.html" data-category="absinthe">
+          <div class="product-visual" style="background: linear-gradient(180deg, #4B6F4E, #2a1f17);">
+            <img src="images/absinthe-traditionnelle.png" alt="Absinthe Traditionnelle" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Absinthe</span>
+          </div>
+          <div class="product-info">
+            <h3>Absinthe Traditionnelle</h3>
+            <p class="product-brand">Héritage 1905</p>
+            <p class="product-notes"><em>Absinthe, anis, fenouil sauvage</em></p>
+            <div class="product-footer">
+              <span class="product-price">45,00 €</span>
+              <a href="/produits/absinthe-traditionnelle.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/gentiane-montagnes.html" data-category="liqueur">
+          <div class="product-visual" style="background: linear-gradient(180deg, #C8A46D, #5c3d2e);">
+            <img src="images/gentiane-montagnes.png" alt="Gentiane des Montagnes" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag">Liqueur</span>
+          </div>
+          <div class="product-info">
+            <h3>Gentiane des Montagnes</h3>
+            <p class="product-brand">Héritage 1905</p>
+            <p class="product-notes"><em>Gentiane, amertume noble</em></p>
+            <div class="product-footer">
+              <span class="product-price">28,00 €</span>
+              <a href="/produits/gentiane-montagnes.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/elixir-chartreuse.html" data-category="liqueur">
+          <div class="product-visual" style="background: linear-gradient(180deg, #2a1f17, #121212);">
+            <img src="images/elixir-chartreuse.png" alt="Élixir de Chartreuse" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Liqueur</span>
+          </div>
+          <div class="product-info">
+            <h3>Élixir de Chartreuse</h3>
+            <p class="product-brand">Héritage 1905</p>
+            <p class="product-notes"><em>130 plantes, complexité infinie</em></p>
+            <div class="product-footer">
+              <span class="product-price">52,00 €</span>
+              <a href="/produits/elixir-chartreuse.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-href="/produits/bitter-ancestral.html" data-category="bitter">
+          <div class="product-visual" style="background: linear-gradient(180deg, #B8753A, #2a1f17);">
+            <img src="images/bitter-ancestral.png" alt="Bitter Ancestral" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px;">
+            <span class="product-tag light">Bitter</span>
+          </div>
+          <div class="product-info">
+            <h3>Bitter Ancestral</h3>
+            <p class="product-brand">Héritage 1905</p>
+            <p class="product-notes"><em>Écorces, agrumes, épices</em></p>
+            <div class="product-footer">
+              <span class="product-price">35,00 €</span>
+              <a href="/produits/bitter-ancestral.html" class="product-btn">Voir</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BAND ========== -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Une question sur nos <em>produits</em> ?</h2>
+      <p>Notre équipe est à votre disposition pour vous conseiller.</p>
+      <a href="/contact.html" class="btn-primary">Nous contacter</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VELMOND</h3>
+          <p class="footer-tagline"><em>Spirits</em></p>
+          <p class="footer-desc">Maison française de spiritueux d'exception. Le goût, la maîtrise et le temps.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/velmondspirits.fr" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/#maisons">Les Maisons</a></li>
+            <li><a href="/boutique.html">Boutique</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nos Maisons</h4>
+          <ul>
+            <li><a href="/maisons/la-grande-distillerie.html">La Grande Distillerie</a></li>
+            <li><a href="/maisons/27-botanica.html">27 Botanica</a></li>
+            <li><a href="/maisons/lorvain.html">Lorvain</a></li>
+            <li><a href="/maisons/atelier-des-liqueurs.html">L'Atelier des Liqueurs</a></li>
+            <li><a href="/maisons/le-spiritueux-patriote.html">Le Spiritueux Patriote</a></li>
+            <li><a href="/maisons/heritage-1905.html">Héritage 1905</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Informations</h4>
+          <ul>
+            <li><a href="/legal/mentions-legales.html">Mentions légales</a></li>
+            <li><a href="/legal/politique-confidentialite.html">Politique de confidentialité</a></li>
+            <li><a href="/legal/conditions-generales.html">Conditions générales</a></li>
+            <li><a href="/legal/politique-retour.html">Politique de retour</a></li>
+            <li><a href="/legal/livraison.html">Livraison</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-divider">
+          <span class="ornament-line"></span>
+          <span class="ornament-icon">◆</span>
+          <span class="ornament-line"></span>
+        </div>
+        <p>&copy; 2026 Velmond Spirits — Spiritueux artisanaux français</p>
+        <p class="footer-warning">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== AGE GATE ========== -->
+  <div class="age-gate" id="ageGate">
+    <div class="age-gate-inner">
+      <div class="age-gate-ornament">◆</div>
+      <h2>VELMOND</h2>
+      <p class="age-gate-sub"><em>Spirits</em></p>
+      <div class="age-gate-divider">
+        <span class="ornament-line"></span>
+        <span class="ornament-icon">❧</span>
+        <span class="ornament-line"></span>
+      </div>
+      <p class="age-gate-question">Avez-vous l'âge légal pour<br>consommer de l'alcool ?</p>
+      <div class="age-gate-buttons">
+        <button class="age-btn age-yes" onclick="closeAgeGate()">Oui, j'ai plus de 18 ans</button>
+        <button class="age-btn age-no" onclick="window.location.href='https://www.google.com'">Non</button>
+      </div>
+      <p class="age-gate-legal">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+    </div>
+  </div>
+
+  <button class="quiz-fab" onclick="openVelmondQuiz()">
+    <span class="quiz-fab-icon">✦</span> Testez votre goût
+  </button>
+  <script src="/script.js"></script>
+  <script src="/quiz.js"></script>
+  <script>
+    // ========== BOUTIQUE FILTER JS ==========
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const productCards = document.querySelectorAll('.boutique-grid .product-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+
+          productCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+              card.style.display = '';
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                  card.style.opacity = '1';
+                  card.style.transform = 'translateY(0)';
+                });
+              });
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Make entire product cards clickable
+      productCards.forEach(card => {
+        const href = card.getAttribute('data-href');
+        if (href) {
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', (e) => {
+            if (!e.target.closest('.product-btn')) {
+              window.location.href = href;
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Velmond Spirits</title>
+  <meta name="description" content="Contactez Velmond Spirits. Une question sur nos spiritueux, une demande de partenariat ou une commande ? Écrivez-nous.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/pages.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">VELMOND</span>
+        <span class="logo-sub">— Spirits —</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#manifeste">Manifeste</a></li>
+        <li><a href="/#maisons">Les Maisons</a></li>
+        <li><a href="/#savoir-faire">Savoir-Faire</a></li>
+        <li><a href="/boutique.html">Boutique</a></li>
+        <li><a href="/contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero" style="min-height: 35vh; background: linear-gradient(180deg, #2a1f17 0%, #3a2a1d 40%, #4B2E20 100%);">
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Accueil</a> &nbsp;/&nbsp; Contact
+      </div>
+      <h1>Contact</h1>
+      <p class="page-subtitle">Une question ? Écrivez-nous.</p>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section" style="background: var(--ivory);">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left column: Contact info -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <h3>Adresse</h3>
+            <p>Velmond Spirits<br>Paris, France</p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Email</h3>
+            <p><a href="mailto:contact@velmondspirits.fr" style="color: var(--gold-dark);">contact@velmondspirits.fr</a></p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Téléphone</h3>
+            <p>+33 1 XX XX XX XX</p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Horaires</h3>
+            <p>Lun-Ven 9h-18h</p>
+          </div>
+          <div class="contact-info-card">
+            <h3>Réseaux sociaux</h3>
+            <p>
+              <a href="https://instagram.com/velmondspirits.fr" target="_blank" style="color: var(--gold-dark); display: inline-flex; align-items: center; gap: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                Instagram @velmondspirits.fr
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Right column: Contact form -->
+        <div>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');">
+            <div class="form-group">
+              <input type="text" placeholder="Prénom" required>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Nom" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Adresse e-mail" required>
+            </div>
+            <div class="form-group">
+              <select required>
+                <option value="" disabled selected>Sujet</option>
+                <option value="general">Question générale</option>
+                <option value="commande">Commande</option>
+                <option value="partenariat">Partenariat</option>
+                <option value="chr">Professionnel / CHR</option>
+                <option value="presse">Presse</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Votre message..." required></textarea>
+            </div>
+            <div class="form-group" style="display: flex; align-items: flex-start; gap: 12px;">
+              <input type="checkbox" id="consent" required style="width: auto; margin-top: 4px; accent-color: var(--gold-dark);">
+              <label for="consent" style="font-family: var(--font-sans); font-size: 0.75rem; color: var(--brown-medium); line-height: 1.6; cursor: pointer;">
+                J'ai plus de 18 ans et j'accepte la <a href="/legal/politique-confidentialite.html" style="color: var(--gold-dark); text-decoration: underline;">politique de confidentialité</a>.
+              </label>
+            </div>
+            <button type="submit" class="btn-primary">Envoyer</button>
+            <p class="form-legal">Vos données sont traitées conformément à notre politique de confidentialité et ne seront jamais partagées avec des tiers.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BAND ========== -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Découvrez notre <em>collection</em></h2>
+      <p>Explorez l'ensemble de nos créations d'exception.</p>
+      <a href="/boutique.html" class="btn-primary">Voir la Boutique</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VELMOND</h3>
+          <p class="footer-tagline"><em>Spirits</em></p>
+          <p class="footer-desc">Maison française de spiritueux d'exception. Le goût, la maîtrise et le temps.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/velmondspirits.fr" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/#maisons">Les Maisons</a></li>
+            <li><a href="/boutique.html">Boutique</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nos Maisons</h4>
+          <ul>
+            <li><a href="/maisons/la-grande-distillerie.html">La Grande Distillerie</a></li>
+            <li><a href="/maisons/27-botanica.html">27 Botanica</a></li>
+            <li><a href="/maisons/lorvain.html">Lorvain</a></li>
+            <li><a href="/maisons/atelier-des-liqueurs.html">L'Atelier des Liqueurs</a></li>
+            <li><a href="/maisons/le-spiritueux-patriote.html">Le Spiritueux Patriote</a></li>
+            <li><a href="/maisons/heritage-1905.html">Héritage 1905</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Informations</h4>
+          <ul>
+            <li><a href="/legal/mentions-legales.html">Mentions légales</a></li>
+            <li><a href="/legal/politique-confidentialite.html">Politique de confidentialité</a></li>
+            <li><a href="/legal/conditions-generales.html">Conditions générales</a></li>
+            <li><a href="/legal/politique-retour.html">Politique de retour</a></li>
+            <li><a href="/legal/livraison.html">Livraison</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-divider">
+          <span class="ornament-line"></span>
+          <span class="ornament-icon">◆</span>
+          <span class="ornament-line"></span>
+        </div>
+        <p>&copy; 2026 Velmond Spirits — Spiritueux artisanaux français</p>
+        <p class="footer-warning">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== AGE GATE ========== -->
+  <div class="age-gate" id="ageGate">
+    <div class="age-gate-inner">
+      <div class="age-gate-ornament">◆</div>
+      <h2>VELMOND</h2>
+      <p class="age-gate-sub"><em>Spirits</em></p>
+      <div class="age-gate-divider">
+        <span class="ornament-line"></span>
+        <span class="ornament-icon">❧</span>
+        <span class="ornament-line"></span>
+      </div>
+      <p class="age-gate-question">Avez-vous l'âge légal pour<br>consommer de l'alcool ?</p>
+      <div class="age-gate-buttons">
+        <button class="age-btn age-yes" onclick="closeAgeGate()">Oui, j'ai plus de 18 ans</button>
+        <button class="age-btn age-no" onclick="window.location.href='https://www.google.com'">Non</button>
+      </div>
+      <p class="age-gate-legal">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

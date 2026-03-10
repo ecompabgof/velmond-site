@@ -1545,8 +1545,8 @@ img {
 
 .whisky-glass-filled {
   z-index: 2;
-  clip-path: inset(72% 0 0 0);
-  transition: clip-path 0.06s ease-out;
+  clip-path: inset(75% 0 0 0);
+  will-change: clip-path;
 }
 
 .whisky-glass-glow {

@@ -1,7 +1,8 @@
 /* ============================================
    VELMOND SPIRITS — Premium Crystal Glass
    Photorealistic image with scroll-linked
-   fill animation (clip-path + glow)
+   fill animation (clip-path reveal)
+   v3 — pixel-analyzed liquid zone
    ============================================ */
 
 (function () {
@@ -14,9 +15,14 @@
   var wrap      = document.getElementById('whiskyGlassWrap');
   if (!section || !filledImg) return;
 
-  /* ─── Liquid area in the image (% from top) ─── */
-  var LIQUID_BOTTOM = 72; // where liquid starts (glass interior bottom)
-  var LIQUID_TOP    = 28; // where ice/liquid surface reaches
+  /* ─── Pixel-analyzed liquid zone (% from top of image) ───
+     Based on actual per-row pixel diff between glass-empty and glass-filled:
+       25% = bottom of liquid zone (amber starts here)
+       75% = top where liquid first appears when glass is nearly full
+     The reveal goes from bottom to top: inset shrinks from 75% → 25%
+     ─────────────────────────────────────────────────────── */
+  var CLIP_START = 75;   // fill=0 → inset(75% 0 0 0) — hides all liquid
+  var CLIP_END   = 25;   // fill=1 → inset(25% 0 0 0) — shows all liquid + ice
 
   /* ─── Steps ─── */
   var steps = section.querySelectorAll('.whisky-step');
@@ -35,6 +41,8 @@
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+  // Force initial state
+  currentFill = targetFill;
 
   /* ─── Update steps ─── */
   function updateSteps() {
@@ -52,41 +60,39 @@
   function animate() {
     requestAnimationFrame(animate);
 
-    // Check visibility
+    // Skip if section not near viewport
     var rect = section.getBoundingClientRect();
     if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
 
-    // Smooth interpolation (faster than before)
-    currentFill += (targetFill - currentFill) * 0.18;
+    // Smooth interpolation
+    currentFill += (targetFill - currentFill) * 0.22;
 
-    // Snap to extremes to avoid infinite asymptotic creep
-    if (currentFill < 0.005) currentFill = 0;
-    if (currentFill > 0.995) currentFill = 1;
+    // Snap to extremes
+    if (currentFill < 0.003) currentFill = 0;
+    if (currentFill > 0.997) currentFill = 1;
 
-    // Clip-path: reveal only the liquid area of the filled image
-    // Maps fill 0→1 to clip inset LIQUID_BOTTOM→LIQUID_TOP
-    // At fill=0: inset(72%) — hides all liquid, glass base shows through from empty img
-    // At fill=1: inset(28%) — full liquid + ice visible
-    var topInset = LIQUID_BOTTOM - (currentFill * (LIQUID_BOTTOM - LIQUID_TOP));
-    filledImg.style.clipPath = 'inset(' + topInset.toFixed(2) + '% 0 0 0)';
+    // Clip-path: reveal filled image from bottom to top
+    // fill 0 → inset(75%) = only bottom 25% visible (identical base area)
+    // fill 1 → inset(25%) = 75% visible = all liquid + ice + glass top
+    var topInset = CLIP_START - (currentFill * (CLIP_START - CLIP_END));
+    filledImg.style.clipPath = 'inset(' + topInset.toFixed(1) + '% 0 0 0)';
 
-    // Ambient glow behind glass intensifies with fill
+    // Ambient glow
     if (glowEl) {
       glowEl.style.opacity = (currentFill * 0.9).toFixed(3);
     }
 
-    // Subtle scale pulse when filling
+    // Subtle scale pulse
     if (wrap) {
       var pulse = 1 + Math.sin(Date.now() * 0.001) * 0.003 * currentFill;
       wrap.style.transform = 'scale(' + pulse.toFixed(5) + ')';
     }
 
-    // Fill percentage text
+    // Fill percentage
     if (fillLabel) {
       fillLabel.textContent = Math.round(currentFill * 100);
     }
 
-    // Update steps
     updateSteps();
   }
 

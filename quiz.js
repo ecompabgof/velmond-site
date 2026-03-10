@@ -7,7 +7,7 @@
   'use strict';
 
   // ── Google Sheet endpoint (replace with your deployed Apps Script URL) ──
-  var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyYy3p2iXe8iajadmAT6zD5czXH_ZiYyagFN_zHHyLHVaFUOsonU6nQPFVt2IGVwUAhXQ/exec';
+  var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF3XqhEhKrM_Q1gx6mM4A7Rr-6S1vAE_mQqWfppgbIFGzOQLXU8vEvwPODvFDXXUD7aw/exec';
 
   // ── Product database with flavor profile scores ──
   // Categories: fresh, woody, gourmet, herbal, bitter, fruity, intense, smooth

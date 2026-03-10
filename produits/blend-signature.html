@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../pages.css">
   <link rel="stylesheet" href="../quiz.css">
+  <link rel="stylesheet" href="../cart.css">
   <style>
     .product-page { background: var(--ivory, #F7F3EB); }
     .product-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 6rem 0 4rem; max-width: 1100px; margin: 0 auto; }
@@ -100,6 +101,7 @@
           </div>
           <p class="product-price-tag">45,00 €</p>
           <div class="product-actions">
+            <button class="add-to-cart-btn" data-product-slug="blend-signature">🛒 Ajouter au panier</button>
             <a href="/boutique.html" class="btn-primary">Voir la Boutique</a>
             <a href="/maisons/lorvain.html" class="btn-secondary">La Maison</a>
           </div>
@@ -158,6 +160,7 @@
   </footer>
 
   <script src="../script.js"></script>
+  <script src="../shopify-cart.js"></script>
   <!-- Quiz -->
   <button class="quiz-fab" onclick="openVelmondQuiz()">
     <span class="quiz-fab-icon">🥃</span> Testez votre goût

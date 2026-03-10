@@ -8,6 +8,9 @@ const VelmondCart = (() => {
   const API_VERSION = '2024-10';
   const API_URL = `https://${STORE_DOMAIN}/api/${API_VERSION}/graphql.json`;
 
+  // ---- Site URL for redirects (auto-detect or fallback) ----
+  const SITE_URL = window.location.origin;
+
   // ---- Product Mapping: site slug → Shopify variant ID ----
   const PRODUCT_MAP = {
     'gin-francais':         'gid://shopify/ProductVariant/55130705396097',
@@ -26,22 +29,126 @@ const VelmondCart = (() => {
   let cartId = localStorage.getItem('velmond-cart-id') || null;
   let cart = null;
 
-  // ---- GraphQL helper ----
-  async function shopifyFetch(query, variables = {}) {
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN
-      },
-      body: JSON.stringify({ query, variables })
-    });
-    const json = await res.json();
-    if (json.errors) console.error('Shopify API Error:', json.errors);
-    return json.data;
+  // ============================================
+  //  TOAST NOTIFICATION SYSTEM
+  // ============================================
+  function injectToastContainer() {
+    if (document.getElementById('velmond-toast-container')) return;
+    const container = document.createElement('div');
+    container.id = 'velmond-toast-container';
+    container.style.cssText = `
+      position: fixed; top: 20px; right: 20px; z-index: 99999;
+      display: flex; flex-direction: column; gap: 10px;
+      pointer-events: none; max-width: 380px; width: calc(100% - 40px);
+    `;
+    document.body.appendChild(container);
   }
 
-  // ---- Cart Queries & Mutations ----
+  function showToast(message, type = 'error') {
+    injectToastContainer();
+    const container = document.getElementById('velmond-toast-container');
+    const toast = document.createElement('div');
+
+    const colors = {
+      error:   { bg: '#C0392B', icon: '✕' },
+      success: { bg: '#2D7D46', icon: '✓' },
+      warning: { bg: '#D4A017', icon: '⚠' },
+      info:    { bg: '#4B2E20', icon: 'ℹ' },
+    };
+    const c = colors[type] || colors.info;
+
+    toast.style.cssText = `
+      pointer-events: auto;
+      display: flex; align-items: center; gap: 12px;
+      background: ${c.bg}; color: #F7F3EB;
+      padding: 14px 20px; border-radius: 8px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.8rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    `;
+    toast.innerHTML = `
+      <span style="font-size:1.1rem;flex-shrink:0;">${c.icon}</span>
+      <span style="flex:1;line-height:1.4;">${message}</span>
+    `;
+    toast.addEventListener('click', () => dismissToast(toast));
+    container.appendChild(toast);
+
+    // Animate in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { toast.style.transform = 'translateX(0)'; });
+    });
+
+    // Auto dismiss after 5s
+    setTimeout(() => dismissToast(toast), 5000);
+  }
+
+  function dismissToast(toast) {
+    toast.style.transform = 'translateX(120%)';
+    setTimeout(() => toast.remove(), 400);
+  }
+
+  // ============================================
+  //  GraphQL helper with error handling
+  // ============================================
+  async function shopifyFetch(query, variables = {}) {
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN
+        },
+        body: JSON.stringify({ query, variables })
+      });
+
+      if (!res.ok) {
+        throw new Error(`Erreur réseau (${res.status})`);
+      }
+
+      const json = await res.json();
+
+      if (json.errors) {
+        console.error('Shopify API Error:', json.errors);
+        const errorMsg = json.errors.map(e => e.message).join(', ');
+        throw new Error(errorMsg);
+      }
+
+      return json.data;
+    } catch (err) {
+      if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+        showToast('Problème de connexion. Vérifiez votre connexion internet.', 'error');
+      }
+      throw err;
+    }
+  }
+
+  // ---- Check for userErrors in mutations ----
+  function handleUserErrors(userErrors, context = '') {
+    if (!userErrors || userErrors.length === 0) return false;
+
+    const messages = userErrors.map(e => e.message);
+    console.error(`Shopify userErrors (${context}):`, messages);
+
+    // Translate common Shopify errors to French
+    for (const err of messages) {
+      const lower = err.toLowerCase();
+      if (lower.includes('inventory') || lower.includes('stock') || lower.includes('available')) {
+        showToast('Ce produit n\'est plus en stock actuellement.', 'warning');
+      } else if (lower.includes('not found') || lower.includes('does not exist')) {
+        showToast('Ce produit n\'est plus disponible.', 'warning');
+      } else if (lower.includes('quantity')) {
+        showToast('La quantité demandée n\'est pas disponible.', 'warning');
+      } else {
+        showToast(`Erreur : ${err}`, 'error');
+      }
+    }
+    return true;
+  }
+
+  // ============================================
+  //  Cart Queries & Mutations
+  // ============================================
   const CART_FRAGMENT = `
     fragment CartFields on Cart {
       id
@@ -64,6 +171,7 @@ const VelmondCart = (() => {
                 id
                 title
                 price { amount currencyCode }
+                availableForSale
                 product {
                   title
                   handle
@@ -87,6 +195,11 @@ const VelmondCart = (() => {
       }
       ${CART_FRAGMENT}
     `);
+
+    if (handleUserErrors(data.cartCreate?.userErrors, 'cartCreate')) {
+      throw new Error('Cart creation failed');
+    }
+
     cart = data.cartCreate.cart;
     cartId = cart.id;
     localStorage.setItem('velmond-cart-id', cartId);
@@ -95,75 +208,127 @@ const VelmondCart = (() => {
 
   async function fetchCart() {
     if (!cartId) return null;
-    const data = await shopifyFetch(`
-      query($id: ID!) {
-        cart(id: $id) { ...CartFields }
+    try {
+      const data = await shopifyFetch(`
+        query($id: ID!) {
+          cart(id: $id) { ...CartFields }
+        }
+        ${CART_FRAGMENT}
+      `, { id: cartId });
+
+      if (!data.cart) {
+        // Cart expired or invalid — silently reset
+        localStorage.removeItem('velmond-cart-id');
+        cartId = null;
+        return null;
       }
-      ${CART_FRAGMENT}
-    `, { id: cartId });
-    if (!data.cart) {
+      cart = data.cart;
+      return cart;
+    } catch (err) {
+      // Cart fetch failed — reset and continue silently
       localStorage.removeItem('velmond-cart-id');
       cartId = null;
       return null;
     }
-    cart = data.cart;
-    return cart;
   }
 
   async function addToCart(variantId, quantity = 1) {
-    if (!cartId) await createCart();
-    const data = await shopifyFetch(`
-      mutation($cartId: ID!, $lines: [CartLineInput!]!) {
-        cartLinesAdd(cartId: $cartId, lines: $lines) {
-          cart { ...CartFields }
-          userErrors { field message }
+    try {
+      if (!cartId) await createCart();
+      const data = await shopifyFetch(`
+        mutation($cartId: ID!, $lines: [CartLineInput!]!) {
+          cartLinesAdd(cartId: $cartId, lines: $lines) {
+            cart { ...CartFields }
+            userErrors { field message }
+          }
         }
+        ${CART_FRAGMENT}
+      `, {
+        cartId,
+        lines: [{ merchandiseId: variantId, quantity }]
+      });
+
+      if (handleUserErrors(data.cartLinesAdd?.userErrors, 'cartLinesAdd')) {
+        // Still update cart if partial success
+        if (data.cartLinesAdd?.cart) {
+          cart = data.cartLinesAdd.cart;
+          updateCartUI();
+        }
+        return cart;
       }
-      ${CART_FRAGMENT}
-    `, {
-      cartId,
-      lines: [{ merchandiseId: variantId, quantity }]
-    });
-    cart = data.cartLinesAdd.cart;
-    updateCartUI();
-    openCart();
-    return cart;
+
+      cart = data.cartLinesAdd.cart;
+      updateCartUI();
+      openCart();
+      showToast('Produit ajouté au panier !', 'success');
+      return cart;
+    } catch (err) {
+      showToast('Impossible d\'ajouter ce produit. Réessayez.', 'error');
+      throw err;
+    }
   }
 
   async function updateLineQuantity(lineId, quantity) {
-    const data = await shopifyFetch(`
-      mutation($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
-        cartLinesUpdate(cartId: $cartId, lines: $lines) {
-          cart { ...CartFields }
-          userErrors { field message }
+    if (quantity <= 0) {
+      return removeLine(lineId);
+    }
+    try {
+      const data = await shopifyFetch(`
+        mutation($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+          cartLinesUpdate(cartId: $cartId, lines: $lines) {
+            cart { ...CartFields }
+            userErrors { field message }
+          }
         }
+        ${CART_FRAGMENT}
+      `, {
+        cartId,
+        lines: [{ id: lineId, quantity }]
+      });
+
+      if (handleUserErrors(data.cartLinesUpdate?.userErrors, 'cartLinesUpdate')) {
+        if (data.cartLinesUpdate?.cart) {
+          cart = data.cartLinesUpdate.cart;
+          updateCartUI();
+        }
+        return cart;
       }
-      ${CART_FRAGMENT}
-    `, {
-      cartId,
-      lines: [{ id: lineId, quantity }]
-    });
-    cart = data.cartLinesUpdate.cart;
-    updateCartUI();
-    return cart;
+
+      cart = data.cartLinesUpdate.cart;
+      updateCartUI();
+      return cart;
+    } catch (err) {
+      showToast('Impossible de modifier la quantité. Réessayez.', 'error');
+      throw err;
+    }
   }
 
   async function removeLine(lineId) {
-    const data = await shopifyFetch(`
-      mutation($cartId: ID!, $lineIds: [ID!]!) {
-        cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
-          cart { ...CartFields }
-          userErrors { field message }
+    try {
+      const data = await shopifyFetch(`
+        mutation($cartId: ID!, $lineIds: [ID!]!) {
+          cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+            cart { ...CartFields }
+            userErrors { field message }
+          }
         }
-      }
-      ${CART_FRAGMENT}
-    `, { cartId, lineIds: [lineId] });
-    cart = data.cartLinesRemove.cart;
-    updateCartUI();
-    return cart;
+        ${CART_FRAGMENT}
+      `, { cartId, lineIds: [lineId] });
+
+      handleUserErrors(data.cartLinesRemove?.userErrors, 'cartLinesRemove');
+
+      cart = data.cartLinesRemove.cart;
+      updateCartUI();
+      return cart;
+    } catch (err) {
+      showToast('Impossible de supprimer cet article. Réessayez.', 'error');
+      throw err;
+    }
   }
 
-  // ---- UI ----
+  // ============================================
+  //  UI — Cart Drawer
+  // ============================================
   function injectCartHTML() {
     // Cart icon in navbar
     const navLinks = document.querySelector('.nav-links');
@@ -249,12 +414,15 @@ const VelmondCart = (() => {
         const imgUrl = product.featuredImage?.url || '';
         const price = parseFloat(variant.price.amount).toFixed(2).replace('.', ',');
         const lineTotal = parseFloat(line.cost.totalAmount.amount).toFixed(2).replace('.', ',');
+        const outOfStock = variant.availableForSale === false;
+
         return `
-          <div class="cart-item">
+          <div class="cart-item ${outOfStock ? 'cart-item-unavailable' : ''}">
             ${imgUrl ? `<img src="${imgUrl}" alt="${product.title}" class="cart-item-img">` : '<div class="cart-item-img-placeholder"></div>'}
             <div class="cart-item-info">
               <h4 class="cart-item-title">${product.title}</h4>
               <p class="cart-item-price">${price} €</p>
+              ${outOfStock ? '<p class="cart-item-stock-warning">Rupture de stock</p>' : ''}
               <div class="cart-item-qty">
                 <button class="cart-qty-btn" onclick="VelmondCart.updateQty('${line.id}', ${line.quantity - 1})">−</button>
                 <span>${line.quantity}</span>
@@ -276,6 +444,23 @@ const VelmondCart = (() => {
       footerEl.style.display = 'block';
       const subtotal = parseFloat(cart.cost.subtotalAmount.amount).toFixed(2).replace('.', ',');
       if (subtotalEl) subtotalEl.textContent = `${subtotal} €`;
+
+      // Disable checkout if any item is out of stock
+      const checkoutBtn = document.getElementById('cart-checkout-btn');
+      const hasUnavailable = cart.lines.edges.some(({ node }) => node.merchandise.availableForSale === false);
+      if (checkoutBtn) {
+        if (hasUnavailable) {
+          checkoutBtn.disabled = true;
+          checkoutBtn.style.opacity = '0.5';
+          checkoutBtn.style.cursor = 'not-allowed';
+          checkoutBtn.textContent = 'Certains produits sont indisponibles';
+        } else {
+          checkoutBtn.disabled = false;
+          checkoutBtn.style.opacity = '1';
+          checkoutBtn.style.cursor = 'pointer';
+          checkoutBtn.textContent = 'Commander';
+        }
+      }
     }
   }
 
@@ -298,18 +483,37 @@ const VelmondCart = (() => {
   }
 
   function checkout() {
-    if (cart?.checkoutUrl) {
-      window.location.href = cart.checkoutUrl;
+    if (!cart?.checkoutUrl) {
+      showToast('Votre panier est vide.', 'warning');
+      return;
     }
+
+    // Check for unavailable items before checkout
+    const hasUnavailable = cart.lines.edges.some(({ node }) => node.merchandise.availableForSale === false);
+    if (hasUnavailable) {
+      showToast('Veuillez retirer les produits en rupture de stock avant de commander.', 'warning');
+      return;
+    }
+
+    // Redirect to Shopify checkout
+    // Shopify will handle payment, then redirect to our confirmation page
+    // (configured in Shopify Admin > Settings > Checkout)
+    window.location.href = cart.checkoutUrl;
   }
 
-  // ---- Add to cart from product page ----
+  // ============================================
+  //  Add to cart handlers
+  // ============================================
   function handleAddToCart(variantId, button) {
-    if (!variantId) return;
+    if (!variantId) {
+      showToast('Ce produit n\'est pas encore disponible.', 'info');
+      return;
+    }
     button.classList.add('loading');
     button.disabled = true;
     const originalText = button.innerHTML;
     button.innerHTML = '<span class="spinner"></span> Ajout...';
+
     addToCart(variantId).then(() => {
       button.innerHTML = '✓ Ajouté';
       button.classList.remove('loading');
@@ -401,7 +605,9 @@ const VelmondCart = (() => {
     });
   }
 
-  // ---- Init ----
+  // ============================================
+  //  Init
+  // ============================================
   async function init() {
     injectCartHTML();
     bindAddToCartButtons();
@@ -431,6 +637,7 @@ const VelmondCart = (() => {
     handleAdd: handleAddToCart,
     getVariant: getVariantId,
     productMap: PRODUCT_MAP,
-    getCart: () => cart
+    getCart: () => cart,
+    showToast,
   };
 })();

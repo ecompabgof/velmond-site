@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merci pour votre commande — Velmond Spirits</title>
+  <meta name="description" content="Votre commande Velmond Spirits a bien été enregistrée. Merci pour votre confiance.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cart.css">
+
+  <style>
+    .confirmation-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 80px;
+      background: var(--ivory, #F7F3EB);
+      text-align: center;
+    }
+    .confirmation-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .confirmation-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #2D7D46;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 2.5rem;
+    }
+    .confirmation-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: #1E1C1A;
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+    .confirmation-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      color: #6B4A3A;
+      margin: 0 0 2.5rem;
+      line-height: 1.6;
+    }
+    .confirmation-details {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 0 0 2.5rem;
+      box-shadow: 0 4px 20px rgba(75, 46, 32, 0.08);
+    }
+    .confirmation-details h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #C8A46D;
+      margin: 0 0 1rem;
+    }
+    .confirmation-details p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: #4B2E20;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .confirmation-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+    .confirmation-actions .btn-primary {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #F7F3EB;
+      background: #1E1C1A;
+      padding: 16px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .confirmation-actions .btn-primary:hover {
+      background: #C8A46D;
+      transform: translateY(-2px);
+    }
+    .confirmation-actions .btn-secondary {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #A8864D;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: color 0.3s;
+    }
+    .confirmation-actions .btn-secondary:hover {
+      color: #4B2E20;
+    }
+    .confirmation-ornament {
+      margin-top: 3rem;
+      color: #C8A46D;
+      font-size: 1.2rem;
+      letter-spacing: 0.5em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">VELMOND</span>
+        <span class="logo-sub">— Spirits —</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/maisons.html">Les Maisons</a></li>
+        <li><a href="/boutique.html">Boutique</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== CONFIRMATION ========== -->
+  <section class="confirmation-section">
+    <div class="confirmation-inner">
+      <div class="confirmation-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1 class="confirmation-title">Merci pour votre <em>commande</em></h1>
+      <p class="confirmation-subtitle">
+        Votre commande a bien été enregistrée.<br>
+        Vous recevrez un e-mail de confirmation avec les détails de votre commande et le suivi de livraison.
+      </p>
+
+      <div class="confirmation-details">
+        <h3>Ce qui se passe ensuite</h3>
+        <p>
+          Notre équipe prépare votre commande avec le plus grand soin.
+          Vous recevrez un e-mail dès que votre colis sera expédié,
+          avec un numéro de suivi pour suivre votre livraison en temps réel.
+        </p>
+      </div>
+
+      <div class="confirmation-actions">
+        <a href="/boutique.html" class="btn-primary">Continuer mes achats</a>
+        <a href="/" class="btn-secondary">Retour à l'accueil</a>
+      </div>
+
+      <div class="confirmation-ornament">◆ ◆ ◆</div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="footer-logo">VELMOND</h3>
+          <p class="footer-tagline"><em>Spirits</em></p>
+          <p class="footer-desc">Maison française de spiritueux d'exception. Le goût, la maîtrise et le temps.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/velmondspirits.fr" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/maisons.html">Les Maisons</a></li>
+            <li><a href="/boutique.html">Boutique</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Nos Maisons</h4>
+          <ul>
+            <li><a href="/maisons/la-grande-distillerie.html">La Grande Distillerie</a></li>
+            <li><a href="/maisons/27-botanica.html">27 Botanica</a></li>
+            <li><a href="/maisons/lorvain.html">Lorvain</a></li>
+            <li><a href="/maisons/atelier-des-liqueurs.html">L'Atelier des Liqueurs</a></li>
+            <li><a href="/maisons/le-spiritueux-patriote.html">Le Spiritueux Patriote</a></li>
+            <li><a href="/maisons/heritage-1905.html">Héritage 1905</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Informations</h4>
+          <ul>
+            <li><a href="/legal/mentions-legales.html">Mentions légales</a></li>
+            <li><a href="/legal/confidentialite.html">Politique de confidentialité</a></li>
+            <li><a href="/legal/conditions-generales.html">Conditions générales</a></li>
+            <li><a href="/legal/politique-retour.html">Politique de retour</a></li>
+            <li><a href="/legal/livraison.html">Livraison</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-divider">
+          <span class="ornament-line"></span>
+          <span class="ornament-icon">◆</span>
+          <span class="ornament-line"></span>
+        </div>
+        <p>© 2026 Velmond Spirits — Spiritueux artisanaux français</p>
+        <p class="footer-warning">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shopify-cart.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Clear cart after successful checkout
+    localStorage.removeItem('velmond-cart-id');
+  </script>
+</body>
+</html>

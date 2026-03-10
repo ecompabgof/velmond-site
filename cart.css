@@ -367,6 +367,38 @@
   to { transform: rotate(360deg); }
 }
 
+/* ---- Out of Stock Warning ---- */
+.cart-item-unavailable {
+  opacity: 0.6;
+  position: relative;
+}
+.cart-item-unavailable::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(192, 57, 43, 0.04) 8px,
+    rgba(192, 57, 43, 0.04) 16px
+  );
+  pointer-events: none;
+  border-radius: 4px;
+}
+.cart-item-stock-warning {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #C0392B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 6px;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 480px) {
   .cart-drawer-panel {

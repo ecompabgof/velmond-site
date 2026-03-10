@@ -68,7 +68,7 @@
           </div>
           <div class="contact-info-card">
             <h3>Téléphone</h3>
-            <p>+33 1 XX XX XX XX</p>
+            <p><a href="tel:+33652583146" style="color: var(--gold-dark);">+33 6 52 58 31 46</a></p>
           </div>
           <div class="contact-info-card">
             <h3>Horaires</h3>
@@ -77,9 +77,14 @@
           <div class="contact-info-card">
             <h3>Réseaux sociaux</h3>
             <p>
-              <a href="https://instagram.com/velmondspirits.fr" target="_blank" style="color: var(--gold-dark); display: inline-flex; align-items: center; gap: 8px;">
+              <a href="https://instagram.com/velmondspirits.fr" target="_blank" style="color: var(--gold-dark); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                 Instagram @velmondspirits.fr
+              </a>
+              <br>
+              <a href="https://www.linkedin.com/company/velmond-spirits-group/" target="_blank" style="color: var(--gold-dark); display: inline-flex; align-items: center; gap: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn Velmond Spirits
               </a>
             </p>
           </div>
@@ -87,29 +92,29 @@
 
         <!-- Right column: Contact form -->
         <div>
-          <form class="contact-form" onsubmit="event.preventDefault(); alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');">
+          <form class="contact-form" id="contactForm">
             <div class="form-group">
-              <input type="text" placeholder="Prénom" required>
+              <input type="text" name="prenom" placeholder="Prénom" required>
             </div>
             <div class="form-group">
-              <input type="text" placeholder="Nom" required>
+              <input type="text" name="nom" placeholder="Nom" required>
             </div>
             <div class="form-group">
-              <input type="email" placeholder="Adresse e-mail" required>
+              <input type="email" name="email" placeholder="Adresse e-mail" required>
             </div>
             <div class="form-group">
-              <select required>
+              <select name="sujet" required>
                 <option value="" disabled selected>Sujet</option>
-                <option value="general">Question générale</option>
-                <option value="commande">Commande</option>
-                <option value="partenariat">Partenariat</option>
-                <option value="chr">Professionnel / CHR</option>
-                <option value="presse">Presse</option>
-                <option value="autre">Autre</option>
+                <option value="Question générale">Question générale</option>
+                <option value="Commande">Commande</option>
+                <option value="Partenariat">Partenariat</option>
+                <option value="Professionnel / CHR">Professionnel / CHR</option>
+                <option value="Presse">Presse</option>
+                <option value="Autre">Autre</option>
               </select>
             </div>
             <div class="form-group">
-              <textarea placeholder="Votre message..." required></textarea>
+              <textarea name="message" placeholder="Votre message..." required></textarea>
             </div>
             <div class="form-group" style="display: flex; align-items: flex-start; gap: 12px;">
               <input type="checkbox" id="consent" required style="width: auto; margin-top: 4px; accent-color: var(--gold-dark);">
@@ -120,6 +125,31 @@
             <button type="submit" class="btn-primary">Envoyer</button>
             <p class="form-legal">Vos données sont traitées conformément à notre politique de confidentialité et ne seront jamais partagées avec des tiers.</p>
           </form>
+          <script>
+          document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var f = this;
+            var data = {
+              prenom: f.prenom.value,
+              nom: f.nom.value,
+              email: f.email.value,
+              reponses: f.sujet.value,
+              profil: f.message.value,
+              source: 'contact'
+            };
+            fetch('https://script.google.com/macros/s/AKfycbwF3XqhEhKrM_Q1gx6mM4A7Rr-6S1vAE_mQqWfppgbIFGzOQLXU8vEvwPODvFDXXUD7aw/exec', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            f.style.display = 'none';
+            var msg = document.createElement('div');
+            msg.style.cssText = 'text-align:center;padding:60px 20px;';
+            msg.innerHTML = '<div style="font-size:2rem;margin-bottom:16px;">✦</div><h3 style="font-family:Playfair Display,serif;color:var(--brown-dark);margin-bottom:12px;">Merci pour votre message !</h3><p style="font-family:Cormorant Garamond,serif;font-size:1.1rem;color:var(--brown-medium);">Nous vous répondrons dans les plus brefs délais.</p>';
+            f.parentNode.appendChild(msg);
+          });
+          </script>
         </div>
 
       </div>
@@ -146,6 +176,9 @@
           <div class="footer-social">
             <a href="https://instagram.com/velmondspirits.fr" target="_blank" aria-label="Instagram">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/velmond-spirits-group/" target="_blank" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
         </div>

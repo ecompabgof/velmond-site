@@ -98,6 +98,8 @@
 
   let currentStep = 0;
   let userScores = { fresh: 0, woody: 0, gourmet: 0, herbal: 0, bitter: 0, fruity: 0, intense: 0, smooth: 0 };
+  let captureData = {};       // prénom, nom, email, téléphone
+  let userAnswers = [];       // label de chaque réponse choisie
 
   // ── Build the quiz modal HTML ──
   function createQuizHTML() {
@@ -251,6 +253,28 @@
     document.querySelector('.quiz-result-reason').innerHTML =
       `Votre profil révèle une attirance pour <strong>${traits}</strong>. ${best.name} de la maison ${best.brand} est le match parfait pour votre palais.`;
 
+    // ── Send everything to Google Sheet ──
+    const topTraitsList = topTraits.map(t => traitNames[t[0]]);
+    const sheetPayload = {
+      prenom: captureData.prenom || '',
+      nom: captureData.nom || '',
+      email: captureData.email || '',
+      telephone: captureData.telephone || '',
+      reponses: userAnswers.join(' | '),
+      profil: topTraitsList.join(', '),
+      produit: best.name,
+      marque: best.brand,
+      source: 'quiz-velmond'
+    };
+    if (GOOGLE_SHEET_URL) {
+      fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sheetPayload)
+      }).catch(function () { /* silently fail */ });
+    }
+
     // Also like
     const grid = document.querySelector('.quiz-also-grid');
     grid.innerHTML = alsoLike.map(p => `
@@ -284,27 +308,18 @@
       document.querySelector('.quiz-capture').classList.add('active');
     });
 
-    // Capture form submit → send data to Google Sheet, then start quiz
+    // Capture form submit → store data locally, then start quiz
     const captureForm = overlay.querySelector('#quizCaptureForm');
     if (captureForm) {
       captureForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const formData = {
+        captureData = {
           prenom: captureForm.prenom.value.trim(),
           nom: captureForm.nom.value.trim(),
           email: captureForm.email.value.trim(),
-          telephone: captureForm.telephone.value.trim(),
-          source: 'quiz-velmond'
+          telephone: captureForm.telephone.value.trim()
         };
-        // Fire-and-forget POST to Google Sheet
-        if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.indexOf('VOTRE_SCRIPT_ID') === -1) {
-          fetch(GOOGLE_SHEET_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-          }).catch(function () { /* silently fail */ });
-        }
+        userAnswers = [];
         // Start quiz questions
         showStep(0);
       });
@@ -317,7 +332,11 @@
 
       const qi = parseInt(btn.dataset.question);
       const oi = parseInt(btn.dataset.option);
-      const weights = QUESTIONS[qi].options[oi].weights;
+      const chosen = QUESTIONS[qi].options[oi];
+      const weights = chosen.weights;
+
+      // Store answer label
+      userAnswers[qi] = chosen.label;
 
       // Apply weights
       for (const [key, val] of Object.entries(weights)) {

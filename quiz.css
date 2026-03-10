@@ -158,6 +158,66 @@
   letter-spacing: 0.05em;
 }
 
+/* ── Capture form ── */
+.quiz-capture { text-align: center; }
+.quiz-capture h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #1E1C1A;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+.quiz-capture-form {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: left;
+}
+.quiz-form-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0;
+}
+.quiz-form-row .quiz-form-group {
+  flex: 1;
+}
+.quiz-form-group {
+  margin-bottom: 16px;
+}
+.quiz-form-group input {
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  padding: 14px 16px;
+  border: 1px solid rgba(200, 164, 109, 0.3);
+  border-radius: 6px;
+  background: white;
+  color: #1E1C1A;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+.quiz-form-group input::placeholder {
+  color: #A8864D;
+  font-weight: 400;
+}
+.quiz-form-group input:focus {
+  border-color: #C8A46D;
+  box-shadow: 0 0 0 3px rgba(200, 164, 109, 0.12);
+}
+.quiz-form-hint {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  color: #A8864D;
+  margin-top: 4px;
+  font-style: italic;
+  padding-left: 2px;
+}
+.quiz-capture .quiz-start-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
 /* ── Questions ── */
 .quiz-step-num {
   display: block;
@@ -469,4 +529,7 @@
   .quiz-also-card img { height: 60px; }
   .quiz-result-actions { flex-direction: column; }
   .quiz-fab { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 0.6rem; }
+  .quiz-capture h2 { font-size: 1.4rem; }
+  .quiz-form-row { flex-direction: column; gap: 0; }
+  .quiz-form-group input { padding: 12px 14px; font-size: 0.8rem; }
 }

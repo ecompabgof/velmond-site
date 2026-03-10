@@ -1510,19 +1510,54 @@ img {
   max-width: 380px;
 }
 
-/* ---- Canvas Side ---- */
+/* ---- Glass Side ---- */
 .whisky-canvas-side {
   flex: 1;
   position: relative;
   height: 70vh;
   max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#whiskyCanvas {
+.whisky-glass-wrap {
+  position: relative;
   width: 100%;
   height: 100%;
-  display: block;
+}
+
+.whisky-glass-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
   pointer-events: none;
+}
+
+.whisky-glass-empty {
+  z-index: 1;
+}
+
+.whisky-glass-filled {
+  z-index: 2;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.08s ease-out;
+}
+
+.whisky-glass-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 65%, rgba(212, 150, 58, 0.25) 0%, transparent 60%);
+  filter: blur(40px);
+  transition: opacity 0.3s ease;
 }
 
 .whisky-fill-label {
@@ -1535,6 +1570,7 @@ img {
   font-size: 2rem;
   letter-spacing: 3px;
   opacity: 0.7;
+  z-index: 5;
 }
 
 .fill-symbol {
@@ -1586,6 +1622,7 @@ img {
   }
 
   .whisky-canvas-side {
+    flex: none;
     height: 45vh;
     max-height: 400px;
     width: 100%;

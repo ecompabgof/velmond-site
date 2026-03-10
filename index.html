@@ -143,7 +143,11 @@
           </div>
         </div>
         <div class="whisky-canvas-side">
-          <canvas id="whiskyCanvas"></canvas>
+          <div class="whisky-glass-wrap" id="whiskyGlassWrap">
+            <img src="glass-empty.png" alt="Crystal glass" class="whisky-glass-img whisky-glass-empty" draggable="false">
+            <img src="glass-filled.png" alt="Crystal glass filled" class="whisky-glass-img whisky-glass-filled" id="whiskyGlassFilled" draggable="false">
+            <div class="whisky-glass-glow" id="whiskyGlassGlow"></div>
+          </div>
           <div class="whisky-fill-label"><span id="fillPercent">0</span><span class="fill-symbol">%</span></div>
         </div>
       </div>
@@ -549,7 +553,6 @@
   <script src="shopify-cart.js"></script>
   <script src="script.js"></script>
   <script src="quiz.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="whisky-glass.js"></script>
 </body>
 </html>

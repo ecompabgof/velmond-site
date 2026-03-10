@@ -455,16 +455,28 @@
           </h2>
           <p>Recevez nos informations exclusives, accès privilégiés à nos événements et nouvelles créations.</p>
         </div>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !');">
+        <form class="newsletter-form" id="newsletterForm">
           <div class="form-group">
-            <input type="text" placeholder="Votre prénom" required>
+            <input type="text" name="prenom" placeholder="Votre prénom" required>
           </div>
           <div class="form-group">
-            <input type="email" placeholder="Votre adresse e-mail" required>
+            <input type="email" name="email" placeholder="Votre adresse e-mail" required>
           </div>
           <button type="submit" class="btn-primary">S'inscrire</button>
           <p class="form-legal">En vous inscrivant, vous certifiez avoir l'âge légal pour consommer de l'alcool.</p>
         </form>
+        <script>
+        document.getElementById('newsletterForm').addEventListener('submit',function(e){
+          e.preventDefault();
+          var f=this;
+          fetch('https://script.google.com/macros/s/AKfycbwF3XqhEhKrM_Q1gx6mM4A7Rr-6S1vAE_mQqWfppgbIFGzOQLXU8vEvwPODvFDXXUD7aw/exec',{
+            method:'POST',mode:'no-cors',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({prenom:f.prenom.value.trim(),nom:'',email:f.email.value.trim(),telephone:'',reponses:'',profil:'',produit:'',marque:'',source:'newsletter'})
+          }).catch(function(){});
+          f.innerHTML='<p style="font-family:Cormorant Garamond,serif;font-size:1.2rem;color:#C8A46D;font-style:italic;padding:2rem 0;">Merci pour votre inscription ! ✦</p>';
+        });
+        </script>
       </div>
     </div>
   </section>

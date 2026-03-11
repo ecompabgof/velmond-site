@@ -909,6 +909,18 @@ img {
   opacity: 0.5;
 }
 
+/* --- Product Page Visual Disclaimer --- */
+.product-visual-note {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  color: #A8864D;
+  text-align: center;
+  letter-spacing: 0.08em;
+  font-style: italic;
+  opacity: 0.55;
+  margin: 1.5rem 0 0;
+}
+
 /* --- Product Page Rupture Badge --- */
 .product-rupture-badge {
   position: absolute;

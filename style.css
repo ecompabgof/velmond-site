@@ -877,6 +877,38 @@ img {
   color: var(--black);
 }
 
+/* Rupture de stock */
+.product-card.rupture {
+  opacity: 0.55;
+  pointer-events: none;
+  position: relative;
+}
+.product-card.rupture .product-visual::after {
+  content: 'Rupture de stock';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #8B4513;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  z-index: 5;
+}
+.product-card.rupture .product-btn {
+  background: #ccc;
+  color: #999;
+  pointer-events: none;
+}
+.product-card.rupture .product-price {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .collection-cta {
   text-align: center;
 }

@@ -909,6 +909,24 @@ img {
   opacity: 0.5;
 }
 
+/* --- Product Page Rupture Badge --- */
+.product-rupture-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #8B4513;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 3px;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(75, 46, 32, 0.3);
+}
+
 .collection-cta {
   text-align: center;
 }

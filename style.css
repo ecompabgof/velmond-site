@@ -1197,6 +1197,8 @@ img {
   align-items: center;
   justify-content: center;
   transition: opacity 0.5s ease;
+  overflow-y: auto;
+  padding: 20px 0;
 }
 
 .age-gate.hidden {

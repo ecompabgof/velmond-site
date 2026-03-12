@@ -557,7 +557,7 @@
       </div>
       <p class="age-gate-question">Avez-vous l'âge légal pour<br>consommer de l'alcool ?</p>
       <div class="age-gate-buttons">
-        <button class="age-btn age-yes" onclick="showGateStep2()">Oui, j'ai plus de 18 ans</button>
+        <button class="age-btn age-yes" id="ageYesBtn">Oui, j'ai plus de 18 ans</button>
         <button class="age-btn age-no" onclick="window.location.href='https://www.google.com'">Non</button>
       </div>
       <p class="age-gate-legal">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
@@ -594,7 +594,7 @@
         </a>
 
         <!-- B2C -->
-        <a href="javascript:void(0)" onclick="closeAgeGate()" class="gate-card gate-card-btc">
+        <a href="javascript:void(0)" id="gateBtcBtn" class="gate-card gate-card-btc">
           <div class="gate-card-icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
@@ -615,12 +615,36 @@
     </div>
   </div>
 
+  <script>
+  // Gate logic - inline pour éviter tout problème de cache
+  (function(){
+    var yesBtn = document.getElementById('ageYesBtn');
+    var btcBtn = document.getElementById('gateBtcBtn');
+    var step1 = document.getElementById('gateStep1');
+    var step2 = document.getElementById('gateStep2');
+    var gate = document.getElementById('ageGate');
+
+    if(yesBtn) yesBtn.addEventListener('click', function(){
+      if(step1) step1.style.display = 'none';
+      if(step2) step2.style.display = 'block';
+      sessionStorage.setItem('velmond-age-verified','true');
+    });
+
+    if(btcBtn) btcBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      if(gate){ gate.classList.add('hidden'); document.body.style.overflow = ''; }
+      sessionStorage.setItem('velmond-age-verified','true');
+      sessionStorage.setItem('velmond-path','btc');
+    });
+  })();
+  </script>
+
   <!-- Quiz Fab Button -->
   <button class="quiz-fab" onclick="openVelmondQuiz()">
     <span class="quiz-fab-icon">✦</span> Testez votre goût
   </button>
   <script src="shopify-cart.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
   <script src="quiz.js?v=4"></script>
   <script src="whisky-glass.js?v=3"></script>
 </body>

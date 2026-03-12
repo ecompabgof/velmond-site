@@ -1309,174 +1309,245 @@ img {
   letter-spacing: 0.1em;
 }
 
-/* ---------- GATE CHOICE (B2B/B2C) ---------- */
-.gate-choice {
-  text-align: center;
-  max-width: 900px;
-  padding: 40px 24px;
+/* ---------- GATE SPLIT SCREEN (B2B/B2C) ---------- */
+.gate-split {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  position: relative;
   animation: fadeInUp 0.6s ease;
 }
 
-.gate-choice-title {
-  font-family: var(--font-title);
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  margin-bottom: 4px;
-}
-
-.gate-choice-question {
-  font-family: var(--font-body);
-  font-size: 1.3rem;
-  color: var(--cream);
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-.gate-choice-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  margin-bottom: 32px;
-}
-
-.gate-card {
+.gate-half {
+  flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(200, 164, 109, 0.2);
-  border-radius: 4px;
-  padding: 40px 32px;
+  justify-content: center;
   text-decoration: none;
   color: var(--cream);
-  transition: all 0.4s ease;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.gate-card::before {
+.gate-half::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(200, 164, 109, 0.05) 0%, transparent 50%);
+  transition: opacity 0.5s;
+}
+
+.gate-half--pro::before {
+  background: linear-gradient(135deg, rgba(200, 164, 109, 0.1) 0%, rgba(10, 8, 5, 0.95) 100%);
+}
+
+.gate-half--btc::before {
+  background: linear-gradient(225deg, rgba(200, 164, 109, 0.1) 0%, rgba(10, 8, 5, 0.95) 100%);
+}
+
+.gate-half::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(200, 164, 109, 0.15) 0%, transparent 70%);
   opacity: 0;
-  transition: opacity 0.4s;
+  transition: opacity 0.5s;
 }
 
-.gate-card:hover {
-  border-color: var(--gold);
-  background: rgba(200, 164, 109, 0.06);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  color: var(--cream);
+.gate-half:hover {
+  flex: 1.2;
 }
 
-.gate-card:hover::before {
+.gate-half:hover::after {
   opacity: 1;
 }
 
-.gate-card-icon {
-  color: var(--gold);
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
+.gate-half:hover .gate-half__cta {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
 }
 
-.gate-card-title {
+.gate-half__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.gate-half__tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200, 164, 109, 0.35);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.gate-half__title {
   font-family: var(--font-cinzel);
-  font-size: 1.2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.gate-half__desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(244, 240, 232, 0.5);
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+}
+
+.gate-half__cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 4px;
-  position: relative;
-  z-index: 1;
+  border: 1px solid rgba(200, 164, 109, 0.45);
+  padding: 14px 36px;
+  border-radius: 2px;
+  transition: all 0.35s;
 }
 
-.gate-card-type {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(200, 164, 109, 0.5);
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
+/* Center divider with logo */
+.gate-split__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
 }
 
-.gate-card-divider {
-  width: 40px;
-  height: 1px;
-  background: rgba(200, 164, 109, 0.3);
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
+.gate-split__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--black);
+  padding: 20px 18px 14px;
+  border-radius: 4px;
 }
 
-.gate-card-desc {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(244, 240, 232, 0.7);
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.gate-card-features {
-  list-style: none;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
-}
-
-.gate-card-features li {
-  font-family: var(--font-sans);
+.gate-split__diamond {
   font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: rgba(200, 164, 109, 0.6);
+  color: var(--gold);
   margin-bottom: 6px;
 }
 
-.gate-card-btn {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.gate-split__brand {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
   color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 12px 28px;
-  border-radius: 2px;
-  transition: all 0.3s;
-  position: relative;
-  z-index: 1;
-  margin-top: auto;
 }
 
-.gate-card:hover .gate-card-btn {
-  background: var(--gold);
-  color: var(--black);
+.gate-split__sub {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-style: italic;
+  color: rgba(200, 164, 109, 0.6);
+  letter-spacing: 0.15em;
+}
+
+.gate-split__or {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(200, 164, 109, 0.4);
+  background: var(--black);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-top: 4px;
+}
+
+/* Vertical separator line */
+.gate-split::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 5%, rgba(200, 164, 109, 0.2) 30%, rgba(200, 164, 109, 0.2) 70%, transparent 95%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.gate-split__legal {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 100%;
+  text-align: center;
 }
 
 @media (max-width: 680px) {
-  .gate-choice-cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .gate-split {
+    flex-direction: column;
+    min-height: 100vh;
   }
-  .gate-card {
+  .gate-half {
+    flex: 1;
+    min-height: 0;
+  }
+  .gate-half:hover {
+    flex: 1;
+  }
+  .gate-half__title {
+    font-size: 1.6rem;
+  }
+  .gate-half__content {
     padding: 28px 24px;
   }
-  .gate-choice-title {
-    font-size: 2rem;
+  .gate-split__center {
+    flex-direction: row;
+    gap: 10px;
   }
-  .gate-choice {
-    padding: 20px 16px;
+  .gate-split__logo {
+    padding: 10px 14px 8px;
+  }
+  .gate-split__brand {
+    font-size: 0.75rem;
+  }
+  .gate-split__or {
+    display: none;
+  }
+  .gate-split::after {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 5%, rgba(200, 164, 109, 0.2) 30%, rgba(200, 164, 109, 0.2) 70%, transparent 95%);
+  }
+  .gate-split__legal {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px;
+    font-size: 0.55rem;
   }
 }
 

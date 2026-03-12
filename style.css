@@ -1307,6 +1307,177 @@ img {
   letter-spacing: 0.1em;
 }
 
+/* ---------- GATE CHOICE (B2B/B2C) ---------- */
+.gate-choice {
+  text-align: center;
+  max-width: 900px;
+  padding: 40px 24px;
+  animation: fadeInUp 0.6s ease;
+}
+
+.gate-choice-title {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.gate-choice-question {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--cream);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.gate-choice-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.gate-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(200, 164, 109, 0.2);
+  border-radius: 4px;
+  padding: 40px 32px;
+  text-decoration: none;
+  color: var(--cream);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.gate-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(200, 164, 109, 0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.gate-card:hover {
+  border-color: var(--gold);
+  background: rgba(200, 164, 109, 0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  color: var(--cream);
+}
+
+.gate-card:hover::before {
+  opacity: 1;
+}
+
+.gate-card-icon {
+  color: var(--gold);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-card-title {
+  font-family: var(--font-cinzel);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-card-type {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(200, 164, 109, 0.5);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-card-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(200, 164, 109, 0.3);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-card-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(244, 240, 232, 0.7);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-card-features {
+  list-style: none;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.gate-card-features li {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(200, 164, 109, 0.6);
+  margin-bottom: 6px;
+}
+
+.gate-card-btn {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 12px 28px;
+  border-radius: 2px;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
+.gate-card:hover .gate-card-btn {
+  background: var(--gold);
+  color: var(--black);
+}
+
+@media (max-width: 680px) {
+  .gate-choice-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .gate-card {
+    padding: 28px 24px;
+  }
+  .gate-choice-title {
+    font-size: 2rem;
+  }
+  .gate-choice {
+    padding: 20px 16px;
+  }
+}
+
 /* ---------- ANIMATIONS ---------- */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }

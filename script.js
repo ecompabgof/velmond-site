@@ -2,21 +2,28 @@
    VELMOND SPIRITS — JavaScript Interactions
    ============================================ */
 
-// ---------- AGE GATE ----------
+// ---------- AGE GATE + PORTAIL B2B/B2C ----------
+function showGateStep2() {
+  const step1 = document.getElementById('gateStep1');
+  const step2 = document.getElementById('gateStep2');
+  if (step1) step1.style.display = 'none';
+  if (step2) step2.style.display = 'block';
+  sessionStorage.setItem('velmond-age-verified', 'true');
+}
+
 function closeAgeGate() {
   const gate = document.getElementById('ageGate');
   if (gate) {
     gate.classList.add('hidden');
     document.body.style.overflow = '';
   }
-  // Remember for session
   sessionStorage.setItem('velmond-age-verified', 'true');
+  sessionStorage.setItem('velmond-path', 'btc');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const gate = document.getElementById('ageGate');
-  if (!gate) return; // No age gate on this page (e.g. product pages)
-  // Check if already verified this session
+  if (!gate) return;
   if (sessionStorage.getItem('velmond-age-verified') === 'true') {
     gate.classList.add('hidden');
   } else {

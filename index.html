@@ -543,9 +543,10 @@
     </div>
   </footer>
 
-  <!-- ========== AGE GATE ========== -->
+  <!-- ========== PORTAIL D'ENTRÉE ========== -->
   <div class="age-gate" id="ageGate">
-    <div class="age-gate-inner">
+    <!-- ÉTAPE 1 : Vérification d'âge -->
+    <div class="age-gate-inner" id="gateStep1">
       <div class="age-gate-ornament">◆</div>
       <h2>VELMOND</h2>
       <p class="age-gate-sub"><em>Spirits</em></p>
@@ -556,9 +557,60 @@
       </div>
       <p class="age-gate-question">Avez-vous l'âge légal pour<br>consommer de l'alcool ?</p>
       <div class="age-gate-buttons">
-        <button class="age-btn age-yes" onclick="closeAgeGate()">Oui, j'ai plus de 18 ans</button>
+        <button class="age-btn age-yes" onclick="showGateStep2()">Oui, j'ai plus de 18 ans</button>
         <button class="age-btn age-no" onclick="window.location.href='https://www.google.com'">Non</button>
       </div>
+      <p class="age-gate-legal">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+    </div>
+
+    <!-- ÉTAPE 2 : Choix B2B / B2C -->
+    <div class="gate-choice" id="gateStep2" style="display:none;">
+      <div class="age-gate-ornament">◆</div>
+      <h2 class="gate-choice-title">VELMOND</h2>
+      <p class="age-gate-sub"><em>Spirits</em></p>
+      <div class="age-gate-divider">
+        <span class="ornament-line"></span>
+        <span class="ornament-icon">❧</span>
+        <span class="ornament-line"></span>
+      </div>
+      <p class="gate-choice-question">Comment souhaitez-vous nous découvrir ?</p>
+
+      <div class="gate-choice-cards">
+        <!-- B2B -->
+        <a href="/espace-pro.html" class="gate-card gate-card-pro">
+          <div class="gate-card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M3 7v14M21 7v14M6 11h4M6 15h4M14 11h4M14 15h4M10 21V17h4v4M12 3l9 4H3l9-4z"/></svg>
+          </div>
+          <h3 class="gate-card-title">Partenaire</h3>
+          <p class="gate-card-type">Espace professionnel</p>
+          <div class="gate-card-divider"></div>
+          <p class="gate-card-desc">Revendeur agréé, CHR, caviste, importateur. Commandez à la bouteille, au carton ou à la palette.</p>
+          <ul class="gate-card-features">
+            <li>✦ Tarifs professionnels</li>
+            <li>✦ Commande en gros</li>
+            <li>✦ Espace dédié</li>
+          </ul>
+          <span class="gate-card-btn">Accéder à l'espace pro →</span>
+        </a>
+
+        <!-- B2C -->
+        <a href="javascript:void(0)" onclick="closeAgeGate()" class="gate-card gate-card-btc">
+          <div class="gate-card-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="gate-card-title">S'offrir une bouteille</h3>
+          <p class="gate-card-type">Espace particulier</p>
+          <div class="gate-card-divider"></div>
+          <p class="gate-card-desc">Découvrez nos 6 maisons, explorez nos créations et offrez-vous un spiritueux d'exception.</p>
+          <ul class="gate-card-features">
+            <li>✦ Livraison à domicile</li>
+            <li>✦ Coffrets cadeaux</li>
+            <li>✦ Guides & dégustations</li>
+          </ul>
+          <span class="gate-card-btn">Découvrir la boutique →</span>
+        </a>
+      </div>
+
       <p class="age-gate-legal">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
     </div>
   </div>

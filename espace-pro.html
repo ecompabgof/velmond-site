@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Partenaire — Velmond Spirits</title>
+  <meta name="description" content="Espace professionnel Velmond Spirits. Revendeurs agréés, CHR, cavistes, importateurs : commandez à la bouteille, au carton ou à la palette.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ========== ESPACE PRO STYLES ========== */
+    .pro-page { min-height: 100vh; background: var(--black-pure); color: var(--cream); }
+
+    /* Hero Pro */
+    .pro-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      background: linear-gradient(180deg, rgba(18,18,18,1) 0%, rgba(30,28,26,0.95) 100%);
+      position: relative;
+    }
+    .pro-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,164,109,0.3), transparent);
+    }
+    .pro-hero-badge {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,164,109,0.3);
+      padding: 6px 20px;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .pro-hero h1 {
+      font-family: var(--font-cinzel);
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .pro-hero p {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      color: rgba(244,240,232,0.6);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Main Content Grid */
+    .pro-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Login Panel */
+    .pro-login-panel {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,164,109,0.15);
+      border-radius: 4px;
+      padding: 48px 40px;
+    }
+    .pro-login-panel h2 {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .pro-login-panel .panel-sub {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(200,164,109,0.5);
+      margin-bottom: 32px;
+    }
+
+    .pro-form-group {
+      margin-bottom: 20px;
+    }
+    .pro-form-group label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244,240,232,0.5);
+      margin-bottom: 8px;
+    }
+    .pro-form-group input, .pro-form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,164,109,0.2);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    .pro-form-group input:focus, .pro-form-group select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .pro-form-group input::placeholder {
+      color: rgba(244,240,232,0.25);
+    }
+    .pro-form-group select option {
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    .pro-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      border-radius: 2px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 8px;
+    }
+    .pro-btn:hover {
+      background: var(--gold-dark);
+    }
+
+    .pro-forgot {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(200,164,109,0.5);
+      text-decoration: underline;
+    }
+    .pro-forgot:hover { color: var(--gold); }
+
+    .pro-divider-or {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .pro-divider-or span {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(244,240,232,0.3);
+    }
+    .pro-divider-or::before, .pro-divider-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(200,164,109,0.15);
+    }
+
+    .pro-btn-outline {
+      width: 100%;
+      padding: 16px;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(200,164,109,0.3);
+      border-radius: 2px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+    }
+    .pro-btn-outline:hover {
+      background: rgba(200,164,109,0.08);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Info Panel */
+    .pro-info-panel { padding: 8px 0; }
+
+    .pro-info-panel h2 {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .pro-advantage {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(200,164,109,0.1);
+    }
+    .pro-advantage:last-child { border-bottom: none; }
+
+    .pro-advantage-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200,164,109,0.08);
+      border: 1px solid rgba(200,164,109,0.15);
+      border-radius: 4px;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .pro-advantage h3 {
+      font-family: var(--font-cinzel);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .pro-advantage p {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: rgba(244,240,232,0.55);
+      line-height: 1.6;
+    }
+
+    /* Formats de commande */
+    .pro-formats {
+      margin-top: 40px;
+      padding: 32px;
+      background: rgba(200,164,109,0.04);
+      border: 1px solid rgba(200,164,109,0.12);
+      border-radius: 4px;
+    }
+    .pro-formats h3 {
+      font-family: var(--font-cinzel);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .pro-formats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .pro-format-item {
+      text-align: center;
+      padding: 20px 12px;
+      border: 1px solid rgba(200,164,109,0.1);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+    }
+    .pro-format-item .format-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .pro-format-item h4 {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+    .pro-format-item p {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: rgba(244,240,232,0.4);
+    }
+
+    /* Contact Pro */
+    .pro-contact-bar {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+    .pro-contact-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 40px;
+      background: rgba(200,164,109,0.05);
+      border: 1px solid rgba(200,164,109,0.15);
+      border-radius: 4px;
+    }
+    .pro-contact-inner p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: rgba(244,240,232,0.6);
+    }
+    .pro-contact-inner a {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 12px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .pro-contact-inner a:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* Back link */
+    .pro-back {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 100;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(200,164,109,0.5);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .pro-back:hover { color: var(--gold); }
+
+    /* Pro logo */
+    .pro-logo {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 100;
+      font-family: var(--font-title);
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-decoration: none;
+      opacity: 0.6;
+    }
+    .pro-logo:hover { opacity: 1; color: var(--gold); }
+
+    /* Footer Pro */
+    .pro-footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(200,164,109,0.1);
+    }
+    .pro-footer p {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      color: rgba(244,240,232,0.25);
+      letter-spacing: 0.1em;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .pro-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 16px;
+      }
+      .pro-hero h1 { font-size: 1.8rem; }
+      .pro-login-panel { padding: 32px 24px; }
+      .pro-formats-grid { grid-template-columns: 1fr; }
+      .pro-contact-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="pro-page">
+
+  <a href="/" class="pro-back">← Retour au site</a>
+  <a href="/" class="pro-logo">VELMOND</a>
+
+  <!-- ========== HERO ========== -->
+  <section class="pro-hero">
+    <div>
+      <div class="pro-hero-badge">Espace Professionnel</div>
+      <h1>Espace Partenaire</h1>
+      <p>Revendeurs agréés, CHR, cavistes, importateurs &mdash; accédez à votre espace dédié pour commander nos spiritueux en gros.</p>
+    </div>
+  </section>
+
+  <!-- ========== CONTENU PRINCIPAL ========== -->
+  <div class="pro-content">
+
+    <!-- Colonne gauche : Connexion -->
+    <div class="pro-login-panel">
+      <h2>Connexion</h2>
+      <p class="panel-sub">Accès revendeur agréé</p>
+
+      <form id="proLoginForm" onsubmit="return handleProLogin(event)">
+        <div class="pro-form-group">
+          <label for="proEmail">Adresse e-mail</label>
+          <input type="email" id="proEmail" name="email" placeholder="votre@entreprise.com" required>
+        </div>
+        <div class="pro-form-group">
+          <label for="proPassword">Mot de passe</label>
+          <input type="password" id="proPassword" name="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="pro-btn">Se connecter</button>
+        <a href="mailto:pro@velmondspirits.fr?subject=Mot de passe oublié" class="pro-forgot">Mot de passe oublié ?</a>
+      </form>
+
+      <div class="pro-divider-or">
+        <span>ou</span>
+      </div>
+
+      <a href="/contact.html?objet=partenariat" class="pro-btn-outline">
+        Devenir partenaire agréé
+      </a>
+    </div>
+
+    <!-- Colonne droite : Avantages -->
+    <div class="pro-info-panel">
+      <h2>Pourquoi devenir partenaire ?</h2>
+
+      <div class="pro-advantage">
+        <div class="pro-advantage-icon">💰</div>
+        <div>
+          <h3>Tarifs professionnels</h3>
+          <p>Grilles tarifaires dégressives selon les volumes. Prix nets HT dédiés aux revendeurs agréés Velmond.</p>
+        </div>
+      </div>
+
+      <div class="pro-advantage">
+        <div class="pro-advantage-icon">📦</div>
+        <div>
+          <h3>Commande flexible</h3>
+          <p>À la bouteille, au carton (6 ou 12) ou à la palette. Vous composez librement votre commande selon vos besoins.</p>
+        </div>
+      </div>
+
+      <div class="pro-advantage">
+        <div class="pro-advantage-icon">🚚</div>
+        <div>
+          <h3>Livraison France & Export</h3>
+          <p>Expédition sous 48-72h en France métropolitaine. Solutions export pour l'international sur devis.</p>
+        </div>
+      </div>
+
+      <div class="pro-advantage">
+        <div class="pro-advantage-icon">🎯</div>
+        <div>
+          <h3>Support dédié</h3>
+          <p>Un commercial dédié, des supports PLV, fiches produits et accompagnement pour vos animations en point de vente.</p>
+        </div>
+      </div>
+
+      <div class="pro-advantage">
+        <div class="pro-advantage-icon">✦</div>
+        <div>
+          <h3>6 maisons, 23 produits</h3>
+          <p>Accédez au catalogue complet : gin, whisky, rhum, vodka, pastis, liqueurs. De La Grande Distillerie à Héritage 1905.</p>
+        </div>
+      </div>
+
+      <!-- Formats de commande -->
+      <div class="pro-formats">
+        <h3>Formats de commande</h3>
+        <div class="pro-formats-grid">
+          <div class="pro-format-item">
+            <div class="format-icon">🍾</div>
+            <h4>À l'unité</h4>
+            <p>Par bouteille</p>
+          </div>
+          <div class="pro-format-item">
+            <div class="format-icon">📦</div>
+            <h4>Au carton</h4>
+            <p>6 ou 12 bouteilles</p>
+          </div>
+          <div class="pro-format-item">
+            <div class="format-icon">🏗️</div>
+            <h4>À la palette</h4>
+            <p>Sur devis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== BARRE CONTACT ========== -->
+  <div class="pro-contact-bar">
+    <div class="pro-contact-inner">
+      <p>Une question ? Contactez notre équipe commerciale.</p>
+      <a href="mailto:pro@velmondspirits.fr">pro@velmondspirits.fr</a>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="pro-footer">
+    <p>© 2026 Velmond Spirits — Espace réservé aux professionnels</p>
+    <p style="margin-top:8px;">L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+  </footer>
+
+  <script>
+    function handleProLogin(e) {
+      e.preventDefault();
+      // Pour l'instant, redirection vers un message d'attente
+      // À remplacer par une vraie auth (Shopify B2B, Supabase, etc.)
+      const email = document.getElementById('proEmail').value;
+      alert('Espace partenaire en cours de déploiement.\n\nVotre compte « ' + email + ' » sera activé prochainement.\n\nContactez pro@velmondspirits.fr pour toute commande.');
+      return false;
+    }
+  </script>
+
+</body>
+</html>

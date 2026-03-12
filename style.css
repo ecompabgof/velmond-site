@@ -1854,12 +1854,14 @@ img {
   }
 
   .whisky-steps-wrap {
-    min-height: 180px;
+    min-height: 200px;
   }
 
   .whisky-step p {
     max-width: 100%;
     margin: 0 auto;
+    font-size: 1.05rem;
+    padding: 0 0.5rem;
   }
 
   .whisky-canvas-side {
@@ -1893,5 +1895,19 @@ img {
 
   .whisky-fill-label {
     font-size: 1.4rem;
+  }
+
+  .whisky-steps-wrap {
+    min-height: 220px;
+  }
+
+  .whisky-step p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 0.25rem;
+  }
+
+  .whisky-step h3 {
+    font-size: 1.3rem;
   }
 }

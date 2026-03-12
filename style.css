@@ -1849,18 +1849,23 @@ img {
   }
 
   .whisky-text-side {
-    min-height: 160px;
+    min-height: 200px;
     text-align: center;
+  }
+
+  .whisky-steps-wrap {
+    min-height: 180px;
   }
 
   .whisky-step p {
     max-width: 100%;
+    margin: 0 auto;
   }
 
   .whisky-canvas-side {
     flex: none;
-    height: 45vh;
-    max-height: 400px;
+    height: 40vh;
+    max-height: 350px;
     width: 100%;
   }
 

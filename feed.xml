@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Blog Velmond Spirits</title>
+    <link>https://velmondspirits.fr/blog.html</link>
+    <description>Guides sur les spiritueux français, conseils de dégustation, recettes de cocktails et actualités des maisons Velmond Spirits.</description>
+    <language>fr</language>
+    <lastBuildDate>Tue, 12 Mar 2026 08:00:00 +0100</lastBuildDate>
+    <atom:link href="https://velmondspirits.fr/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://velmondspirits.fr/images/velmond-logo.png</url>
+      <title>Velmond Spirits</title>
+      <link>https://velmondspirits.fr</link>
+    </image>
+
+    <item>
+      <title>Whisky Français : Le Guide Complet pour Comprendre et Choisir</title>
+      <link>https://velmondspirits.fr/blog/whisky-francais-guide-complet.html</link>
+      <guid isPermaLink="true">https://velmondspirits.fr/blog/whisky-francais-guide-complet.html</guid>
+      <pubDate>Tue, 10 Mar 2026 08:00:00 +0100</pubDate>
+      <dc:creator>Pablo Goffinet</dc:creator>
+      <category>Guide</category>
+      <description><![CDATA[Le whisky français connaît une croissance de 300% en 10 ans. Découvrez les terroirs, les méthodes de distillation et nos conseils pour choisir votre premier single malt tricolore.]]></description>
+    </item>
+
+    <item>
+      <title>10 Cocktails à Base de Spiritueux Français pour Épater vos Invités</title>
+      <link>https://velmondspirits.fr/blog/cocktails-spiritueux-francais.html</link>
+      <guid isPermaLink="true">https://velmondspirits.fr/blog/cocktails-spiritueux-francais.html</guid>
+      <pubDate>Thu, 05 Mar 2026 08:00:00 +0100</pubDate>
+      <dc:creator>Pablo Goffinet</dc:creator>
+      <category>Recettes</category>
+      <description><![CDATA[Du French 75 revisité au Pastis Spritz, découvrez des recettes originales qui mettent en valeur le savoir-faire français en matière de spiritueux.]]></description>
+    </item>
+
+    <item>
+      <title>Comment Déguster un Spiritueux : Les 5 Étapes d'une Dégustation Réussie</title>
+      <link>https://velmondspirits.fr/blog/comment-deguster-spiritueux.html</link>
+      <guid isPermaLink="true">https://velmondspirits.fr/blog/comment-deguster-spiritueux.html</guid>
+      <pubDate>Sat, 28 Feb 2026 08:00:00 +0100</pubDate>
+      <dc:creator>Pablo Goffinet</dc:creator>
+      <category>Dégustation</category>
+      <description><![CDATA[Apprenez les techniques des maîtres de chai pour apprécier pleinement la complexité aromatique de chaque spiritueux. Guide en 5 étapes.]]></description>
+    </item>
+
+    <item>
+      <title>Le Gin Français : Renaissance d'un Spiritueux Oublié</title>
+      <link>https://velmondspirits.fr/blog/gin-francais-renaissance.html</link>
+      <guid isPermaLink="true">https://velmondspirits.fr/blog/gin-francais-renaissance.html</guid>
+      <pubDate>Fri, 20 Feb 2026 08:00:00 +0100</pubDate>
+      <dc:creator>Pablo Goffinet</dc:creator>
+      <category>Tendance</category>
+      <description><![CDATA[Avec plus de 150 distilleries produisant du gin en France, le marché explose. Retour sur cette renaissance inattendue du gin français.]]></description>
+    </item>
+
+  </channel>
+</rss>

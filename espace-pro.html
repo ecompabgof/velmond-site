@@ -1218,6 +1218,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Google Sheet endpoint for bulk orders
   const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF3XqhEhKrM_Q1gx6mM4A7Rr-6S1vAE_mQqWfppgbIFGzOQLXU8vEvwPODvFDXXUD7aw/exec';
 
+  // Shopify Admin Proxy (Google Apps Script) — saves company info to customer record
+  const SHOPIFY_PROXY_URL = 'https://script.google.com/macros/s/AKfycbyRtXZ6ew_1XLJ8tVUdGSY8RaW9jKjyaAXog0Dm4qIrWTB9_M2k_LBcEo9ONQH7g83_/exec';
+
   // Promo code for partners (create this in Shopify Admin)
   const PROMO_CODE = 'VELMOND-PRO10';
   const DISCOUNT_PERCENT = 10;
@@ -1798,6 +1801,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('entrepriseInfo').style.display = 'block';
     document.getElementById('entrepriseSearch').style.display = 'none';
     document.getElementById('entrepriseResults').style.display = 'none';
+
+    // Save company info to Shopify customer record via proxy
+    saveCompanyToShopify(e);
+  }
+
+  async function saveCompanyToShopify(company) {
+    if (!SHOPIFY_PROXY_URL) {
+      console.warn('SHOPIFY_PROXY_URL non configuré — infos entreprise non sauvegardées dans Shopify');
+      return;
+    }
+    const email = localStorage.getItem('velmond-pro-email');
+    if (!email) return;
+
+    try {
+      const res = await fetch(SHOPIFY_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          action: 'update_customer_company',
+          email,
+          entreprise: company.nom,
+          siret: company.siret,
+          siren: company.siren,
+          adresse: company.adresse,
+          naf: company.naf || ''
+        })
+      });
+      const result = await res.json();
+      if (result.success) {
+        console.log('Infos entreprise sauvegardées dans Shopify ✓');
+      } else {
+        console.warn('Erreur Shopify proxy:', result.error);
+      }
+    } catch (err) {
+      console.error('Erreur sauvegarde entreprise Shopify:', err);
+    }
   }
 
   function clearEntreprise() {

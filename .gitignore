@@ -4,3 +4,4 @@ __pycache__/
 generate_*.py
 node_modules/
 .vercel/
+shopify-proxy-appscript.js

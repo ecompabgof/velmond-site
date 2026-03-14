@@ -854,6 +854,218 @@
       margin-top: 2px;
     }
 
+    /* ---- Pending approval overlay ---- */
+    .dash-pending {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 48px 40px;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,164,109,0.2);
+      border-radius: 4px;
+    }
+    .dash-pending .pending-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+    .dash-pending h3 {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .dash-pending p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: rgba(244,240,232,0.6);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .dash-pending .pending-email {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-top: 20px;
+    }
+
+    /* ---- Order history ---- */
+    .orders-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(244,240,232,0.4);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+    }
+    .order-history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .order-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,164,109,0.12);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .order-card:hover { border-color: rgba(200,164,109,0.3); }
+    .order-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(200,164,109,0.08);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .order-number {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      color: var(--cream);
+      font-weight: 600;
+    }
+    .order-date {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(200,164,109,0.6);
+      letter-spacing: 0.05em;
+    }
+    .order-status {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .order-status.fulfilled { background: rgba(46,204,113,0.15); color: #2ecc71; }
+    .order-status.unfulfilled { background: rgba(241,196,15,0.15); color: #f1c40f; }
+    .order-status.cancelled { background: rgba(231,76,60,0.15); color: #e74c3c; }
+    .order-status.paid { background: rgba(46,204,113,0.15); color: #2ecc71; }
+    .order-status.pending { background: rgba(241,196,15,0.15); color: #f1c40f; }
+    .order-status.refunded { background: rgba(155,89,182,0.15); color: #9b59b6; }
+    .order-card-items {
+      padding: 16px 24px;
+    }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(200,164,109,0.05);
+    }
+    .order-item:last-child { border-bottom: none; }
+    .order-item-name {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--cream);
+    }
+    .order-item-qty {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(200,164,109,0.5);
+    }
+    .order-item-price {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .order-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: rgba(200,164,109,0.04);
+      border-top: 1px solid rgba(200,164,109,0.08);
+    }
+    .order-total {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .order-total-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(200,164,109,0.5);
+      margin-right: 8px;
+    }
+    .order-invoice-btn {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: none;
+      border: 1px solid rgba(200,164,109,0.3);
+      padding: 8px 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .order-invoice-btn:hover {
+      background: rgba(200,164,109,0.1);
+      border-color: var(--gold);
+    }
+
+    /* ---- Mon Compte ---- */
+    .account-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .account-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,164,109,0.12);
+      border-radius: 4px;
+      padding: 32px;
+    }
+    .account-card h3 {
+      font-family: var(--font-cinzel);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(200,164,109,0.15);
+    }
+    .account-info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(200,164,109,0.06);
+    }
+    .account-info-row:last-child { border-bottom: none; }
+    .account-info-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(200,164,109,0.5);
+    }
+    .account-info-value {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--cream);
+      text-align: right;
+    }
+    .account-no-company {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: rgba(244,240,232,0.4);
+      font-style: italic;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .pro-content {
@@ -876,6 +1088,9 @@
       .cat-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
       .order-row { grid-template-columns: 1fr; }
       .order-product-row { grid-template-columns: 1fr; }
+      .account-grid { grid-template-columns: 1fr; }
+      .order-card-header { flex-direction: column; align-items: flex-start; }
+      .order-card-footer { flex-direction: column; gap: 12px; align-items: flex-start; }
     }
   </style>
 </head>
@@ -1034,6 +1249,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ========== DASHBOARD PRO (hidden until login) ========== -->
   <div class="pro-dashboard" id="proDashboard">
 
+    <!-- Pending approval (shown if no 'pro' tag) -->
+    <div id="dashPending" style="display:none;">
+      <div class="dash-header">
+        <div class="dash-welcome">
+          <div class="dash-avatar" style="background:rgba(241,196,15,0.15);border-color:rgba(241,196,15,0.3);color:#f1c40f;">⏳</div>
+          <div>
+            <h2 id="dashPendingName">Bienvenue</h2>
+            <p style="color:rgba(241,196,15,0.7);">Compte en attente de validation</p>
+          </div>
+        </div>
+        <button class="dash-logout" onclick="proLogout()">Déconnexion</button>
+      </div>
+      <div class="dash-pending">
+        <div class="pending-icon">⏳</div>
+        <h3>Compte en cours de validation</h3>
+        <p>Votre demande de compte partenaire a bien été reçue. Notre équipe commerciale vérifie votre dossier et vous accorderez l'accès sous 24 à 48h.</p>
+        <p>Vous recevrez un e-mail de confirmation dès que votre compte sera activé.</p>
+        <div class="pending-email">
+          Une question ? <a href="mailto:contact@velmondspirits.fr" style="color:var(--gold);text-decoration:underline;">contact@velmondspirits.fr</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Approved dashboard (shown if 'pro' tag present) -->
+    <div id="dashApproved" style="display:none;">
+
     <!-- Header -->
     <div class="dash-header">
       <div class="dash-welcome">
@@ -1062,8 +1303,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Tabs -->
     <div class="dash-tabs">
       <button class="dash-tab active" onclick="switchTab('catalogue', this)">Catalogue & Tarifs</button>
-      <button class="dash-tab" onclick="switchTab('commander', this)">Commander en gros</button>
-      <button class="dash-tab" onclick="switchTab('boutique', this)">Boutique en ligne</button>
+      <button class="dash-tab" onclick="switchTab('commander', this)">Commander</button>
+      <button class="dash-tab" onclick="switchTab('historique', this)">Historique</button>
+      <button class="dash-tab" onclick="switchTab('boutique', this)">Boutique</button>
+      <button class="dash-tab" onclick="switchTab('compte', this)">Mon Compte</button>
     </div>
 
     <!-- TAB: Catalogue -->
@@ -1159,6 +1402,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
+    <!-- TAB: Historique -->
+    <div class="dash-tab-content" id="tab-historique">
+      <div id="ordersLoading" style="text-align:center;padding:40px;font-family:var(--font-body);color:rgba(244,240,232,0.5);">Chargement de vos commandes...</div>
+      <div id="ordersList" class="order-history-list" style="display:none;"></div>
+      <div id="ordersEmpty" class="orders-empty" style="display:none;">
+        Aucune commande pour le moment.<br>
+        <span style="font-size:0.9rem;color:rgba(200,164,109,0.4);">Vos commandes passées sur la boutique Velmond apparaîtront ici.</span>
+      </div>
+    </div>
+
     <!-- TAB: Boutique en ligne -->
     <div class="dash-tab-content" id="tab-boutique">
       <div class="dash-shop-card">
@@ -1171,24 +1424,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Contactez votre commercial dédié pour toute question sur les disponibilités, les délais de livraison ou les tarifs personnalisés.</p>
         <a href="mailto:contact@velmondspirits.fr">contact@velmondspirits.fr</a>
       </div>
+    </div>
 
-      <!-- Changer mot de passe -->
-      <div class="dash-shop-card" style="margin-top:16px;">
-        <h3>🔑 Modifier mon mot de passe</h3>
-        <div id="changePasswordForm" style="margin-top:12px;">
-          <div class="pro-form-group">
-            <label for="newPassword" style="color:rgba(247,243,235,0.6);font-family:var(--font-sans);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;">Nouveau mot de passe</label>
-            <input type="password" id="newPassword" placeholder="Minimum 8 caractères" minlength="8" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,164,109,0.2);border-radius:3px;color:var(--cream);font-family:var(--font-body);font-size:1rem;">
+    <!-- TAB: Mon Compte -->
+    <div class="dash-tab-content" id="tab-compte">
+      <div class="account-grid">
+        <!-- Infos personnelles -->
+        <div class="account-card">
+          <h3>Informations personnelles</h3>
+          <div id="accountPersonalInfo">
+            <div class="account-info-row">
+              <span class="account-info-label">Nom</span>
+              <span class="account-info-value" id="accountName">—</span>
+            </div>
+            <div class="account-info-row">
+              <span class="account-info-label">Email</span>
+              <span class="account-info-value" id="accountEmail">—</span>
+            </div>
           </div>
-          <div class="pro-form-group" style="margin-top:8px;">
-            <label for="confirmPassword" style="color:rgba(247,243,235,0.6);font-family:var(--font-sans);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;">Confirmer le mot de passe</label>
-            <input type="password" id="confirmPassword" placeholder="Retapez le mot de passe" minlength="8" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,164,109,0.2);border-radius:3px;color:var(--cream);font-family:var(--font-body);font-size:1rem;">
+        </div>
+
+        <!-- Infos entreprise -->
+        <div class="account-card">
+          <h3>Entreprise</h3>
+          <div id="accountCompanyInfo">
+            <p class="account-no-company">Sélectionnez votre entreprise dans l'onglet "Commander" pour enregistrer vos informations.</p>
           </div>
-          <button type="button" id="changePasswordBtn" onclick="changePassword()" style="margin-top:12px;padding:14px 32px;background:var(--gold);border:none;color:var(--black);font-family:var(--font-sans);font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;border-radius:3px;cursor:pointer;width:100%;">Modifier le mot de passe</button>
-          <p id="changePasswordMsg" style="display:none;margin-top:10px;font-family:var(--font-sans);font-size:0.8rem;text-align:center;"></p>
+        </div>
+
+        <!-- Modifier mot de passe -->
+        <div class="account-card">
+          <h3>Modifier le mot de passe</h3>
+          <div id="changePasswordForm">
+            <div class="pro-form-group">
+              <label for="newPassword">Nouveau mot de passe</label>
+              <input type="password" id="newPassword" placeholder="Minimum 8 caractères" minlength="8">
+            </div>
+            <div class="pro-form-group">
+              <label for="confirmPassword">Confirmer</label>
+              <input type="password" id="confirmPassword" placeholder="Retapez le mot de passe" minlength="8">
+            </div>
+            <button type="button" class="pro-btn" id="changePasswordBtn" onclick="changePassword()">Modifier le mot de passe</button>
+            <p id="changePasswordMsg" style="display:none;margin-top:10px;font-family:var(--font-sans);font-size:0.8rem;text-align:center;"></p>
+          </div>
+        </div>
+
+        <!-- Déconnexion -->
+        <div class="account-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <h3 style="text-align:center;">Session</h3>
+          <p style="font-family:var(--font-body);font-size:0.95rem;color:rgba(244,240,232,0.5);margin-bottom:20px;text-align:center;">Vous êtes connecté en tant que partenaire agréé.</p>
+          <button class="pro-btn-outline" onclick="proLogout()" style="max-width:280px;">Déconnexion</button>
         </div>
       </div>
     </div>
+
+    </div><!-- /dashApproved -->
 
   </div>
 
@@ -1405,12 +1695,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const customerData = await shopifyFetch(`
           query getCustomer($token: String!) {
             customer(customerAccessToken: $token) {
-              id firstName lastName email
+              id firstName lastName email tags
             }
           }
         `, { token });
 
-        const customer = customerData?.data?.customer || { firstName, lastName, email };
+        const customer = customerData?.data?.customer || { firstName, lastName, email, tags: [] };
         activateDashboard(customer);
       } else {
         btn.style.background = '#2ecc71';
@@ -1560,10 +1850,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   // ---- Activate Dashboard ----
+  let currentCustomer = null;
+
   function activateDashboard(customer) {
+    currentCustomer = customer;
     const name = ((customer.firstName || '') + ' ' + (customer.lastName || '')).trim();
     document.getElementById('proLoginSection').classList.add('hidden');
     document.getElementById('proDashboard').classList.add('active');
+
+    // Check for 'pro' tag — if absent, show pending state
+    const tags = customer.tags || [];
+    const isApproved = tags.some(t => t.toLowerCase() === 'pro');
+
+    if (!isApproved) {
+      document.getElementById('dashPending').style.display = 'block';
+      document.getElementById('dashApproved').style.display = 'none';
+      document.getElementById('dashPendingName').textContent = 'Bienvenue' + (name ? ', ' + name : '');
+      return;
+    }
+
+    // Approved — show full dashboard
+    document.getElementById('dashPending').style.display = 'none';
+    document.getElementById('dashApproved').style.display = 'block';
     document.getElementById('dashName').textContent = 'Bienvenue' + (name ? ', ' + name : '');
 
     renderCatalogue();
@@ -1574,6 +1882,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (emailField) emailField.value = customer.email || '';
     const contactField = document.querySelector('#orderForm input[name="contact"]');
     if (contactField) contactField.value = name;
+
+    // Fill account info
+    document.getElementById('accountName').textContent = name || '—';
+    document.getElementById('accountEmail').textContent = customer.email || '—';
+
+    // Load company info from metafields if available
+    loadCompanyInfo();
+
+    // Load order history
+    loadOrderHistory();
   }
 
   // ---- Render Catalogue ----
@@ -1850,6 +2168,271 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('entrepriseSearch').focus();
   }
 
+  // ---- Load Order History ----
+  async function loadOrderHistory() {
+    const token = localStorage.getItem('velmond-pro-token');
+    if (!token) return;
+
+    const loading = document.getElementById('ordersLoading');
+    const list = document.getElementById('ordersList');
+    const empty = document.getElementById('ordersEmpty');
+
+    try {
+      const { data } = await shopifyFetch(`
+        query getOrders($token: String!) {
+          customer(customerAccessToken: $token) {
+            orders(first: 20, sortKey: PROCESSED_AT, reverse: true) {
+              edges {
+                node {
+                  id
+                  orderNumber
+                  processedAt
+                  fulfillmentStatus
+                  financialStatus
+                  totalPriceV2 { amount currencyCode }
+                  lineItems(first: 20) {
+                    edges {
+                      node {
+                        title
+                        quantity
+                        originalTotalPrice { amount currencyCode }
+                      }
+                    }
+                  }
+                  shippingAddress {
+                    company
+                    address1
+                    city
+                    zip
+                    country
+                  }
+                }
+              }
+            }
+          }
+        }
+      `, { token });
+
+      const orders = data?.customer?.orders?.edges?.map(e => e.node) || [];
+      loading.style.display = 'none';
+
+      if (orders.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+
+      // Store orders for invoice generation
+      window._orderCache = orders;
+
+      list.innerHTML = orders.map((order, idx) => {
+        const date = new Date(order.processedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+        const fulfillment = order.fulfillmentStatus || 'UNFULFILLED';
+        const financial = order.financialStatus || 'PENDING';
+        const total = parseFloat(order.totalPriceV2.amount).toFixed(2).replace('.', ',');
+        const currency = order.totalPriceV2.currencyCode === 'EUR' ? '€' : order.totalPriceV2.currencyCode;
+
+        const fulfillmentClass = fulfillment === 'FULFILLED' ? 'fulfilled' : fulfillment === 'UNFULFILLED' ? 'unfulfilled' : 'pending';
+        const fulfillmentLabel = fulfillment === 'FULFILLED' ? 'Expédiée' : fulfillment === 'UNFULFILLED' ? 'En préparation' : fulfillment.toLowerCase();
+        const financialClass = financial === 'PAID' ? 'paid' : financial === 'REFUNDED' ? 'refunded' : 'pending';
+        const financialLabel = financial === 'PAID' ? 'Payée' : financial === 'REFUNDED' ? 'Remboursée' : financial === 'PENDING' ? 'En attente' : financial.toLowerCase();
+
+        const items = order.lineItems.edges.map(e => e.node);
+        const itemsHtml = items.map(item => {
+          const itemTotal = parseFloat(item.originalTotalPrice.amount).toFixed(2).replace('.', ',');
+          return `<div class="order-item">
+            <span class="order-item-name">${item.title}</span>
+            <span class="order-item-qty">x${item.quantity}</span>
+            <span class="order-item-price">${itemTotal} ${currency}</span>
+          </div>`;
+        }).join('');
+
+        return `<div class="order-card">
+          <div class="order-card-header">
+            <div>
+              <span class="order-number">Commande #${order.orderNumber}</span>
+              <span class="order-date" style="margin-left:12px;">${date}</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <span class="order-status ${financialClass}">${financialLabel}</span>
+              <span class="order-status ${fulfillmentClass}">${fulfillmentLabel}</span>
+            </div>
+          </div>
+          <div class="order-card-items">${itemsHtml}</div>
+          <div class="order-card-footer">
+            <div>
+              <span class="order-total-label">Total</span>
+              <span class="order-total">${total} ${currency}</span>
+            </div>
+            <button class="order-invoice-btn" onclick="generateInvoice(${idx})">Facture</button>
+          </div>
+        </div>`;
+      }).join('');
+
+      list.style.display = 'flex';
+
+    } catch (err) {
+      console.error('Error loading orders:', err);
+      loading.textContent = 'Erreur de chargement des commandes.';
+    }
+  }
+
+  // ---- Generate Invoice (printable HTML) ----
+  function generateInvoice(orderIndex) {
+    const order = window._orderCache?.[orderIndex];
+    if (!order) return;
+
+    const name = localStorage.getItem('velmond-pro-name') || '';
+    const email = localStorage.getItem('velmond-pro-email') || '';
+    const company = window._companyInfo || {};
+
+    const date = new Date(order.processedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    const total = parseFloat(order.totalPriceV2.amount).toFixed(2).replace('.', ',');
+    const currency = order.totalPriceV2.currencyCode === 'EUR' ? '€' : order.totalPriceV2.currencyCode;
+    const items = order.lineItems.edges.map(e => e.node);
+
+    const itemsRows = items.map(item => {
+      const unitPrice = (parseFloat(item.originalTotalPrice.amount) / item.quantity).toFixed(2).replace('.', ',');
+      const lineTotal = parseFloat(item.originalTotalPrice.amount).toFixed(2).replace('.', ',');
+      return `<tr>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;font-size:14px;">${item.title}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;text-align:center;font-size:14px;">${item.quantity}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;text-align:right;font-size:14px;">${unitPrice} ${currency}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;text-align:right;font-size:14px;font-weight:600;">${lineTotal} ${currency}</td>
+      </tr>`;
+    }).join('');
+
+    const shippingAddr = order.shippingAddress;
+    const shippingHtml = shippingAddr ? `
+      <p style="margin:0;font-size:13px;color:#555;">
+        ${shippingAddr.company ? shippingAddr.company + '<br>' : ''}
+        ${shippingAddr.address1 || ''}<br>
+        ${shippingAddr.zip || ''} ${shippingAddr.city || ''}<br>
+        ${shippingAddr.country || ''}
+      </p>
+    ` : '';
+
+    const invoiceHtml = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Facture #${order.orderNumber} — Velmond Spirits</title>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; margin: 0; padding: 40px; }
+    @media print { body { padding: 20px; } .no-print { display: none; } }
+  </style>
+</head>
+<body>
+  <div style="max-width:700px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;">
+      <div>
+        <h1 style="font-family:Georgia,serif;font-size:28px;color:#C8A46D;margin:0 0 4px;">VELMOND SPIRITS</h1>
+        <p style="font-size:12px;color:#888;letter-spacing:2px;text-transform:uppercase;margin:0;">Facture partenaire</p>
+      </div>
+      <div style="text-align:right;">
+        <p style="font-size:13px;color:#555;margin:0;">Velmond Spirits SAS</p>
+        <p style="font-size:13px;color:#555;margin:2px 0;">contact@velmondspirits.fr</p>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;margin-bottom:32px;padding:20px;background:#f9f7f3;border-radius:4px;">
+      <div>
+        <p style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin:0 0 6px;">Facturé à</p>
+        <p style="margin:0;font-size:14px;font-weight:600;">${name}</p>
+        <p style="margin:2px 0;font-size:13px;color:#555;">${email}</p>
+        ${company.entreprise ? `<p style="margin:4px 0 0;font-size:13px;color:#555;font-weight:600;">${company.entreprise}</p>` : ''}
+        ${company.siret ? `<p style="margin:2px 0;font-size:12px;color:#777;">SIRET: ${company.siret}</p>` : ''}
+        ${company.adresse ? `<p style="margin:2px 0;font-size:12px;color:#777;">${company.adresse}</p>` : ''}
+      </div>
+      <div style="text-align:right;">
+        <p style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin:0 0 6px;">Facture</p>
+        <p style="margin:0;font-size:14px;font-weight:600;">#${order.orderNumber}</p>
+        <p style="margin:2px 0;font-size:13px;color:#555;">${date}</p>
+      </div>
+    </div>
+
+    ${shippingAddr ? `<div style="margin-bottom:24px;"><p style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin:0 0 6px;">Adresse de livraison</p>${shippingHtml}</div>` : ''}
+
+    <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+      <thead>
+        <tr style="background:#1a1a1a;color:#C8A46D;">
+          <th style="padding:12px;text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Produit</th>
+          <th style="padding:12px;text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Qté</th>
+          <th style="padding:12px;text-align:right;font-size:11px;letter-spacing:1px;text-transform:uppercase;">P.U.</th>
+          <th style="padding:12px;text-align:right;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Total</th>
+        </tr>
+      </thead>
+      <tbody>${itemsRows}</tbody>
+    </table>
+
+    <div style="text-align:right;padding:16px 0;border-top:2px solid #1a1a1a;">
+      <span style="font-size:13px;color:#555;text-transform:uppercase;letter-spacing:1px;">Total TTC</span>
+      <span style="font-size:24px;font-weight:700;color:#C8A46D;margin-left:16px;">${total} ${currency}</span>
+    </div>
+
+    <div style="margin-top:40px;padding-top:20px;border-top:1px solid #eee;text-align:center;">
+      <p style="font-size:11px;color:#aaa;">Velmond Spirits — L'abus d'alcool est dangereux pour la santé. À consommer avec modération.</p>
+    </div>
+
+    <div class="no-print" style="text-align:center;margin-top:32px;">
+      <button onclick="window.print()" style="padding:12px 32px;background:#C8A46D;color:#1a1a1a;border:none;border-radius:2px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Imprimer / Sauvegarder en PDF</button>
+    </div>
+  </div>
+</body>
+</html>`;
+
+    const win = window.open('', '_blank');
+    win.document.write(invoiceHtml);
+    win.document.close();
+  }
+
+  // ---- Load Company Info (from Shopify via proxy) ----
+  window._companyInfo = {};
+
+  async function loadCompanyInfo() {
+    if (!SHOPIFY_PROXY_URL) return;
+    const email = localStorage.getItem('velmond-pro-email');
+    if (!email) return;
+
+    try {
+      const res = await fetch(SHOPIFY_PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ action: 'get_customer_company', email })
+      });
+      const result = await res.json();
+      if (result.success && result.company) {
+        window._companyInfo = result.company;
+        const container = document.getElementById('accountCompanyInfo');
+        if (container && result.company.entreprise) {
+          container.innerHTML = `
+            <div class="account-info-row">
+              <span class="account-info-label">Entreprise</span>
+              <span class="account-info-value">${result.company.entreprise}</span>
+            </div>
+            <div class="account-info-row">
+              <span class="account-info-label">SIRET</span>
+              <span class="account-info-value">${result.company.siret || '—'}</span>
+            </div>
+            <div class="account-info-row">
+              <span class="account-info-label">SIREN</span>
+              <span class="account-info-value">${result.company.siren || '—'}</span>
+            </div>
+            <div class="account-info-row">
+              <span class="account-info-label">Adresse</span>
+              <span class="account-info-value">${result.company.adresse || '—'}</span>
+            </div>
+            <div class="account-info-row">
+              <span class="account-info-label">NAF</span>
+              <span class="account-info-value">${result.company.naf || '—'}</span>
+            </div>
+          `;
+        }
+      }
+    } catch (err) {
+      console.warn('Could not load company info:', err);
+    }
+  }
+
   // ---- Auto-login on page load ----
   document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('velmond-pro-token');
@@ -1859,7 +2442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const { data } = await shopifyFetch(`
         query getCustomer($token: String!) {
           customer(customerAccessToken: $token) {
-            id firstName lastName email
+            id firstName lastName email tags
           }
         }
       `, { token });

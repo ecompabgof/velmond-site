@@ -1163,10 +1163,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <input type="text" id="regLastName" placeholder="Nom" required>
               </div>
             </div>
-            <div class="pro-form-group">
-              <label for="regEmail">Adresse e-mail</label>
-              <input type="email" id="regEmail" placeholder="votre@entreprise.com" required>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="pro-form-group">
+                <label for="regEmail">Adresse e-mail</label>
+                <input type="email" id="regEmail" placeholder="votre@entreprise.com" required>
+              </div>
+              <div class="pro-form-group">
+                <label for="regPhone">Téléphone</label>
+                <input type="tel" id="regPhone" placeholder="06 XX XX XX XX" required>
+              </div>
             </div>
+
+            <!-- Recherche entreprise -->
+            <div class="pro-form-group" style="position:relative;">
+              <label>Votre entreprise</label>
+              <input type="text" id="regEntrepriseSearch" placeholder="Tapez le nom, SIRET ou SIREN..." autocomplete="off">
+              <div id="regEntrepriseResults" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:#1a1a1a;border:1px solid rgba(200,164,109,0.3);border-top:none;border-radius:0 0 4px 4px;max-height:240px;overflow-y:auto;"></div>
+            </div>
+
+            <!-- Infos entreprise auto-remplies -->
+            <div id="regEntrepriseInfo" style="display:none;background:rgba(200,164,109,0.06);border:1px solid rgba(200,164,109,0.15);border-radius:4px;padding:16px;margin-bottom:16px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Entreprise sélectionnée</span>
+                <button type="button" onclick="clearRegEntreprise()" style="background:none;border:none;color:rgba(200,164,109,0.5);cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">✕ Modifier</button>
+              </div>
+              <div id="regEntrepriseDetail" style="font-family:var(--font-body);color:var(--cream);font-size:0.9rem;line-height:1.7;"></div>
+            </div>
+            <input type="hidden" id="regEntrepriseNom">
+            <input type="hidden" id="regEntrepriseSiret">
+            <input type="hidden" id="regEntrepriseSiren">
+            <input type="hidden" id="regEntrepriseAdresse">
+            <input type="hidden" id="regEntrepriseNaf">
+
             <div class="pro-form-group">
               <label for="regPassword">Mot de passe</label>
               <input type="password" id="regPassword" placeholder="Minimum 8 caractères" minlength="8" required>
@@ -1636,8 +1664,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const firstName = document.getElementById('regFirstName').value.trim();
     const lastName = document.getElementById('regLastName').value.trim();
     const email = document.getElementById('regEmail').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
     const password = document.getElementById('regPassword').value;
     const passwordConfirm = document.getElementById('regPasswordConfirm').value;
+
+    // Company info from search
+    const regCompany = {
+      nom: document.getElementById('regEntrepriseNom').value,
+      siret: document.getElementById('regEntrepriseSiret').value,
+      siren: document.getElementById('regEntrepriseSiren').value,
+      adresse: document.getElementById('regEntrepriseAdresse').value,
+      naf: document.getElementById('regEntrepriseNaf').value
+    };
 
     if (password !== passwordConfirm) {
       showError('Les mots de passe ne correspondent pas.');
@@ -1647,12 +1685,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       showError('Le mot de passe doit contenir au moins 8 caractères.');
       return;
     }
+    if (!regCompany.siret) {
+      showError('Veuillez sélectionner votre entreprise.');
+      return;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Création en cours...';
     hideError();
 
     try {
+      // Format phone for Shopify (E.164)
+      let formattedPhone = phone.replace(/\s+/g, '');
+      if (formattedPhone.startsWith('0')) formattedPhone = '+33' + formattedPhone.slice(1);
+      if (!formattedPhone.startsWith('+')) formattedPhone = '+33' + formattedPhone;
+
       const { data, errors } = await shopifyFetch(`
         mutation customerCreate($input: CustomerCreateInput!) {
           customerCreate(input: $input) {
@@ -1660,7 +1707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             customerUserErrors { code field message }
           }
         }
-      `, { input: { firstName, lastName, email, password } });
+      `, { input: { firstName, lastName, email, password, phone: formattedPhone } });
 
       if (errors) { showError('Erreur de création. Réessayez.'); return; }
 
@@ -1673,6 +1720,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           showError(err.message);
         }
         return;
+      }
+
+      // Set email in localStorage before saving company (saveCompanyToShopify reads it)
+      localStorage.setItem('velmond-pro-email', email);
+
+      // Save company info to Shopify via proxy
+      if (regCompany.siret) {
+        saveCompanyToShopify({
+          nom: regCompany.nom,
+          siret: regCompany.siret,
+          siren: regCompany.siren,
+          adresse: regCompany.adresse,
+          naf: regCompany.naf
+        });
       }
 
       // Auto-login after registration
@@ -2166,6 +2227,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('entrepriseSearch').style.display = 'block';
     document.getElementById('entrepriseSearch').value = '';
     document.getElementById('entrepriseSearch').focus();
+  }
+
+  // ---- Registration Entreprise Search ----
+  const regSearchInput = document.getElementById('regEntrepriseSearch');
+  const regSearchResults = document.getElementById('regEntrepriseResults');
+  let regSearchTimeout = null;
+
+  if (regSearchInput) {
+    regSearchInput.addEventListener('input', function() {
+      clearTimeout(regSearchTimeout);
+      const q = this.value.trim();
+      if (q.length < 2) { regSearchResults.style.display = 'none'; return; }
+
+      regSearchTimeout = setTimeout(async () => {
+        try {
+          const res = await fetch(`https://recherche-entreprises.api.gouv.fr/search?q=${encodeURIComponent(q)}&page=1&per_page=5`);
+          const data = await res.json();
+          if (!data.results || data.results.length === 0) {
+            regSearchResults.innerHTML = '<div style="padding:12px 16px;font-family:var(--font-body);color:rgba(244,240,232,0.4);font-size:0.9rem;">Aucune entreprise trouvée</div>';
+            regSearchResults.style.display = 'block';
+            return;
+          }
+
+          window._regEntrepriseCache = data.results.map(e => {
+            const siege = e.siege || {};
+            return {
+              nom: e.nom_complet || 'Sans nom',
+              siret: siege.siret || '',
+              siren: e.siren || '',
+              adresse: siege.geo_adresse || siege.adresse || '',
+              ville: siege.libelle_commune || '',
+              cp: siege.code_postal || '',
+              naf: e.activite_principale || ''
+            };
+          });
+          regSearchResults.innerHTML = window._regEntrepriseCache.map((e, i) =>
+            `<div class="entreprise-item" onclick="selectRegEntreprise(window._regEntrepriseCache[${i}])">
+              <div class="entreprise-item-name">${e.nom}</div>
+              <div class="entreprise-item-info">SIRET ${e.siret} · SIREN ${e.siren} · NAF ${e.naf}</div>
+              <div class="entreprise-item-addr">${e.adresse}</div>
+            </div>`
+          ).join('');
+          regSearchResults.style.display = 'block';
+        } catch (err) {
+          console.error('Reg entreprise search error:', err);
+        }
+      }, 300);
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!regSearchInput.contains(e.target) && !regSearchResults.contains(e.target)) {
+        regSearchResults.style.display = 'none';
+      }
+    });
+  }
+
+  function selectRegEntreprise(e) {
+    document.getElementById('regEntrepriseNom').value = e.nom;
+    document.getElementById('regEntrepriseSiret').value = e.siret;
+    document.getElementById('regEntrepriseSiren').value = e.siren;
+    document.getElementById('regEntrepriseAdresse').value = e.adresse;
+    document.getElementById('regEntrepriseNaf').value = e.naf || '';
+
+    document.getElementById('regEntrepriseDetail').innerHTML =
+      `<strong style="color:var(--gold);font-family:var(--font-title);font-size:1rem;">${e.nom}</strong><br>` +
+      `<span style="font-family:var(--font-sans);font-size:0.65rem;color:rgba(200,164,109,0.7);letter-spacing:0.05em;">SIRET</span> ${e.siret} · <span style="font-family:var(--font-sans);font-size:0.65rem;color:rgba(200,164,109,0.7);letter-spacing:0.05em;">SIREN</span> ${e.siren}<br>` +
+      `${e.adresse}` +
+      (e.naf ? `<br><span style="font-family:var(--font-sans);font-size:0.65rem;color:rgba(200,164,109,0.7);letter-spacing:0.05em;">NAF</span> ${e.naf}` : '');
+
+    document.getElementById('regEntrepriseInfo').style.display = 'block';
+    regSearchInput.style.display = 'none';
+    regSearchResults.style.display = 'none';
+  }
+
+  function clearRegEntreprise() {
+    document.getElementById('regEntrepriseNom').value = '';
+    document.getElementById('regEntrepriseSiret').value = '';
+    document.getElementById('regEntrepriseSiren').value = '';
+    document.getElementById('regEntrepriseAdresse').value = '';
+    document.getElementById('regEntrepriseNaf').value = '';
+    document.getElementById('regEntrepriseInfo').style.display = 'none';
+    regSearchInput.style.display = 'block';
+    regSearchInput.value = '';
+    regSearchInput.focus();
   }
 
   // ---- Load Order History ----

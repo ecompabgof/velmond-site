@@ -1896,10 +1896,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // ---- Error display ----
   function showError(msg) {
     let el = document.getElementById('proError');
-    if (!el) {
-      el = document.createElement('div');
-      el.id = 'proError';
-      el.style.cssText = 'background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);color:#e74c3c;padding:12px 16px;border-radius:3px;font-family:var(--font-sans);font-size:0.8rem;margin-bottom:16px;text-align:center;';
+    if (el) el.remove();
+    el = document.createElement('div');
+    el.id = 'proError';
+    el.style.cssText = 'background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);color:#e74c3c;padding:12px 16px;border-radius:3px;font-family:var(--font-sans);font-size:0.8rem;margin-bottom:16px;text-align:center;';
+    // Show error in whichever form is visible
+    const registerPanel = document.getElementById('registerPanel');
+    const forgotPanel = document.getElementById('forgotPasswordPanel');
+    if (registerPanel && registerPanel.style.display !== 'none') {
+      document.getElementById('registerForm').prepend(el);
+    } else if (forgotPanel && forgotPanel.style.display !== 'none') {
+      document.getElementById('forgotPasswordForm').prepend(el);
+    } else {
       document.getElementById('proLoginForm').prepend(el);
     }
     el.textContent = msg;

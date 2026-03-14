@@ -824,6 +824,36 @@
     }
     .dash-shop-card a:hover { background: var(--gold-dark); }
 
+    /* Entreprise autocomplete */
+    .entreprise-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(200,164,109,0.08);
+      transition: background 0.2s;
+    }
+    .entreprise-item:hover, .entreprise-item:focus {
+      background: rgba(200,164,109,0.1);
+    }
+    .entreprise-item:last-child { border-bottom: none; }
+    .entreprise-item-name {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      color: var(--cream);
+      margin-bottom: 2px;
+    }
+    .entreprise-item-info {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      color: rgba(200,164,109,0.6);
+      letter-spacing: 0.05em;
+    }
+    .entreprise-item-addr {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: rgba(244,240,232,0.4);
+      margin-top: 2px;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .pro-content {
@@ -1048,25 +1078,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="order-desc">Remplissez ce formulaire pour passer une commande en volume. Notre équipe vous recontactera avec un devis sous 24h.</p>
 
         <form id="orderForm">
-          <div class="order-row" style="margin-bottom:20px;">
-            <div class="pro-form-group">
-              <label>Entreprise</label>
-              <input type="text" name="entreprise" placeholder="Nom de votre établissement" required>
+          <!-- Recherche entreprise -->
+          <div class="pro-form-group" style="position:relative;margin-bottom:20px;">
+            <label>Rechercher votre entreprise</label>
+            <input type="text" id="entrepriseSearch" placeholder="Tapez le nom, SIRET ou SIREN..." autocomplete="off">
+            <div id="entrepriseResults" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:#1a1a1a;border:1px solid rgba(200,164,109,0.3);border-top:none;border-radius:0 0 4px 4px;max-height:240px;overflow-y:auto;"></div>
+          </div>
+
+          <!-- Infos entreprise auto-remplies -->
+          <div id="entrepriseInfo" style="display:none;background:rgba(200,164,109,0.06);border:1px solid rgba(200,164,109,0.15);border-radius:4px;padding:20px;margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <span style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Entreprise sélectionnée</span>
+              <button type="button" onclick="clearEntreprise()" style="background:none;border:none;color:rgba(200,164,109,0.5);cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">✕ Modifier</button>
             </div>
+            <div id="entrepriseDetail" style="font-family:var(--font-body);color:var(--cream);font-size:0.95rem;line-height:1.8;"></div>
+          </div>
+          <input type="hidden" name="entreprise" id="entrepriseNom">
+          <input type="hidden" name="siret" id="entrepriseSiret">
+          <input type="hidden" name="siren" id="entrepriseSiren">
+          <input type="hidden" name="adresse_entreprise" id="entrepriseAdresse">
+
+          <div class="order-row" style="margin-bottom:20px;">
             <div class="pro-form-group">
               <label>Contact</label>
               <input type="text" name="contact" placeholder="Votre nom" required>
             </div>
-          </div>
-          <div class="order-row" style="margin-bottom:20px;">
             <div class="pro-form-group">
               <label>E-mail</label>
               <input type="email" name="email" placeholder="votre@entreprise.com" required>
             </div>
+          </div>
+          <div class="order-row" style="margin-bottom:20px;">
             <div class="pro-form-group">
               <label>Téléphone</label>
               <input type="tel" name="telephone" placeholder="06 XX XX XX XX">
             </div>
+            <div class="pro-form-group"></div>
           </div>
 
           <div class="pro-form-group">
@@ -1681,6 +1728,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.location.reload();
   }
 
+  // ---- Entreprise Search (API Recherche Entreprises) ----
+  let searchTimeout = null;
+  const searchInput = document.getElementById('entrepriseSearch');
+  const searchResults = document.getElementById('entrepriseResults');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimeout);
+      const q = this.value.trim();
+      if (q.length < 2) { searchResults.style.display = 'none'; return; }
+
+      searchTimeout = setTimeout(async () => {
+        try {
+          const res = await fetch(`https://recherche-entreprises.api.gouv.fr/search?q=${encodeURIComponent(q)}&page=1&per_page=5`);
+          const data = await res.json();
+          if (!data.results || data.results.length === 0) {
+            searchResults.innerHTML = '<div style="padding:12px 16px;font-family:var(--font-body);color:rgba(244,240,232,0.4);font-size:0.9rem;">Aucune entreprise trouvée</div>';
+            searchResults.style.display = 'block';
+            return;
+          }
+
+          window._entrepriseCache = data.results.map((e, i) => {
+            const siege = e.siege || {};
+            return {
+              nom: e.nom_complet || 'Sans nom',
+              siret: siege.siret || '',
+              siren: e.siren || '',
+              adresse: siege.geo_adresse || siege.adresse || '',
+              ville: siege.libelle_commune || '',
+              cp: siege.code_postal || '',
+              naf: e.activite_principale || ''
+            };
+          });
+          searchResults.innerHTML = window._entrepriseCache.map((e, i) =>
+            `<div class="entreprise-item" onclick="selectEntreprise(window._entrepriseCache[${i}])">
+              <div class="entreprise-item-name">${e.nom}</div>
+              <div class="entreprise-item-info">SIRET ${e.siret} · SIREN ${e.siren} · NAF ${e.naf}</div>
+              <div class="entreprise-item-addr">${e.adresse}</div>
+            </div>`
+          ).join('');
+          searchResults.style.display = 'block';
+        } catch (err) {
+          console.error('Entreprise search error:', err);
+        }
+      }, 300);
+    });
+
+    // Close dropdown on click outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+  }
+
+  function selectEntreprise(e) {
+    document.getElementById('entrepriseNom').value = e.nom;
+    document.getElementById('entrepriseSiret').value = e.siret;
+    document.getElementById('entrepriseSiren').value = e.siren;
+    document.getElementById('entrepriseAdresse').value = e.adresse;
+
+    document.getElementById('entrepriseDetail').innerHTML =
+      `<strong style="color:var(--gold);font-family:var(--font-title);font-size:1.1rem;">${e.nom}</strong><br>` +
+      `<span style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(200,164,109,0.7);letter-spacing:0.05em;">SIRET</span> ${e.siret} · <span style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(200,164,109,0.7);letter-spacing:0.05em;">SIREN</span> ${e.siren}<br>` +
+      `${e.adresse}` +
+      (e.naf ? `<br><span style="font-family:var(--font-sans);font-size:0.7rem;color:rgba(200,164,109,0.7);letter-spacing:0.05em;">NAF</span> ${e.naf}` : '');
+
+    document.getElementById('entrepriseInfo').style.display = 'block';
+    document.getElementById('entrepriseSearch').style.display = 'none';
+    document.getElementById('entrepriseResults').style.display = 'none';
+  }
+
+  function clearEntreprise() {
+    document.getElementById('entrepriseNom').value = '';
+    document.getElementById('entrepriseSiret').value = '';
+    document.getElementById('entrepriseSiren').value = '';
+    document.getElementById('entrepriseAdresse').value = '';
+    document.getElementById('entrepriseInfo').style.display = 'none';
+    document.getElementById('entrepriseSearch').style.display = 'block';
+    document.getElementById('entrepriseSearch').value = '';
+    document.getElementById('entrepriseSearch').focus();
+  }
+
   // ---- Auto-login on page load ----
   document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('velmond-pro-token');
@@ -1690,22 +1820,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const { data } = await shopifyFetch(`
         query getCustomer($token: String!) {
           customer(customerAccessToken: $token) {
-            id firstName lastName email tags
+            id firstName lastName email
           }
         }
       `, { token });
 
       const customer = data?.customer;
       if (customer) {
-        const tags = (customer.tags || []).map(t => t.toLowerCase());
-        const isWholesale = tags.some(t =>
-          t.includes('wholesale') || t.includes('b2b') || t.includes('pro') || t.includes('partenaire') || t.includes('revendeur')
-        );
-        if (isWholesale) {
-          activateDashboard(customer);
-        } else {
-          localStorage.removeItem('velmond-pro-token');
-        }
+        activateDashboard(customer);
       } else {
         localStorage.removeItem('velmond-pro-token');
       }

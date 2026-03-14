@@ -1093,6 +1093,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Contactez votre commercial dédié pour toute question sur les disponibilités, les délais de livraison ou les tarifs personnalisés.</p>
         <a href="mailto:contact@velmondspirits.fr">contact@velmondspirits.fr</a>
       </div>
+
+      <!-- Changer mot de passe -->
+      <div class="dash-shop-card" style="margin-top:16px;">
+        <h3>🔑 Modifier mon mot de passe</h3>
+        <div id="changePasswordForm" style="margin-top:12px;">
+          <div class="pro-form-group">
+            <label for="newPassword" style="color:rgba(247,243,235,0.6);font-family:var(--font-sans);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;">Nouveau mot de passe</label>
+            <input type="password" id="newPassword" placeholder="Minimum 8 caractères" minlength="8" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,164,109,0.2);border-radius:3px;color:var(--cream);font-family:var(--font-body);font-size:1rem;">
+          </div>
+          <div class="pro-form-group" style="margin-top:8px;">
+            <label for="confirmPassword" style="color:rgba(247,243,235,0.6);font-family:var(--font-sans);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;">Confirmer le mot de passe</label>
+            <input type="password" id="confirmPassword" placeholder="Retapez le mot de passe" minlength="8" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,164,109,0.2);border-radius:3px;color:var(--cream);font-family:var(--font-body);font-size:1rem;">
+          </div>
+          <button type="button" id="changePasswordBtn" onclick="changePassword()" style="margin-top:12px;padding:14px 32px;background:var(--gold);border:none;color:var(--black);font-family:var(--font-sans);font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;border-radius:3px;cursor:pointer;width:100%;">Modifier le mot de passe</button>
+          <p id="changePasswordMsg" style="display:none;margin-top:10px;font-family:var(--font-sans);font-size:0.8rem;text-align:center;"></p>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -1226,6 +1243,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       btn.textContent = 'Envoyer le lien';
     }
   });
+
+  // ---- Change Password ----
+  async function changePassword() {
+    const newPw = document.getElementById('newPassword').value;
+    const confirmPw = document.getElementById('confirmPassword').value;
+    const btn = document.getElementById('changePasswordBtn');
+    const msg = document.getElementById('changePasswordMsg');
+
+    if (newPw.length < 8) {
+      msg.style.display = 'block';
+      msg.style.color = '#e74c3c';
+      msg.textContent = 'Le mot de passe doit contenir au moins 8 caractères.';
+      return;
+    }
+    if (newPw !== confirmPw) {
+      msg.style.display = 'block';
+      msg.style.color = '#e74c3c';
+      msg.textContent = 'Les mots de passe ne correspondent pas.';
+      return;
+    }
+
+    const token = localStorage.getItem('velmond-pro-token');
+    if (!token) { msg.style.display = 'block'; msg.style.color = '#e74c3c'; msg.textContent = 'Session expirée. Reconnectez-vous.'; return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Modification en cours...';
+
+    try {
+      const { data } = await shopifyFetch(`
+        mutation customerUpdate($token: String!, $customer: CustomerUpdateInput!) {
+          customerUpdate(customerAccessToken: $token, customer: $customer) {
+            customer { id }
+            customerUserErrors { code message }
+          }
+        }
+      `, { token, customer: { password: newPw } });
+
+      const errors = data?.customerUpdate?.customerUserErrors;
+      if (errors && errors.length > 0) {
+        msg.style.display = 'block';
+        msg.style.color = '#e74c3c';
+        msg.textContent = errors[0].message;
+      } else {
+        msg.style.display = 'block';
+        msg.style.color = '#2ecc71';
+        msg.textContent = '✓ Mot de passe modifié avec succès !';
+        document.getElementById('newPassword').value = '';
+        document.getElementById('confirmPassword').value = '';
+      }
+    } catch (err) {
+      msg.style.display = 'block';
+      msg.style.color = '#e74c3c';
+      msg.textContent = 'Erreur réseau. Réessayez.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Modifier le mot de passe';
+    }
+  }
 
   // ---- Login ----
   document.getElementById('proLoginForm').addEventListener('submit', async function(e) {

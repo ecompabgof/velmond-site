@@ -903,7 +903,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="pro-divider-or"><span>ou</span></div>
-        <a href="/contact.html?objet=partenariat" class="pro-btn-outline">Devenir partenaire agréé</a>
+
+        <!-- Register form -->
+        <div id="registerPanel" style="display:none;">
+          <form id="registerForm" class="pro-form">
+            <h3 style="font-family:var(--font-title);color:var(--cream);margin-bottom:12px;font-size:1.2rem;">Créer un compte partenaire</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="pro-form-group">
+                <label for="regFirstName">Prénom</label>
+                <input type="text" id="regFirstName" placeholder="Prénom" required>
+              </div>
+              <div class="pro-form-group">
+                <label for="regLastName">Nom</label>
+                <input type="text" id="regLastName" placeholder="Nom" required>
+              </div>
+            </div>
+            <div class="pro-form-group">
+              <label for="regEmail">Adresse e-mail</label>
+              <input type="email" id="regEmail" placeholder="votre@entreprise.com" required>
+            </div>
+            <div class="pro-form-group">
+              <label for="regPassword">Mot de passe</label>
+              <input type="password" id="regPassword" placeholder="Minimum 8 caractères" minlength="8" required>
+            </div>
+            <div class="pro-form-group">
+              <label for="regPasswordConfirm">Confirmer le mot de passe</label>
+              <input type="password" id="regPasswordConfirm" placeholder="Confirmez votre mot de passe" minlength="8" required>
+            </div>
+            <button type="submit" class="pro-btn" id="registerBtn">Créer mon compte</button>
+            <a href="#" class="pro-forgot" onclick="hideRegister(event)">← Retour à la connexion</a>
+          </form>
+        </div>
+        <button class="pro-btn-outline" id="showRegisterBtn" onclick="showRegister(event)">Créer un compte partenaire</button>
       </div>
 
       <!-- Colonne droite : Avantages -->
@@ -1244,6 +1275,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   });
 
+  // ---- Register ----
+  function showRegister(e) {
+    e.preventDefault();
+    document.getElementById('proLoginForm').style.display = 'none';
+    document.getElementById('forgotPasswordPanel').style.display = 'none';
+    document.getElementById('registerPanel').style.display = 'block';
+    document.getElementById('showRegisterBtn').style.display = 'none';
+  }
+  function hideRegister(e) {
+    e.preventDefault();
+    document.getElementById('registerPanel').style.display = 'none';
+    document.getElementById('proLoginForm').style.display = 'block';
+    document.getElementById('showRegisterBtn').style.display = 'block';
+  }
+
+  document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('registerBtn');
+    const firstName = document.getElementById('regFirstName').value.trim();
+    const lastName = document.getElementById('regLastName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const passwordConfirm = document.getElementById('regPasswordConfirm').value;
+
+    if (password !== passwordConfirm) {
+      showError('Les mots de passe ne correspondent pas.');
+      return;
+    }
+    if (password.length < 8) {
+      showError('Le mot de passe doit contenir au moins 8 caractères.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Création en cours...';
+    hideError();
+
+    try {
+      const { data, errors } = await shopifyFetch(`
+        mutation customerCreate($input: CustomerCreateInput!) {
+          customerCreate(input: $input) {
+            customer { id firstName lastName email }
+            customerUserErrors { code field message }
+          }
+        }
+      `, { input: { firstName, lastName, email, password } });
+
+      if (errors) { showError('Erreur de création. Réessayez.'); return; }
+
+      const result = data.customerCreate;
+      if (result.customerUserErrors && result.customerUserErrors.length > 0) {
+        const err = result.customerUserErrors[0];
+        if (err.code === 'TAKEN') {
+          showError('Cette adresse email est déjà utilisée. Connectez-vous ou réinitialisez votre mot de passe.');
+        } else {
+          showError(err.message);
+        }
+        return;
+      }
+
+      // Auto-login after registration
+      const loginResult = await shopifyFetch(`
+        mutation tokenCreate($input: CustomerAccessTokenCreateInput!) {
+          customerAccessTokenCreate(input: $input) {
+            customerAccessToken { accessToken expiresAt }
+            customerUserErrors { code message }
+          }
+        }
+      `, { input: { email, password } });
+
+      const tokenData = loginResult?.data?.customerAccessTokenCreate;
+      if (tokenData?.customerAccessToken) {
+        const token = tokenData.customerAccessToken.accessToken;
+        localStorage.setItem('velmond-pro-token', token);
+        localStorage.setItem('velmond-pro-email', email);
+        localStorage.setItem('velmond-pro-name', firstName + ' ' + lastName);
+
+        const customerData = await shopifyFetch(`
+          query getCustomer($token: String!) {
+            customer(customerAccessToken: $token) {
+              id firstName lastName email
+            }
+          }
+        `, { token });
+
+        const customer = customerData?.data?.customer || { firstName, lastName, email };
+        activateDashboard(customer);
+      } else {
+        btn.style.background = '#2ecc71';
+        btn.textContent = '✓ Compte créé ! Connectez-vous.';
+        setTimeout(() => { hideRegister({ preventDefault: () => {} }); }, 2000);
+      }
+
+    } catch (err) {
+      console.error('Register error:', err);
+      showError('Erreur réseau. Vérifiez votre connexion.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Créer mon compte';
+    }
+  });
+
   // ---- Change Password ----
   async function changePassword() {
     const newPw = document.getElementById('newPassword').value;
@@ -1346,17 +1479,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const customer = customerData?.data?.customer;
       if (!customer) { showError('Impossible de récupérer vos informations.'); return; }
-
-      const tags = (customer.tags || []).map(t => t.toLowerCase());
-      const isWholesale = tags.some(t =>
-        t.includes('wholesale') || t.includes('b2b') || t.includes('pro') || t.includes('partenaire') || t.includes('revendeur')
-      );
-
-      if (!isWholesale) {
-        showError('Ce compte n\'est pas associé à un partenaire agréé. Contactez contact@velmondspirits.fr');
-        localStorage.removeItem('velmond-pro-token');
-        return;
-      }
 
       localStorage.setItem('velmond-pro-name', (customer.firstName || '') + ' ' + (customer.lastName || ''));
       activateDashboard(customer);

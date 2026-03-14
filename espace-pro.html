@@ -885,8 +885,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="password" id="proPassword" name="password" placeholder="••••••••" required>
           </div>
           <button type="submit" class="pro-btn" id="proLoginBtn">Se connecter</button>
-          <a href="mailto:contact@velmondspirits.fr?subject=Mot de passe oublié" class="pro-forgot">Mot de passe oublié ?</a>
+          <a href="#" class="pro-forgot" onclick="showForgotPassword(event)">Mot de passe oublié ?</a>
         </form>
+
+        <!-- Forgot password form -->
+        <div id="forgotPasswordPanel" style="display:none;margin-top:20px;">
+          <form id="forgotPasswordForm" class="pro-form">
+            <h3 style="font-family:var(--font-title);color:var(--cream);margin-bottom:12px;font-size:1.2rem;">Réinitialiser le mot de passe</h3>
+            <p style="font-family:var(--font-body);color:rgba(247,243,235,0.6);font-size:0.9rem;margin-bottom:16px;">Entrez votre adresse e-mail, vous recevrez un lien pour créer un nouveau mot de passe.</p>
+            <div class="pro-form-group">
+              <label for="forgotEmail">Adresse e-mail</label>
+              <input type="email" id="forgotEmail" name="email" placeholder="votre@entreprise.com" required>
+            </div>
+            <button type="submit" class="pro-btn" id="forgotBtn">Envoyer le lien</button>
+            <a href="#" class="pro-forgot" onclick="hideForgotPassword(event)">← Retour à la connexion</a>
+          </form>
+        </div>
 
         <div class="pro-divider-or"><span>ou</span></div>
         <a href="/contact.html?objet=partenariat" class="pro-btn-outline">Devenir partenaire agréé</a>
@@ -1158,6 +1172,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
     return res.json();
   }
+
+  // ---- Forgot Password ----
+  function showForgotPassword(e) {
+    e.preventDefault();
+    document.getElementById('proLoginForm').style.display = 'none';
+    document.getElementById('forgotPasswordPanel').style.display = 'block';
+    document.getElementById('forgotEmail').value = document.getElementById('proEmail').value || '';
+  }
+  function hideForgotPassword(e) {
+    e.preventDefault();
+    document.getElementById('forgotPasswordPanel').style.display = 'none';
+    document.getElementById('proLoginForm').style.display = 'block';
+  }
+
+  document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('forgotBtn');
+    const email = document.getElementById('forgotEmail').value.trim();
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    try {
+      const { data } = await shopifyFetch(`
+        mutation customerRecover($email: String!) {
+          customerRecover(email: $email) {
+            customerUserErrors { code message }
+          }
+        }
+      `, { email });
+
+      const errors = data?.customerRecover?.customerUserErrors;
+      if (errors && errors.length > 0) {
+        showError(errors[0].message);
+      } else {
+        hideError();
+        btn.style.background = '#2ecc71';
+        btn.textContent = '✓ Email envoyé !';
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.textContent = 'Envoyer le lien';
+          btn.disabled = false;
+          hideForgotPassword({ preventDefault: () => {} });
+        }, 3000);
+        return;
+      }
+    } catch (err) {
+      showError('Erreur réseau. Réessayez.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer le lien';
+    }
+  });
 
   // ---- Login ----
   document.getElementById('proLoginForm').addEventListener('submit', async function(e) {

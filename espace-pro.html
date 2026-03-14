@@ -885,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="password" id="proPassword" name="password" placeholder="••••••••" required>
           </div>
           <button type="submit" class="pro-btn" id="proLoginBtn">Se connecter</button>
-          <a href="mailto:pro@velmondspirits.fr?subject=Mot de passe oublié" class="pro-forgot">Mot de passe oublié ?</a>
+          <a href="mailto:contact@velmondspirits.fr?subject=Mot de passe oublié" class="pro-forgot">Mot de passe oublié ?</a>
         </form>
 
         <div class="pro-divider-or"><span>ou</span></div>
@@ -900,7 +900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="pro-advantage-icon">💰</div>
           <div>
             <h3>Tarifs professionnels</h3>
-            <p>Remise partenaire de -30% sur l'ensemble du catalogue. Prix nets HT dédiés aux revendeurs agréés.</p>
+            <p>Remise partenaire de -10% sur l'ensemble du catalogue. Prix nets HT dédiés aux revendeurs agréés.</p>
           </div>
         </div>
         <div class="pro-advantage">
@@ -975,10 +975,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="dash-promo-banner">
       <div class="dash-promo-inner">
         <div class="promo-text">
-          Votre <strong>remise partenaire de -30%</strong> est automatiquement appliquée avec votre code professionnel. Utilisez-le sur la boutique en ligne.
+          Votre <strong>remise partenaire de -10%</strong> est automatiquement appliquée avec votre code professionnel. Utilisez-le sur la boutique en ligne.
         </div>
         <div class="promo-code-box">
-          <span class="promo-code" id="promoCode">VELMOND-PRO30</span>
+          <span class="promo-code" id="promoCode">VELMOND-PRO10</span>
           <button class="promo-copy-btn" onclick="copyPromoCode()">Copier</button>
         </div>
       </div>
@@ -1071,13 +1071,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="dash-tab-content" id="tab-boutique">
       <div class="dash-shop-card">
         <h3>Commander sur la boutique en ligne</h3>
-        <p>Accédez à la boutique Velmond Spirits et utilisez votre code promo <strong>VELMOND-PRO30</strong> pour bénéficier de -30% sur l'ensemble du catalogue.</p>
+        <p>Accédez à la boutique Velmond Spirits et utilisez votre code promo <strong>VELMOND-PRO10</strong> pour bénéficier de -10% sur l'ensemble du catalogue.</p>
         <a href="/boutique.html" target="_blank">Accéder à la boutique →</a>
       </div>
       <div class="dash-shop-card" style="margin-top:16px;">
         <h3>Besoin de support ?</h3>
         <p>Contactez votre commercial dédié pour toute question sur les disponibilités, les délais de livraison ou les tarifs personnalisés.</p>
-        <a href="mailto:pro@velmondspirits.fr">pro@velmondspirits.fr</a>
+        <a href="mailto:contact@velmondspirits.fr">contact@velmondspirits.fr</a>
       </div>
     </div>
 
@@ -1087,7 +1087,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="pro-contact-bar" id="proContactBar">
     <div class="pro-contact-inner">
       <p>Une question ? Contactez notre équipe commerciale.</p>
-      <a href="mailto:pro@velmondspirits.fr">pro@velmondspirits.fr</a>
+      <a href="mailto:contact@velmondspirits.fr">contact@velmondspirits.fr</a>
     </div>
   </div>
 
@@ -1110,8 +1110,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF3XqhEhKrM_Q1gx6mM4A7Rr-6S1vAE_mQqWfppgbIFGzOQLXU8vEvwPODvFDXXUD7aw/exec';
 
   // Promo code for partners (create this in Shopify Admin)
-  const PROMO_CODE = 'VELMOND-PRO30';
-  const DISCOUNT_PERCENT = 30;
+  const PROMO_CODE = 'VELMOND-PRO10';
+  const DISCOUNT_PERCENT = 10;
 
   // Product catalogue with retail prices
   const CATALOGUE = [
@@ -1210,7 +1210,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       );
 
       if (!isWholesale) {
-        showError('Ce compte n\'est pas associé à un partenaire agréé. Contactez pro@velmondspirits.fr');
+        showError('Ce compte n\'est pas associé à un partenaire agréé. Contactez contact@velmondspirits.fr');
         localStorage.removeItem('velmond-pro-token');
         return;
       }

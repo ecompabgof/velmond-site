@@ -8,14 +8,43 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-WFRGXSCQ');</script>
   <!-- End Google Tag Manager -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F56D9RLHV9"></script>
+  <!-- Google Consent Mode defaults -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'regions': ['EU']
+    });
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+  </script>
+  <!-- Axeptio Cookie Consent -->
+  <script>
+    window.axeptioSettings = {
+      clientId: "69b540268684d5788b0181f9",
+      cookiesVersion: "velmond spirits-fr-EU"
+    };
+    (function(d, s) {
+      var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+      e.async = true; e.src = "//static.axept.io/sdk.js";
+      t.parentNode.insertBefore(e, t);
+    })(document, "script");
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F56D9RLHV9"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-F56D9RLHV9');
   </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liqueur Noisette — L'Atelier des Liqueurs — Velmond Spirits</title>
@@ -191,27 +220,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="quiz-fab-icon">🥃</span> Testez votre goût
   </button>
   <script src="../quiz.js"></script>
-<!-- Axeptio Cookie Consent -->
-<script>
-window.axeptioSettings = {
-  clientId: "69b540268684d5788b0181f9",
-  cookiesVersion: "velmond spirits-fr-EU",
-  googleConsentMode: {
-    default: {
-      analytics_storage: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      wait_for_update: 500
-    }
-  }
-};
-
-(function(d, s) {
-  var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-  e.async = true; e.src = "//static.axept.io/sdk.js";
-  t.parentNode.insertBefore(e, t);
-})(document, "script");
-</script>
 </body>
 </html>

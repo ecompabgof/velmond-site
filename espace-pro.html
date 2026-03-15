@@ -1725,9 +1725,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       // Set email in localStorage before saving company (saveCompanyToShopify reads it)
       localStorage.setItem('velmond-pro-email', email);
 
-      // Save company info to Shopify via proxy
+      // Save company info to Shopify via proxy (small delay to let Shopify index the new customer)
       if (regCompany.siret) {
-        saveCompanyToShopify({
+        await new Promise(r => setTimeout(r, 2000));
+        await saveCompanyToShopify({
           nom: regCompany.nom,
           siret: regCompany.siret,
           siren: regCompany.siren,
